@@ -1,4 +1,5 @@
 import 'package:ayo_beraksi_flutter/constants.dart';
+import 'package:ayo_beraksi_flutter/screens/home/pages/profil/components/alert_dialog.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/profil/components/avatar.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/profil/components/biodata.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,13 @@ class Profil extends StatelessWidget {
           SizedBox(
             width: size.width,
             child: ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlrtDialog();
+                    });
+              },
               icon: Icon(Icons.exit_to_app_outlined),
               label: Text("Keluar"),
             ),
