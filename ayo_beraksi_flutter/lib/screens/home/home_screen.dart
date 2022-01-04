@@ -13,30 +13,29 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
-  final pages = [MainMenu(), Pencarian(), Notifikasi(), Profil()];
+  final pages = [const MainMenu(), const Pencarian(), const Notifikasi(), const Profil()];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(
-        alignment: AlignmentDirectional.center,
-        index: currentIndex,
-        children: pages,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: IndexedStack(
+          alignment: AlignmentDirectional.center,
+          index: currentIndex,
+          children: pages,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: currentIndex,
+            onTap: (index) => setState(() => currentIndex = index),
+            items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: "Beranda"),
+              BottomNavigationBarItem(icon: Icon(Icons.search), label: "Pencarian"),
+              BottomNavigationBarItem(icon: Icon(Icons.notifications_outlined), label: "Notifikasi"),
+              BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: "Profil"),
+            ]),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: currentIndex,
-          onTap: (index) => setState(() => currentIndex = index),
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined), label: "Beranda"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.search), label: "Pencarian"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.notifications_outlined), label: "Notifikasi"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline), label: "Profil"),
-          ]),
     );
   }
 }

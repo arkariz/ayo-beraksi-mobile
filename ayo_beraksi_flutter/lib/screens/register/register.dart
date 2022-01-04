@@ -1,14 +1,14 @@
+import 'package:ayo_beraksi_flutter/common/custom_password_field.dart';
+import 'package:ayo_beraksi_flutter/common/custom_text_field.dart';
 import 'package:ayo_beraksi_flutter/constants.dart';
 import 'package:ayo_beraksi_flutter/screens/home/home_screen.dart';
 import 'package:ayo_beraksi_flutter/screens/login/login.dart';
-import 'package:ayo_beraksi_flutter/screens/register/components/custom_password_field.dart';
-import 'package:ayo_beraksi_flutter/screens/register/components/custom_text_field.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Register extends StatefulWidget {
-  Register({Key? key}) : super(key: key);
+  const Register({Key? key}) : super(key: key);
 
   @override
   State<Register> createState() => _RegisterState();
@@ -49,7 +49,7 @@ class _RegisterState extends State<Register> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(left: kDefaultPadding + 5, right: kDefaultPadding + 5, top: kDefaultPadding * 5),
+        padding: const EdgeInsets.only(left: kDefaultPadding + 5, right: kDefaultPadding + 5, top: kDefaultPadding * 5),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +59,7 @@ class _RegisterState extends State<Register> {
                 style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
               ),
               Padding(
-                padding: EdgeInsets.only(top: kDefaultPadding * 2),
+                padding: const EdgeInsets.only(top: kDefaultPadding * 2),
                 child: Form(
                   key: formFieldKey,
                   child: Column(
@@ -105,16 +105,16 @@ class _RegisterState extends State<Register> {
                               onChanged: (bool? value) => setState(() => isChecked = value!)),
                           RichText(
                             text: TextSpan(children: [
-                              TextSpan(text: "Saya menyetujui", style: TextStyle(color: Colors.black87)),
+                              const TextSpan(text: "Saya menyetujui", style: TextStyle(color: Colors.black87)),
                               TextSpan(
                                   text: " Syarat & Ketentuan",
                                   recognizer: TapGestureRecognizer()..onTap = () {},
-                                  style: TextStyle(color: kPrimaryColor)),
-                              TextSpan(text: "\ndan", style: TextStyle(color: Colors.black87)),
+                                  style: const TextStyle(color: kPrimaryColor)),
+                              const TextSpan(text: "\ndan", style: TextStyle(color: Colors.black87)),
                               TextSpan(
                                   text: " Syarat & Ketentuan",
                                   recognizer: TapGestureRecognizer()..onTap = () {},
-                                  style: TextStyle(color: kPrimaryColor)),
+                                  style: const TextStyle(color: kPrimaryColor)),
                             ]),
                           )
                         ],
@@ -134,12 +134,12 @@ class _RegisterState extends State<Register> {
                             if (formFieldKey.currentState!.validate()) {
                               Navigator.pushReplacement(
                                 context,
-                                MaterialPageRoute(builder: (context) => HomeScreen()),
+                                MaterialPageRoute(builder: (context) => const HomeScreen()),
                               );
                             }
                           }
                         : null, //_showToast(context),
-                    child: Text("Daftar"),
+                    child: const Text("Daftar"),
                   ),
                 ),
               ),
@@ -148,7 +148,7 @@ class _RegisterState extends State<Register> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Sudah punya akun?"),
+                    const Text("Sudah punya akun?"),
                     TextButton(
                         onPressed: () {
                           Navigator.pushReplacement(
@@ -156,7 +156,7 @@ class _RegisterState extends State<Register> {
                             MaterialPageRoute(builder: (context) => Login()),
                           );
                         },
-                        child: Text("Masuk"))
+                        child: const Text("Masuk"))
                   ],
                 ),
               )

@@ -1,14 +1,16 @@
 import 'package:ayo_beraksi_flutter/constants.dart';
 import 'package:flutter/material.dart';
 
-class CustomPasswordField extends StatefulWidget {
-  const CustomPasswordField({
+class CustomTextField extends StatefulWidget {
+  CustomTextField({
     Key? key,
     required this.controller,
     required this.node,
     required this.size,
     required this.icon,
     required this.label,
+    required this.type,
+    this.initialValue,
   }) : super(key: key);
 
   final TextEditingController controller;
@@ -16,14 +18,14 @@ class CustomPasswordField extends StatefulWidget {
   final Size size;
   final IconData icon;
   final String label;
+  final TextInputType type;
+  String? initialValue;
 
   @override
-  _CustomPasswordFieldState createState() => _CustomPasswordFieldState();
+  _CustomTextFieldState createState() => _CustomTextFieldState();
 }
 
-class _CustomPasswordFieldState extends State<CustomPasswordField> {
-  bool _isHidden = true;
-
+class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,7 +33,8 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
       child: SizedBox(
         width: widget.size.width,
         child: TextFormField(
-          obscureText: _isHidden,
+          initialValue: widget.initialValue ?? null,
+          keyboardType: widget.type,
           focusNode: widget.node,
           controller: widget.controller,
           validator: (value) {
@@ -41,14 +44,11 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
             return null;
           },
           decoration: InputDecoration(
-              prefixIcon: Icon(widget.icon),
-              labelStyle: TextStyle(color: Colors.black38),
-              labelText: widget.label,
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-              suffixIcon: IconButton(
-                onPressed: () => setState(() => _isHidden = !_isHidden),
-                icon: Icon(_isHidden ? Icons.visibility_off_outlined : Icons.visibility_outlined),
-              )),
+            prefixIcon: Icon(widget.icon),
+            labelStyle: const TextStyle(color: Colors.black38),
+            labelText: widget.label,
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+          ),
           textInputAction: TextInputAction.done,
         ),
       ),

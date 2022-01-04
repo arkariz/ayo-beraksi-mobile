@@ -1,8 +1,7 @@
-// ignore_for_file: prefer_const_constructors
+import 'package:ayo_beraksi_flutter/common/custom_password_field.dart';
+import 'package:ayo_beraksi_flutter/common/custom_text_field.dart';
 import 'package:ayo_beraksi_flutter/constants.dart';
-import 'package:ayo_beraksi_flutter/screens/home/home_screen.dart';
-import 'package:ayo_beraksi_flutter/screens/login/components/custom_password_field.dart';
-import 'package:ayo_beraksi_flutter/screens/login/components/custom_text_field.dart';
+import 'package:ayo_beraksi_flutter/screens/otp/otp.dart';
 import 'package:ayo_beraksi_flutter/screens/register/register.dart';
 import 'package:flutter/material.dart';
 
@@ -31,13 +30,13 @@ class Login extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 child: Text(
                   "Masuk",
                   style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: kDefaultPadding * 1.5,
               ),
               Form(
@@ -71,11 +70,14 @@ class Login extends StatelessWidget {
                       if (formFieldKey.currentState!.validate()) {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                          MaterialPageRoute(
+                              builder: (context) => OTPScreen(
+                                    phoneNumber: tlpController.text,
+                                  )),
                         );
                       }
                     },
-                    child: Text("Masuk"),
+                    child: const Text("Masuk"),
                   ),
                 ),
               ),
@@ -91,7 +93,7 @@ class Login extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Text(
+                    const Text(
                       "Masuk dengan Google",
                       style: TextStyle(color: Colors.black54),
                     ),
@@ -114,7 +116,7 @@ class Login extends StatelessWidget {
                   child: ElevatedButton.icon(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(primary: Colors.white),
-                    label: Text(
+                    label: const Text(
                       "Google",
                       style: TextStyle(color: Colors.black),
                     ),
@@ -126,15 +128,15 @@ class Login extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("belum punya akun?"),
+                    const Text("belum punya akun?"),
                     TextButton(
                         onPressed: () {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => Register()),
+                            MaterialPageRoute(builder: (context) => const Register()),
                           );
                         },
-                        child: Text("Daftar"))
+                        child: const Text("Daftar"))
                   ],
                 ),
               )

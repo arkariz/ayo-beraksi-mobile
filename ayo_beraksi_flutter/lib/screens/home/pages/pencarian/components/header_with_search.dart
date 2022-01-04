@@ -17,10 +17,7 @@ class HeaderwithSearch extends StatelessWidget {
             children: <Widget>[
               const Text(
                 "Ayo\nBerAksi",
-                style: TextStyle(
-                    color: kTitleColor,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(color: kTitleColor, fontSize: 24, fontWeight: FontWeight.bold),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -41,10 +38,10 @@ class HeaderwithSearch extends StatelessWidget {
             ],
           ),
           Padding(
-              padding: EdgeInsets.only(top: kDefaultPadding * 2),
+              padding: const EdgeInsets.only(top: kDefaultPadding * 2),
               child: Container(
                 alignment: Alignment.center,
-                padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
                 height: 54,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black12),

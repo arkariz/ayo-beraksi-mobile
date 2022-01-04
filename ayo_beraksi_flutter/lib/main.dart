@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
           colorScheme: const ColorScheme.light().copyWith(primary: kPrimaryColor),
           textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
           visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: LaunchScreen(),
+      home: const LaunchScreen(),
     );
   }
 }

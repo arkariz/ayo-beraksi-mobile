@@ -16,7 +16,7 @@ class Pencarian extends StatelessWidget {
         top: kDefaultPadding * 2,
       ),
       child: Column(
-        children: <Widget>[HeaderwithSearch(size: size), SearchResult()],
+        children: <Widget>[HeaderwithSearch(size: size), const SearchResult()],
       ),
     );
   }

@@ -37,11 +37,11 @@ class Profil extends StatelessWidget {
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return AlrtDialog();
+                      return const AlrtDialog();
                     });
               },
-              icon: Icon(Icons.exit_to_app_outlined),
-              label: Text("Keluar"),
+              icon: const Icon(Icons.exit_to_app_outlined),
+              label: const Text("Keluar"),
             ),
           )
         ],

@@ -42,7 +42,7 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
           },
           decoration: InputDecoration(
               prefixIcon: Icon(widget.icon),
-              labelStyle: TextStyle(color: Colors.black38),
+              labelStyle: const TextStyle(color: Colors.black38),
               labelText: widget.label,
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               suffixIcon: IconButton(

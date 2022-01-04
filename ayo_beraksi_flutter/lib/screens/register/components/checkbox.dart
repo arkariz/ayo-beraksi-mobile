@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class CheckboxFormField extends StatefulWidget {
-  CheckboxFormField({Key? key}) : super(key: key);
+  const CheckboxFormField({Key? key}) : super(key: key);
 
   @override
   _CheckboxFormFieldState createState() => _CheckboxFormFieldState();

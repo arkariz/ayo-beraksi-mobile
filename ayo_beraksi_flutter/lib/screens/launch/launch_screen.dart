@@ -51,10 +51,10 @@ class LaunchScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Register()),
+                        MaterialPageRoute(builder: (context) => const Register()),
                       );
                     },
-                    child: Text("Daftar"),
+                    child: const Text("Daftar"),
                   ),
                 ),
               ),
@@ -69,7 +69,7 @@ class LaunchScreen extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => Login()),
                       );
                     },
-                    child: Text("Masuk"),
+                    child: const Text("Masuk"),
                     style: ElevatedButton.styleFrom(primary: Colors.white, onPrimary: kPrimaryColor),
                   ),
                 ),

@@ -52,11 +52,7 @@ class Menu extends StatelessWidget {
 
 class MenuCard extends StatefulWidget {
   const MenuCard(
-      {Key? key,
-      required this.primaryColor,
-      required this.secondaryColor,
-      required this.title,
-      required this.icon})
+      {Key? key, required this.primaryColor, required this.secondaryColor, required this.title, required this.icon})
       : super(key: key);
 
   final Color primaryColor;
@@ -72,7 +68,6 @@ class _MenuCardState extends State<MenuCard> {
   bool isChanged = false;
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return GestureDetector(
         onTapDown: (details) => setState(() => isChanged = !isChanged),
         child: ClipRRect(
@@ -91,21 +86,16 @@ class _MenuCardState extends State<MenuCard> {
                   child: Container(
                     height: 175,
                     width: 175,
-                    decoration: BoxDecoration(
-                        color: widget.primaryColor,
-                        borderRadius: BorderRadius.circular(90)),
+                    decoration: BoxDecoration(color: widget.primaryColor, borderRadius: BorderRadius.circular(90)),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(25.0),
+                  padding: const EdgeInsets.all(25.0),
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: Text(
                       widget.title,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
+                      style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),

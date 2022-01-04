@@ -8,21 +8,21 @@ class AlrtDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoAlertDialog(
-      content: Text("Anda yakin ingin keluar?"),
+      content: const Text("Anda yakin ingin keluar?"),
       actions: [
         CupertinoDialogAction(
-            textStyle: TextStyle(color: kPrimaryColor),
-            child: Text("No"),
+            textStyle: const TextStyle(color: kPrimaryColor),
+            child: const Text("No"),
             onPressed: () {
               Navigator.pop(context);
             }),
         CupertinoDialogAction(
-            textStyle: TextStyle(color: kPrimaryColor),
-            child: Text("Yes"),
+            textStyle: const TextStyle(color: kPrimaryColor),
+            child: const Text("Yes"),
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                CupertinoPageRoute(builder: (context) => LaunchScreen()),
+                CupertinoPageRoute(builder: (context) => const LaunchScreen()),
               );
             })
       ],
