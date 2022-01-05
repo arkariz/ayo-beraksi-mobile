@@ -37,7 +37,7 @@ class OTPScreen extends StatelessWidget {
                 controller: tlpController,
                 node: tlpNode,
                 size: size,
-                icon: Icons.phone_outlined,
+                icon: const Icon(Icons.phone_outlined),
                 label: 'Nomor Telepon',
                 type: TextInputType.number,
               ),

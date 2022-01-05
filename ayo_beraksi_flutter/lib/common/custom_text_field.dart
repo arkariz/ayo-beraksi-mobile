@@ -7,19 +7,23 @@ class CustomTextField extends StatefulWidget {
     required this.controller,
     required this.node,
     required this.size,
-    required this.icon,
+    this.icon,
     required this.label,
     required this.type,
     this.initialValue,
+    this.maxLines,
+    this.suffixIcon,
   }) : super(key: key);
 
   final TextEditingController controller;
   final FocusNode node;
   final Size size;
-  final IconData icon;
+  final Icon? icon;
+  final Icon? suffixIcon;
   final String label;
   final TextInputType type;
   String? initialValue;
+  final int? maxLines;
 
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
@@ -33,6 +37,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       child: SizedBox(
         width: widget.size.width,
         child: TextFormField(
+          maxLines: widget.maxLines,
           initialValue: widget.initialValue ?? null,
           keyboardType: widget.type,
           focusNode: widget.node,
@@ -44,10 +49,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
             return null;
           },
           decoration: InputDecoration(
-            prefixIcon: Icon(widget.icon),
+            alignLabelWithHint: true,
+            prefixIcon: widget.icon,
             labelStyle: const TextStyle(color: Colors.black38),
             labelText: widget.label,
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            suffixIcon: widget.suffixIcon,
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Colors.black26)),
           ),
           textInputAction: TextInputAction.done,
         ),
