@@ -1,5 +1,9 @@
 import 'package:ayo_beraksi_flutter/constants.dart';
+import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/bantuan/bantuan_screen.dart';
+import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/gratifikasi/gratifikasi_form.dart';
+import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/pengaduan/pengaduan_form.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/penyuapan/penyuapan_form.dart';
+import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/umpan_balik/umpan_balik_form.dart';
 import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {
@@ -21,36 +25,63 @@ class Menu extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => PenyuapanForm()),
+                MaterialPageRoute(builder: (context) => const PenyuapanForm()),
               );
             },
           ),
-          const MenuCard(
+          MenuCard(
             primaryColor: kPurplePrimaryColor,
             secondaryColor: kPurpleSecondaryColor,
             title: "Pengaduan",
             icon: "assets/icons/web-chat.png",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PengaduanForm()),
+              );
+            },
           ),
-          const MenuCard(
-              primaryColor: kYellowPrimary,
-              secondaryColor: kYellowSecondary,
-              title: "Gratifikasi",
-              icon: "assets/icons/money.png"),
-          const MenuCard(
-              primaryColor: kGreenPrimary,
-              secondaryColor: kGreenSecondary,
-              title: "Umpan Balik",
-              icon: "assets/icons/umpan-balik.png"),
+          MenuCard(
+            primaryColor: kYellowPrimary,
+            secondaryColor: kYellowSecondary,
+            title: "Gratifikasi",
+            icon: "assets/icons/money.png",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const GratifikasiForm()),
+              );
+            },
+          ),
+          MenuCard(
+            primaryColor: kGreenPrimary,
+            secondaryColor: kGreenSecondary,
+            title: "Umpan Balik",
+            icon: "assets/icons/umpan-balik.png",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const UmpanBalikForm()),
+              );
+            },
+          ),
           const MenuCard(
               primaryColor: kBluePrimary,
               secondaryColor: kBlueSecondary,
               title: "Manajemen",
               icon: "assets/icons/manajemen.png"),
-          const MenuCard(
-              primaryColor: kOrangePrimary,
-              secondaryColor: kOrangeSecondary,
-              title: "Bantuan",
-              icon: "assets/icons/bantuan.png")
+          MenuCard(
+            primaryColor: kOrangePrimary,
+            secondaryColor: kOrangeSecondary,
+            title: "Bantuan",
+            icon: "assets/icons/bantuan.png",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const BantuanScreen()),
+              );
+            },
+          )
         ],
       ),
     );

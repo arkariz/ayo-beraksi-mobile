@@ -2,9 +2,10 @@ import 'package:ayo_beraksi_flutter/constants.dart';
 import 'package:flutter/material.dart';
 
 class Agreement extends StatefulWidget {
-  const Agreement({Key? key, required this.size}) : super(key: key);
+  const Agreement({Key? key, required this.size, required this.onChanged}) : super(key: key);
 
   final Size size;
+  final ValueChanged<bool>? onChanged;
 
   @override
   _AgreementState createState() => _AgreementState();
@@ -22,7 +23,10 @@ class _AgreementState extends State<Agreement> {
             checkColor: Colors.white,
             fillColor: MaterialStateProperty.all(kPrimaryColor),
             value: isChecked,
-            onChanged: (bool? value) => setState(() => isChecked = value!)),
+            onChanged: (bool? value) => setState(() {
+                  isChecked = value!;
+                  widget.onChanged!(value);
+                })),
         const Flexible(
           child: Text(
             "dengan ini saya menyatakan bahwa data yang saya laporkan adalah benar dan dapat saya pertanggungjawabkan kebenarannya",

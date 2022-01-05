@@ -1,18 +1,18 @@
 import 'package:ayo_beraksi_flutter/common/agreement.dart';
 import 'package:ayo_beraksi_flutter/common/custom_back_button.dart';
 import 'package:ayo_beraksi_flutter/constants.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/penyuapan/components/first_section.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/penyuapan/components/second_section.dart';
+import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/pengaduan/components/first_section_pengaduan.dart';
+import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/pengaduan/components/second_section_pengaduan.dart';
 import 'package:flutter/material.dart';
 
-class PenyuapanForm extends StatefulWidget {
-  const PenyuapanForm({Key? key}) : super(key: key);
+class PengaduanForm extends StatefulWidget {
+  const PengaduanForm({Key? key}) : super(key: key);
 
   @override
-  State<PenyuapanForm> createState() => _PenyuapanFormState();
+  State<PengaduanForm> createState() => _PengaduanFormState();
 }
 
-class _PenyuapanFormState extends State<PenyuapanForm> {
+class _PengaduanFormState extends State<PengaduanForm> {
   final formFieldKey = GlobalKey<FormState>();
   bool _isChecked = false;
 
@@ -32,11 +32,9 @@ class _PenyuapanFormState extends State<PenyuapanForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomBackButton(title: 'Laporan Penyuapan'),
-                FirstSection(
-                  size: size,
-                ),
-                SecondSection(size: size),
+                const CustomBackButton(title: 'Laporan Pengaduan'),
+                FirstSectionPengaduan(size: size),
+                SecondSectionPengaduan(size: size),
                 Agreement(
                   size: size,
                   onChanged: (value) => setState(() => _isChecked = value),

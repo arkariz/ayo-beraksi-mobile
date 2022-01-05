@@ -2,8 +2,8 @@ import 'package:ayo_beraksi_flutter/common/custom_text_field.dart';
 import 'package:ayo_beraksi_flutter/constants.dart';
 import 'package:flutter/material.dart';
 
-class SecondSection extends StatelessWidget {
-  SecondSection({
+class SecondSectionPengaduan extends StatelessWidget {
+  SecondSectionPengaduan({
     Key? key,
     required this.size,
   }) : super(key: key);
@@ -42,45 +42,12 @@ class SecondSection extends StatelessWidget {
               controller: kasusController,
               node: kasusNode,
               size: size,
-              label: "Kasus Penyuapan",
+              label: "Tanggal Kejadian",
               type: TextInputType.text,
               suffixIcon: const Icon(
-                Icons.keyboard_arrow_down,
+                Icons.calendar_today_rounded,
                 color: kPrimaryColor,
               ),
-            ),
-          ),
-          CustomTextField(
-            controller: nilaiController,
-            node: nilaiNode,
-            size: size,
-            label: "Nilai suap yang diberikan",
-            type: TextInputType.text,
-            suffixIcon: const Icon(
-              Icons.monetization_on_outlined,
-              color: kPrimaryColor,
-            ),
-          ),
-          CustomTextField(
-            controller: lokasiController,
-            node: lokasiNode,
-            size: size,
-            label: "Lokasi Kejadian",
-            type: TextInputType.text,
-            suffixIcon: const Icon(
-              Icons.pin_drop_outlined,
-              color: kPrimaryColor,
-            ),
-          ),
-          CustomTextField(
-            controller: tanggalController,
-            node: tanggalNode,
-            size: size,
-            label: "Tanggal Kejadian",
-            type: TextInputType.text,
-            suffixIcon: const Icon(
-              Icons.calendar_today,
-              color: kPrimaryColor,
             ),
           ),
           CustomTextField(

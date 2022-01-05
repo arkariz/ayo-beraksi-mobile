@@ -1,18 +1,17 @@
 import 'package:ayo_beraksi_flutter/common/agreement.dart';
 import 'package:ayo_beraksi_flutter/common/custom_back_button.dart';
 import 'package:ayo_beraksi_flutter/constants.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/penyuapan/components/first_section.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/penyuapan/components/second_section.dart';
+import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/umpan_balik/components/first_section_umpan_balik.dart';
 import 'package:flutter/material.dart';
 
-class PenyuapanForm extends StatefulWidget {
-  const PenyuapanForm({Key? key}) : super(key: key);
+class UmpanBalikForm extends StatefulWidget {
+  const UmpanBalikForm({Key? key}) : super(key: key);
 
   @override
-  State<PenyuapanForm> createState() => _PenyuapanFormState();
+  State<UmpanBalikForm> createState() => _UmpanBalikFormState();
 }
 
-class _PenyuapanFormState extends State<PenyuapanForm> {
+class _UmpanBalikFormState extends State<UmpanBalikForm> {
   final formFieldKey = GlobalKey<FormState>();
   bool _isChecked = false;
 
@@ -27,16 +26,13 @@ class _PenyuapanFormState extends State<PenyuapanForm> {
           top: kDefaultPadding * 3,
         ),
         child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Form(
             key: formFieldKey,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomBackButton(title: 'Laporan Penyuapan'),
-                FirstSection(
-                  size: size,
-                ),
-                SecondSection(size: size),
+                const CustomBackButton(title: 'Umpan Balik'),
+                FirstSectionUmpanBalik(size: size),
                 Agreement(
                   size: size,
                   onChanged: (value) => setState(() => _isChecked = value),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomBackButton extends StatelessWidget {
-  const CustomBackButton({Key? key}) : super(key: key);
+  const CustomBackButton({Key? key, required this.title}) : super(key: key);
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +16,8 @@ class CustomBackButton extends StatelessWidget {
           icon: Image.asset("assets/icons/back_button.png"),
         ),
         Text(
-          "Laporan Penyuapan",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          title,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         )
       ],
     );

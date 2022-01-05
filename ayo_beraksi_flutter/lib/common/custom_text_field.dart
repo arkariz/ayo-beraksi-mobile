@@ -38,7 +38,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         width: widget.size.width,
         child: TextFormField(
           maxLines: widget.maxLines,
-          initialValue: widget.initialValue ?? null,
+          initialValue: widget.initialValue,
           keyboardType: widget.type,
           focusNode: widget.node,
           controller: widget.controller,

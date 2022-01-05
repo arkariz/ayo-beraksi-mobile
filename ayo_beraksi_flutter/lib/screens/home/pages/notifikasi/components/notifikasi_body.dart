@@ -50,7 +50,7 @@ class _NotificationItemState extends State<NotificationItem> {
       onTap: () => setState(() => isRead = true),
       child: Container(
         color: isRead ? Colors.black12 : Colors.transparent,
-        padding: EdgeInsets.all(kDefaultPadding),
+        padding: const EdgeInsets.all(kDefaultPadding),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
