@@ -2,7 +2,7 @@ import 'package:ayo_beraksi_flutter/common/custom_text_field.dart';
 import 'package:ayo_beraksi_flutter/constants.dart';
 import 'package:flutter/material.dart';
 
-class SecondSection extends StatelessWidget {
+class SecondSection extends StatefulWidget {
   SecondSection({
     Key? key,
     required this.size,
@@ -10,19 +10,29 @@ class SecondSection extends StatelessWidget {
 
   final Size size;
 
+  @override
+  State<SecondSection> createState() => _SecondSectionState();
+}
+
+class _SecondSectionState extends State<SecondSection> {
   final kasusController = TextEditingController();
+
   final FocusNode kasusNode = FocusNode();
 
   final nilaiController = TextEditingController();
+
   final FocusNode nilaiNode = FocusNode();
 
   final lokasiController = TextEditingController();
+
   final FocusNode lokasiNode = FocusNode();
 
   final tanggalController = TextEditingController();
+
   final FocusNode tanggalNode = FocusNode();
 
   final kronologiController = TextEditingController();
+
   final FocusNode kronologiNode = FocusNode();
 
   @override
@@ -41,7 +51,7 @@ class SecondSection extends StatelessWidget {
             child: CustomTextField(
               controller: kasusController,
               node: kasusNode,
-              size: size,
+              size: widget.size,
               label: "Kasus Penyuapan",
               type: TextInputType.text,
               suffixIcon: const Icon(
@@ -53,7 +63,7 @@ class SecondSection extends StatelessWidget {
           CustomTextField(
             controller: nilaiController,
             node: nilaiNode,
-            size: size,
+            size: widget.size,
             label: "Nilai suap yang diberikan",
             type: TextInputType.text,
             suffixIcon: const Icon(
@@ -64,7 +74,7 @@ class SecondSection extends StatelessWidget {
           CustomTextField(
             controller: lokasiController,
             node: lokasiNode,
-            size: size,
+            size: widget.size,
             label: "Lokasi Kejadian",
             type: TextInputType.text,
             suffixIcon: const Icon(
@@ -75,7 +85,7 @@ class SecondSection extends StatelessWidget {
           CustomTextField(
             controller: tanggalController,
             node: tanggalNode,
-            size: size,
+            size: widget.size,
             label: "Tanggal Kejadian",
             type: TextInputType.text,
             suffixIcon: const Icon(
@@ -86,7 +96,7 @@ class SecondSection extends StatelessWidget {
           CustomTextField(
             controller: kronologiController,
             node: kronologiNode,
-            size: size,
+            size: widget.size,
             label: "Kronologis Kejadian",
             type: TextInputType.text,
             maxLines: 8,

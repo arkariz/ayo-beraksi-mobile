@@ -1,5 +1,5 @@
+import 'package:ayo_beraksi_flutter/common/launch/launch_screen.dart';
 import 'package:ayo_beraksi_flutter/constants.dart';
-import 'package:ayo_beraksi_flutter/screens/launch/launch_screen.dart';
 import 'package:flutter/cupertino.dart';
 
 class AlrtDialog extends StatelessWidget {

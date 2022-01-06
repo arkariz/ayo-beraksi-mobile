@@ -1,9 +1,16 @@
+import 'package:ayo_beraksi_flutter/common/launch/launch_screen.dart';
 import 'package:ayo_beraksi_flutter/constants.dart';
-import 'package:ayo_beraksi_flutter/screens/launch/launch_screen.dart';
+import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
+import 'package:ayo_beraksi_flutter/injector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await initializeDependencies();
+
   runApp(const MyApp());
 }
 
@@ -12,16 +19,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Ayo BerAksi',
-      theme: ThemeData(
-          appBarTheme: const AppBarTheme(systemOverlayStyle: SystemUiOverlayStyle.dark),
-          scaffoldBackgroundColor: kBackgroundColor,
-          colorScheme: const ColorScheme.light().copyWith(primary: kPrimaryColor),
-          textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
-          visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: const LaunchScreen(),
+    return BlocProvider<LoginBloc>(
+      create: (_) => injector()..add(const GetUser()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Ayo BerAksi',
+        theme: ThemeData(
+            appBarTheme: const AppBarTheme(systemOverlayStyle: SystemUiOverlayStyle.dark),
+            scaffoldBackgroundColor: kBackgroundColor,
+            colorScheme: const ColorScheme.light().copyWith(primary: kPrimaryColor),
+            textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
+            visualDensity: VisualDensity.adaptivePlatformDensity),
+        home: const LaunchScreen(),
+      ),
     );
   }
 }

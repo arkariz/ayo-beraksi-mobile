@@ -2,7 +2,7 @@ import 'package:ayo_beraksi_flutter/common/custom_text_field.dart';
 import 'package:ayo_beraksi_flutter/constants.dart';
 import 'package:flutter/material.dart';
 
-class FirstSection extends StatelessWidget {
+class FirstSection extends StatefulWidget {
   FirstSection({
     Key? key,
     required this.size,
@@ -10,13 +10,21 @@ class FirstSection extends StatelessWidget {
 
   final Size size;
 
+  @override
+  State<FirstSection> createState() => _FirstSectionState();
+}
+
+class _FirstSectionState extends State<FirstSection> {
   final namaController = TextEditingController();
+
   final FocusNode namaNode = FocusNode();
 
   final jabatanController = TextEditingController();
+
   final FocusNode jabatanNode = FocusNode();
 
   final instansiController = TextEditingController();
+
   final FocusNode instansiNode = FocusNode();
 
   @override
@@ -35,16 +43,20 @@ class FirstSection extends StatelessWidget {
             child: CustomTextField(
                 controller: namaController,
                 node: namaNode,
-                size: size,
+                size: widget.size,
                 label: "Nama Terlapor",
                 type: TextInputType.text),
           ),
           CustomTextField(
-              controller: jabatanController, node: jabatanNode, size: size, label: "Jabatan", type: TextInputType.text),
+              controller: jabatanController,
+              node: jabatanNode,
+              size: widget.size,
+              label: "Jabatan",
+              type: TextInputType.text),
           CustomTextField(
               controller: instansiController,
               node: instansiNode,
-              size: size,
+              size: widget.size,
               label: "Instansi / Perusahaan",
               type: TextInputType.text)
         ],

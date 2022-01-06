@@ -2,7 +2,7 @@ import 'package:ayo_beraksi_flutter/common/custom_text_field.dart';
 import 'package:ayo_beraksi_flutter/constants.dart';
 import 'package:flutter/material.dart';
 
-class SecondSectionPengaduan extends StatelessWidget {
+class SecondSectionPengaduan extends StatefulWidget {
   SecondSectionPengaduan({
     Key? key,
     required this.size,
@@ -10,19 +10,29 @@ class SecondSectionPengaduan extends StatelessWidget {
 
   final Size size;
 
+  @override
+  State<SecondSectionPengaduan> createState() => _SecondSectionPengaduanState();
+}
+
+class _SecondSectionPengaduanState extends State<SecondSectionPengaduan> {
   final kasusController = TextEditingController();
+
   final FocusNode kasusNode = FocusNode();
 
   final nilaiController = TextEditingController();
+
   final FocusNode nilaiNode = FocusNode();
 
   final lokasiController = TextEditingController();
+
   final FocusNode lokasiNode = FocusNode();
 
   final tanggalController = TextEditingController();
+
   final FocusNode tanggalNode = FocusNode();
 
   final kronologiController = TextEditingController();
+
   final FocusNode kronologiNode = FocusNode();
 
   @override
@@ -41,7 +51,7 @@ class SecondSectionPengaduan extends StatelessWidget {
             child: CustomTextField(
               controller: kasusController,
               node: kasusNode,
-              size: size,
+              size: widget.size,
               label: "Tanggal Kejadian",
               type: TextInputType.text,
               suffixIcon: const Icon(
@@ -53,7 +63,7 @@ class SecondSectionPengaduan extends StatelessWidget {
           CustomTextField(
             controller: kronologiController,
             node: kronologiNode,
-            size: size,
+            size: widget.size,
             label: "Kronologis Kejadian",
             type: TextInputType.text,
             maxLines: 8,

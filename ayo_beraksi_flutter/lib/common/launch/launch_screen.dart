@@ -1,6 +1,6 @@
 import 'package:ayo_beraksi_flutter/constants.dart';
-import 'package:ayo_beraksi_flutter/screens/login/login.dart';
-import 'package:ayo_beraksi_flutter/screens/register/register.dart';
+import 'package:ayo_beraksi_flutter/features/login/presentation/pages/login.dart';
+import 'package:ayo_beraksi_flutter/features/register/presentation/pages/register.dart';
 import 'package:flutter/material.dart';
 
 class LaunchScreen extends StatelessWidget {

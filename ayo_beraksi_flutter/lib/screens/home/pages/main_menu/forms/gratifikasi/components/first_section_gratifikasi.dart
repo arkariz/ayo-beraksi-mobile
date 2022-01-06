@@ -2,7 +2,7 @@ import 'package:ayo_beraksi_flutter/common/custom_text_field.dart';
 import 'package:ayo_beraksi_flutter/constants.dart';
 import 'package:flutter/material.dart';
 
-class FirstSectionGratifikasi extends StatelessWidget {
+class FirstSectionGratifikasi extends StatefulWidget {
   FirstSectionGratifikasi({
     Key? key,
     required this.size,
@@ -10,10 +10,17 @@ class FirstSectionGratifikasi extends StatelessWidget {
 
   final Size size;
 
+  @override
+  State<FirstSectionGratifikasi> createState() => _FirstSectionGratifikasiState();
+}
+
+class _FirstSectionGratifikasiState extends State<FirstSectionGratifikasi> {
   final namaController = TextEditingController();
+
   final FocusNode namaNode = FocusNode();
 
   final alamatController = TextEditingController();
+
   final FocusNode alamatNode = FocusNode();
 
   @override
@@ -32,14 +39,14 @@ class FirstSectionGratifikasi extends StatelessWidget {
             child: CustomTextField(
                 controller: namaController,
                 node: namaNode,
-                size: size,
+                size: widget.size,
                 label: "Nama Terlapor",
                 type: TextInputType.text),
           ),
           CustomTextField(
             controller: alamatController,
             node: alamatNode,
-            size: size,
+            size: widget.size,
             label: "Alamat",
             type: TextInputType.text,
             maxLines: 8,

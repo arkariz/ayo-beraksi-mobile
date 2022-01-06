@@ -1,9 +1,9 @@
 import 'package:ayo_beraksi_flutter/constants.dart';
+import 'package:ayo_beraksi_flutter/features/login/presentation/pages/components/back_button.dart';
+import 'package:ayo_beraksi_flutter/features/login/presentation/pages/components/backgroud_image.dart';
+import 'package:ayo_beraksi_flutter/features/login/presentation/pages/components/text_description.dart';
 import 'package:ayo_beraksi_flutter/screens/home/home_screen.dart';
-import 'package:ayo_beraksi_flutter/screens/otp/components/back_button.dart';
-import 'package:ayo_beraksi_flutter/screens/otp/components/backgroud_image.dart';
-import 'package:ayo_beraksi_flutter/screens/otp/components/text_description.dart';
-import 'package:ayo_beraksi_flutter/screens/register/register.dart';
+import 'package:ayo_beraksi_flutter/features/register/presentation/pages/register.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 

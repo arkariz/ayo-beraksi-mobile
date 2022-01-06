@@ -9,14 +9,21 @@ class Pencarian extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Padding(
+    return Container(
+      height: size.height,
       padding: const EdgeInsets.only(
         left: kDefaultPadding,
         right: kDefaultPadding,
         top: kDefaultPadding * 2,
       ),
       child: Column(
-        children: <Widget>[HeaderwithSearch(size: size), const SearchResult()],
+        children: <Widget>[
+          HeaderwithSearch(size: size),
+          SizedBox(
+            height: size.height * 0.2,
+          ),
+          const SearchResult()
+        ],
       ),
     );
   }

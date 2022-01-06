@@ -1,7 +1,8 @@
 import 'package:ayo_beraksi_flutter/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class Biodata extends StatelessWidget {
+class Biodata extends HookWidget {
   Biodata({Key? key}) : super(key: key);
 
   final nameController = TextEditingController(text: "Radias Mahes");
@@ -19,11 +20,7 @@ class Biodata extends StatelessWidget {
 
     return Column(children: [
       BiodataTextField(
-          controller: nameController,
-          node: nameNode,
-          size: size,
-          icon: Icons.person_outline,
-          label: "NAMA"),
+          controller: nameController, node: nameNode, size: size, icon: Icons.person_outline, label: "NAMA"),
       BiodataTextField(
         controller: tlpController,
         node: tlpNode,
@@ -80,9 +77,7 @@ class _BiodataTextFieldState extends State<BiodataTextField> {
               decoration: InputDecoration(
                   icon: Icon(widget.icon),
                   labelText: widget.label,
-                  border: isReadOnly
-                      ? InputBorder.none
-                      : const OutlineInputBorder()),
+                  border: isReadOnly ? InputBorder.none : const OutlineInputBorder()),
               textInputAction: TextInputAction.done,
             ),
           ),

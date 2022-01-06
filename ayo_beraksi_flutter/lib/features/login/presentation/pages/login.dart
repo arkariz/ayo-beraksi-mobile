@@ -1,8 +1,8 @@
 import 'package:ayo_beraksi_flutter/common/custom_password_field.dart';
 import 'package:ayo_beraksi_flutter/common/custom_text_field.dart';
 import 'package:ayo_beraksi_flutter/constants.dart';
-import 'package:ayo_beraksi_flutter/screens/otp/otp.dart';
-import 'package:ayo_beraksi_flutter/screens/register/register.dart';
+import 'package:ayo_beraksi_flutter/features/login/presentation/pages/otp.dart';
+import 'package:ayo_beraksi_flutter/features/register/presentation/pages/register.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {

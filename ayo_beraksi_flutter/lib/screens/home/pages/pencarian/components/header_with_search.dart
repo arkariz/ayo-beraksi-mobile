@@ -48,19 +48,17 @@ class HeaderwithSearch extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Expanded(
-                  child: TextField(
-                    onChanged: (value) {},
-                    decoration: const InputDecoration(
-                        hintText: "Cari",
-                        hintStyle: TextStyle(color: Colors.black12),
-                        enabledBorder: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        suffixIcon: Icon(
-                          Icons.search_outlined,
-                          color: kPrimaryColor,
-                        )),
-                  ),
+                child: TextField(
+                  onChanged: (value) {},
+                  decoration: const InputDecoration(
+                      hintText: "Cari",
+                      hintStyle: TextStyle(color: Colors.black12),
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      suffixIcon: Icon(
+                        Icons.search_outlined,
+                        color: kPrimaryColor,
+                      )),
                 ),
               ))
         ],
