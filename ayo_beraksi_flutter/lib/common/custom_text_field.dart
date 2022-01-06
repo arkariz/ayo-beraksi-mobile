@@ -2,7 +2,7 @@ import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
-  CustomTextField({
+  const CustomTextField({
     Key? key,
     required this.controller,
     required this.node,
@@ -10,7 +10,6 @@ class CustomTextField extends StatefulWidget {
     this.icon,
     required this.label,
     required this.type,
-    this.initialValue,
     this.maxLines,
     this.suffixIcon,
   }) : super(key: key);
@@ -22,7 +21,6 @@ class CustomTextField extends StatefulWidget {
   final Icon? suffixIcon;
   final String label;
   final TextInputType type;
-  String? initialValue;
   final int? maxLines;
 
   @override
@@ -38,7 +36,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
         width: widget.size.width,
         child: TextFormField(
           maxLines: widget.maxLines,
-          initialValue: widget.initialValue,
           keyboardType: widget.type,
           focusNode: widget.node,
           controller: widget.controller,

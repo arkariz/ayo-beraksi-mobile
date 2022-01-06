@@ -1,11 +1,12 @@
 import 'package:ayo_beraksi_flutter/common/custom_password_field.dart';
 import 'package:ayo_beraksi_flutter/common/custom_text_field.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
-import 'package:ayo_beraksi_flutter/screens/home/home_screen.dart';
+import 'package:ayo_beraksi_flutter/features/register/presentation/bloc/register_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/register/presentation/widgets/register_consumer.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/pages/login.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -34,15 +35,6 @@ class _RegisterState extends State<Register> {
   bool isChecked = false;
   bool validate = false;
   final formFieldKey = GlobalKey<FormState>();
-
-  _showToast(BuildContext context) {
-    Fluttertoast.showToast(
-        msg: "You must check this box",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        backgroundColor: kPrimaryColor,
-        textColor: Colors.white);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +89,6 @@ class _RegisterState extends State<Register> {
                       ),
                       Row(
                         children: [
-                          // CheckboxFormField(),
                           Checkbox(
                               checkColor: Colors.white,
                               fillColor: MaterialStateProperty.all(kPrimaryColor),
@@ -124,6 +115,7 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
               ),
+              RegisterConsumer(size: size),
               Padding(
                 padding: const EdgeInsets.only(top: kDefaultPadding * 2),
                 child: SizedBox(
@@ -133,13 +125,17 @@ class _RegisterState extends State<Register> {
                     onPressed: isChecked
                         ? () {
                             if (formFieldKey.currentState!.validate()) {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(builder: (context) => const HomeScreen()),
-                              );
+                              BlocProvider.of<RegisterBloc>(context).add(RegisterUser({
+                                'name': namaController.text,
+                                'email': emailController.text,
+                                'password': passController.text,
+                                'no_telp': tlpController.text,
+                                'nip': "123",
+                                'role_id': 3
+                              }));
                             }
                           }
-                        : null, //_showToast(context),
+                        : null,
                     child: const Text("Daftar"),
                   ),
                 ),

@@ -6,3 +6,9 @@ abstract class RegisterEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class RegisterUser extends RegisterEvent {
+  final Map<String, dynamic> auth;
+
+  const RegisterUser(this.auth);
+}

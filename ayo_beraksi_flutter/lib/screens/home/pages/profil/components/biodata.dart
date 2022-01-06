@@ -1,8 +1,9 @@
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
+import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Biodata extends HookWidget {
+class Biodata extends StatelessWidget {
   Biodata({Key? key}) : super(key: key);
 
   final nameController = TextEditingController(text: "Radias Mahes");
@@ -18,24 +19,35 @@ class Biodata extends HookWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Column(children: [
-      BiodataTextField(
-          controller: nameController, node: nameNode, size: size, icon: Icons.person_outline, label: "NAMA"),
-      BiodataTextField(
-        controller: tlpController,
-        node: tlpNode,
-        size: size,
-        icon: Icons.phone_outlined,
-        label: "NOMOR TELEPON",
-      ),
-      BiodataTextField(
-        controller: mailController,
-        node: mailNode,
-        size: size,
-        icon: Icons.mail_outline,
-        label: "EMAIL",
-      )
-    ]);
+    return BlocBuilder<LoginBloc, LoginState>(
+      builder: (context, state) {
+        if (state is LoginDone) {
+          nameController.text = state.user!.name;
+          tlpController.text = state.user!.noTlp;
+          mailController.text = state.user!.email;
+
+          return Column(children: [
+            BiodataTextField(
+                controller: nameController, node: nameNode, size: size, icon: Icons.person_outline, label: "NAMA"),
+            BiodataTextField(
+              controller: tlpController,
+              node: tlpNode,
+              size: size,
+              icon: Icons.phone_outlined,
+              label: "NOMOR TELEPON",
+            ),
+            BiodataTextField(
+              controller: mailController,
+              node: mailNode,
+              size: size,
+              icon: Icons.mail_outline,
+              label: "EMAIL",
+            )
+          ]);
+        }
+        return const SizedBox();
+      },
+    );
   }
 }
 

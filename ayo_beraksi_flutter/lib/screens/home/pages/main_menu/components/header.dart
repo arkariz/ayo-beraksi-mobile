@@ -32,13 +32,12 @@ class Header extends HookWidget {
                         return const Text("Loading");
                       }
                       if (state is LoginError) {
-                        print(state.error);
                         return Text("${state.error}");
                       }
                       if (state is LoginDone) {
                         return Text(
                           "Hai, ${state.user!.name}",
-                          style: TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 16),
                         );
                       }
                       return const SizedBox();

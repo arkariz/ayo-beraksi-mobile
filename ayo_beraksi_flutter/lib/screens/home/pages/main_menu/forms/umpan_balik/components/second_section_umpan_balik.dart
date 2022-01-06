@@ -3,7 +3,7 @@ import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:flutter/material.dart';
 
 class SecondSectionUmpanBalik extends StatefulWidget {
-  SecondSectionUmpanBalik({Key? key, required this.size}) : super(key: key);
+  const SecondSectionUmpanBalik({Key? key, required this.size}) : super(key: key);
 
   final Size size;
 
@@ -28,7 +28,7 @@ class _SecondSectionUmpanBalikState extends State<SecondSectionUmpanBalik> {
             style: TextStyle(fontSize: 15),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 7),
+            padding: const EdgeInsets.only(top: 7),
             child: CustomTextField(
               controller: kronologiController,
               node: kronologiNode,

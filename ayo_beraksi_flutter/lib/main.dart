@@ -1,6 +1,7 @@
 import 'package:ayo_beraksi_flutter/common/launch/launch_screen.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/register/presentation/bloc/register_bloc.dart';
 import 'package:ayo_beraksi_flutter/injector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,8 +20,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<LoginBloc>(
-      create: (_) => injector(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LoginBloc>(create: (BuildContext context) => injector()),
+        BlocProvider<RegisterBloc>(create: (BuildContext context) => injector())
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Ayo BerAksi',

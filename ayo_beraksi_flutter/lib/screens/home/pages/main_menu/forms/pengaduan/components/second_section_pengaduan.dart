@@ -3,7 +3,7 @@ import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:flutter/material.dart';
 
 class SecondSectionPengaduan extends StatefulWidget {
-  SecondSectionPengaduan({
+  const SecondSectionPengaduan({
     Key? key,
     required this.size,
   }) : super(key: key);
