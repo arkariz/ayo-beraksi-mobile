@@ -1,6 +1,6 @@
 import 'package:ayo_beraksi_flutter/common/custom_password_field.dart';
 import 'package:ayo_beraksi_flutter/common/custom_text_field.dart';
-import 'package:ayo_beraksi_flutter/constants.dart';
+import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/screens/home/home_screen.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/pages/login.dart';
 import 'package:flutter/gestures.dart';

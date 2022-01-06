@@ -21,8 +21,8 @@ class LoginRepositoryImpl implements LoginRepository {
       final httpResponse = await _loginApiService.getUser(params!.auth);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
-        final user = httpResponse.data;
-        final UserModel userModel = UserModel(user.id, user.name, user.email, user.noTlp, user.nip, user.roleId);
+        // final user = httpResponse.data;
+        // final UserModel userModel = UserModel(user.id, user.name, user.email, user.noTlp, user.nip, user.roleId);
 
         // _userLocalDataSource.cacheUser(userModel);
 

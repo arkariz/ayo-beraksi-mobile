@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:ayo_beraksi_flutter/core/bloc/error/exceptions.dart';
+import 'package:ayo_beraksi_flutter/core/error/exceptions.dart';
 import 'package:ayo_beraksi_flutter/features/login/data/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

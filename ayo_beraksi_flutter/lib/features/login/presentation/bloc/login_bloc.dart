@@ -14,15 +14,17 @@ class LoginBloc extends BlocWithState<LoginEvent, LoginState> {
 
   LoginBloc(this._getUserUseCase) : super(const LoginLoading());
 
-  User _user = const User("name", 1, "email", "noTlp", "nip", 1);
-  final Map<String, dynamic> auth = {'email': 'admin@gmail.com', 'password': 'password'};
-
   @override
   Stream<LoginState> mapEventToState(LoginEvent event) async* {
-    if (event is GetUser) yield* _getUser(event);
+    if (event is GetUser) {
+      yield* _getUser(event.auth);
+    }
+    if (event is DestroyToken) {
+      yield* _destroyToken();
+    }
   }
 
-  Stream<LoginState> _getUser(LoginEvent event) async* {
+  Stream<LoginState> _getUser(Map<String, dynamic> auth) async* {
     yield* runBlocProcess(() async* {
       final dataState = await _getUserUseCase(
         params: LoginRequestParams(auth: auth),
@@ -30,13 +32,20 @@ class LoginBloc extends BlocWithState<LoginEvent, LoginState> {
 
       if (dataState is DataSuccess && dataState.data!.name.isNotEmpty) {
         final user = dataState.data;
-        _user = User(user!.name, user.id, user.email, user.noTlp, user.nip, user.roleId);
+        final _user = User(user!.name, user.id, user.email, user.noTlp, user.nip, user.roleId, user.token);
 
         yield LoginDone(_user);
       }
       if (dataState is DataFailed) {
         yield LoginError(dataState.error);
       }
+    });
+  }
+
+  Stream<LoginState> _destroyToken() async* {
+    yield* runBlocProcess(() async* {
+      const _user = User("", 0, "", "", "", 0, "");
+      yield const LoggedOut(_user);
     });
   }
 }

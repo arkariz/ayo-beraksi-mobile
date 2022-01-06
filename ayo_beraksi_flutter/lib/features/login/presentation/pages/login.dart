@@ -1,20 +1,28 @@
 import 'package:ayo_beraksi_flutter/common/custom_password_field.dart';
 import 'package:ayo_beraksi_flutter/common/custom_text_field.dart';
-import 'package:ayo_beraksi_flutter/constants.dart';
-import 'package:ayo_beraksi_flutter/features/login/presentation/pages/otp.dart';
+import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
+import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/register/presentation/pages/register.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class Login extends StatelessWidget {
+import '../widgets/login_consumer.dart';
+
+class Login extends HookWidget {
   Login({Key? key}) : super(key: key);
 
-  final tlpController = TextEditingController();
-  final FocusNode tlpNode = FocusNode();
+  final emailController = TextEditingController();
+
+  final FocusNode emailNode = FocusNode();
 
   final passController = TextEditingController();
+
   final FocusNode passNode = FocusNode();
 
   final formFieldKey = GlobalKey<FormState>();
+
+  final Map<String, dynamic> auth = {};
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +52,12 @@ class Login extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomTextField(
-                      controller: tlpController,
-                      node: tlpNode,
+                      controller: emailController,
+                      node: emailNode,
                       size: size,
                       icon: const Icon(Icons.phone_outlined),
-                      label: "Nomor Telepon",
-                      type: TextInputType.number,
+                      label: "Email",
+                      type: TextInputType.text,
                     ),
                     CustomPasswordField(
                         controller: passController,
@@ -60,6 +68,7 @@ class Login extends StatelessWidget {
                   ],
                 ),
               ),
+              LoginConsumer(size: size, emailController: emailController),
               Padding(
                 padding: const EdgeInsets.only(top: kDefaultPadding * 2),
                 child: SizedBox(
@@ -68,13 +77,8 @@ class Login extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       if (formFieldKey.currentState!.validate()) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => OTPScreen(
-                                    phoneNumber: tlpController.text,
-                                  )),
-                        );
+                        BlocProvider.of<LoginBloc>(context)
+                            .add(GetUser({'email': emailController.text, 'password': passController.text}));
                       }
                     },
                     child: const Text("Masuk"),

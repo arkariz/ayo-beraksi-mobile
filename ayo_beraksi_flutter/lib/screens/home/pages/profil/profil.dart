@@ -1,4 +1,4 @@
-import 'package:ayo_beraksi_flutter/constants.dart';
+import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/profil/components/alert_dialog.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/profil/components/avatar.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/profil/components/biodata.dart';

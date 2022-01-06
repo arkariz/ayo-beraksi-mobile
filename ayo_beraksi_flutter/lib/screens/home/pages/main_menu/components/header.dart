@@ -1,4 +1,4 @@
-import 'package:ayo_beraksi_flutter/constants.dart';
+import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +32,7 @@ class Header extends HookWidget {
                         return const Text("Loading");
                       }
                       if (state is LoginError) {
+                        print(state.error);
                         return Text("${state.error}");
                       }
                       if (state is LoginDone) {

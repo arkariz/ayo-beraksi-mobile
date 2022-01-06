@@ -1,6 +1,6 @@
 import 'package:ayo_beraksi_flutter/common/agreement.dart';
 import 'package:ayo_beraksi_flutter/common/custom_back_button.dart';
-import 'package:ayo_beraksi_flutter/constants.dart';
+import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/gratifikasi/components/first_section_gratifikasi.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/gratifikasi/components/second_section_gratifikasi.dart';
 import 'package:flutter/material.dart';

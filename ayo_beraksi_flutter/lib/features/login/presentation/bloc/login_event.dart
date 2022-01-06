@@ -8,5 +8,9 @@ abstract class LoginEvent extends Equatable {
 }
 
 class GetUser extends LoginEvent {
-  const GetUser();
+  final Map<String, dynamic> auth;
+
+  const GetUser(this.auth);
 }
+
+class DestroyToken extends LoginEvent {}

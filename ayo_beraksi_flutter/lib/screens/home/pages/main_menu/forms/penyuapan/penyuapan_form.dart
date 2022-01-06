@@ -1,6 +1,6 @@
 import 'package:ayo_beraksi_flutter/common/agreement.dart';
 import 'package:ayo_beraksi_flutter/common/custom_back_button.dart';
-import 'package:ayo_beraksi_flutter/constants.dart';
+import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/penyuapan/components/first_section.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/penyuapan/components/second_section.dart';
 import 'package:flutter/material.dart';

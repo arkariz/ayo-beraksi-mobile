@@ -1,7 +1,9 @@
-import 'package:ayo_beraksi_flutter/constants.dart';
+import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
+import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/components/header.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/components/menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainMenu extends StatelessWidget {
   const MainMenu({Key? key}) : super(key: key);
@@ -17,6 +19,24 @@ class MainMenu extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
+          BlocBuilder<LoginBloc, LoginState>(
+            builder: (_, state) {
+              if (state is LoginLoading) {
+                return const Text("Loading");
+              }
+              if (state is LoginError) {
+                print(state.error);
+                return Text("${state.error}");
+              }
+              if (state is LoginDone) {
+                return Text(
+                  "Hai, ${state.user!.name}",
+                  style: TextStyle(fontSize: 16),
+                );
+              }
+              return const SizedBox();
+            },
+          ),
           Header(size: size),
           const Menu(),
         ],

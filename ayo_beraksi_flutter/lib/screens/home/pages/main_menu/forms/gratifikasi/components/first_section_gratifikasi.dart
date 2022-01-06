@@ -1,5 +1,5 @@
 import 'package:ayo_beraksi_flutter/common/custom_text_field.dart';
-import 'package:ayo_beraksi_flutter/constants.dart';
+import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:flutter/material.dart';
 
 class FirstSectionGratifikasi extends StatefulWidget {
