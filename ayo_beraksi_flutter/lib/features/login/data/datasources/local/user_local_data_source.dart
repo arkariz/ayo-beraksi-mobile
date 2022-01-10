@@ -1,36 +1,44 @@
+// ignore_for_file: unused_import
+
 import 'dart:convert';
+import 'dart:typed_data';
+import 'package:ayo_beraksi_flutter/core/config/constant.dart';
 import 'package:ayo_beraksi_flutter/core/error/exceptions.dart';
 import 'package:ayo_beraksi_flutter/features/login/data/models/user_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive/hive.dart';
 
 abstract class UserLocalDataSource {
-  Future<UserModel> getUserCache();
+  Future<String?> getUserCache();
 
   Future<void> cacheUser(UserModel userToCache);
 }
 
-const CACHED_USER = 'CACHED_USER';
-
 class UserLocalDataSourceImpl implements UserLocalDataSource {
-  final SharedPreferences sharedPreferences;
-
-  UserLocalDataSourceImpl({required this.sharedPreferences});
-
   @override
-  Future<UserModel> getUserCache() {
-    final jsonString = sharedPreferences.getString(CACHED_USER);
-    if (jsonString != null) {
-      return Future.value(UserModel.fromJson(json.decode(jsonString)));
-    } else {
-      throw CacheException();
+  Future<String?> getUserCache() async {
+    var keyBox = await Hive.openBox(CACHE_KEYBOX);
+    if (!keyBox.containsKey('key')) {
+      var key = Hive.generateSecureKey();
+      keyBox.put('key', key);
     }
+
+    var key = keyBox.get('key') as Uint8List;
+
+    var userBox = await Hive.openBox(CACHED_USER, encryptionCipher: HiveAesCipher(key));
+    return userBox.get('user');
   }
 
   @override
-  Future<void> cacheUser(UserModel userToCache) {
-    return sharedPreferences.setString(
-      CACHED_USER,
-      json.encode(userToCache.toJson()),
-    );
+  Future<void> cacheUser(UserModel userToCache) async {
+    var keyBox = await Hive.openBox(CACHE_KEYBOX);
+    if (!keyBox.containsKey('key')) {
+      var key = Hive.generateSecureKey();
+      keyBox.put('key', key);
+    }
+
+    var key = keyBox.get('key') as Uint8List;
+
+    var userBox = await Hive.openBox(CACHED_USER, encryptionCipher: HiveAesCipher(key));
+    userBox.put('user', userToCache.token);
   }
 }

@@ -1,16 +1,21 @@
 import 'package:ayo_beraksi_flutter/common/launch/launch_screen.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/laporan_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/login/data/models/user_hive_model.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/register/presentation/bloc/register_bloc.dart';
 import 'package:ayo_beraksi_flutter/injector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await initializeDependencies();
+  await Hive.initFlutter();
 
   runApp(const MyApp());
 }
@@ -23,7 +28,9 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<LoginBloc>(create: (BuildContext context) => injector()),
-        BlocProvider<RegisterBloc>(create: (BuildContext context) => injector())
+        BlocProvider<RegisterBloc>(create: (BuildContext context) => injector()),
+        BlocProvider<LaporanBloc>(create: (BuildContext context) => injector()),
+        BlocProvider<ProfileBloc>(create: (BuildContext context) => injector())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -130,7 +130,7 @@ class _RegisterState extends State<Register> {
                                 'email': emailController.text,
                                 'password': passController.text,
                                 'no_telp': tlpController.text,
-                                'nip': "123",
+                                'nip': "456001",
                                 'role_id': 3
                               }));
                             }

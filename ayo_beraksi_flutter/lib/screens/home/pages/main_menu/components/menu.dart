@@ -2,7 +2,7 @@ import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/bantuan/bantuan_screen.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/gratifikasi/gratifikasi_form.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/pengaduan/pengaduan_form.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/penyuapan/penyuapan_form.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/pages/penyuapan_form.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/umpan_balik/umpan_balik_form.dart';
 import 'package:flutter/material.dart';
 

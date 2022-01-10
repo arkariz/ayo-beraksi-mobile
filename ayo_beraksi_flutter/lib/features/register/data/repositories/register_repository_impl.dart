@@ -20,11 +20,13 @@ class RegisterRepositoryImpl implements RegisterRepository {
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse);
       }
-      return DataFailed(DioError(
-          error: httpResponse.response.statusMessage,
-          response: httpResponse.response,
-          requestOptions: httpResponse.response.requestOptions,
-          type: DioErrorType.response));
+      return DataFailed(
+        DioError(
+            error: httpResponse.response.statusMessage,
+            response: httpResponse.response,
+            requestOptions: httpResponse.response.requestOptions,
+            type: DioErrorType.response),
+      );
     } on DioError catch (e) {
       return DataFailed(e);
     }

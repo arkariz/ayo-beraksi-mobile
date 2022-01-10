@@ -6,25 +6,26 @@ class FirstSection extends StatefulWidget {
   const FirstSection({
     Key? key,
     required this.size,
+    required this.namaController,
+    required this.jabatanController,
+    required this.instansiController,
   }) : super(key: key);
 
   final Size size;
+  final TextEditingController namaController;
+
+  final TextEditingController jabatanController;
+
+  final TextEditingController instansiController;
 
   @override
   State<FirstSection> createState() => _FirstSectionState();
 }
 
 class _FirstSectionState extends State<FirstSection> {
-  final namaController = TextEditingController();
-
   final FocusNode namaNode = FocusNode();
 
-  final jabatanController = TextEditingController();
-
   final FocusNode jabatanNode = FocusNode();
-
-  final instansiController = TextEditingController();
-
   final FocusNode instansiNode = FocusNode();
 
   @override
@@ -41,20 +42,20 @@ class _FirstSectionState extends State<FirstSection> {
           Padding(
             padding: const EdgeInsets.only(top: kDefaultPadding * 0.5),
             child: CustomTextField(
-                controller: namaController,
+                controller: widget.namaController,
                 node: namaNode,
                 size: widget.size,
                 label: "Nama Terlapor",
                 type: TextInputType.text),
           ),
           CustomTextField(
-              controller: jabatanController,
+              controller: widget.jabatanController,
               node: jabatanNode,
               size: widget.size,
               label: "Jabatan",
               type: TextInputType.text),
           CustomTextField(
-              controller: instansiController,
+              controller: widget.instansiController,
               node: instansiNode,
               size: widget.size,
               label: "Instansi / Perusahaan",

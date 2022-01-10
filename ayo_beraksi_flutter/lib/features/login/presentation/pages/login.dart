@@ -29,122 +29,125 @@ class Login extends HookWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Padding(
-          padding: const EdgeInsets.only(
-            left: kDefaultPadding + 5,
-            right: kDefaultPadding + 5,
-            top: kDefaultPadding * 8,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                child: Text(
-                  "Masuk",
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+        body: SingleChildScrollView(
+          child: Container(
+            height: size.height,
+            padding: const EdgeInsets.only(
+              left: kDefaultPadding + 5,
+              right: kDefaultPadding + 5,
+              top: kDefaultPadding * 8,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  child: Text(
+                    "Masuk",
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: kDefaultPadding * 1.5,
-              ),
-              Form(
-                key: formFieldKey,
-                child: Column(
-                  children: [
-                    CustomTextField(
-                      controller: emailController,
-                      node: emailNode,
-                      size: size,
-                      icon: const Icon(Icons.phone_outlined),
-                      label: "Email",
-                      type: TextInputType.text,
-                    ),
-                    CustomPasswordField(
-                        controller: passController,
-                        node: passNode,
+                const SizedBox(
+                  height: kDefaultPadding * 1.5,
+                ),
+                Form(
+                  key: formFieldKey,
+                  child: Column(
+                    children: [
+                      CustomTextField(
+                        controller: emailController,
+                        node: emailNode,
                         size: size,
-                        icon: Icons.lock_outline,
-                        label: "Kata sandi"),
-                  ],
-                ),
-              ),
-              LoginConsumer(size: size, emailController: emailController),
-              Padding(
-                padding: const EdgeInsets.only(top: kDefaultPadding * 2),
-                child: SizedBox(
-                  width: size.width,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (formFieldKey.currentState!.validate()) {
-                        BlocProvider.of<LoginBloc>(context)
-                            .add(GetUser({'email': emailController.text, 'password': passController.text}));
-                      }
-                    },
-                    child: const Text("Masuk"),
+                        icon: const Icon(Icons.phone_outlined),
+                        label: "Email",
+                        type: TextInputType.text,
+                      ),
+                      CustomPasswordField(
+                          controller: passController,
+                          node: passNode,
+                          size: size,
+                          icon: Icons.lock_outline,
+                          label: "Kata sandi"),
+                    ],
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: kDefaultPadding * 1.5),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: SizedBox(
-                        height: 1,
-                        child: Container(
-                          color: Colors.black26,
-                        ),
-                      ),
+                LoginConsumer(size: size, emailController: emailController),
+                Padding(
+                  padding: const EdgeInsets.only(top: kDefaultPadding * 2),
+                  child: SizedBox(
+                    width: size.width,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (formFieldKey.currentState!.validate()) {
+                          BlocProvider.of<LoginBloc>(context)
+                              .add(GetUser({'email': emailController.text, 'password': passController.text}));
+                        }
+                      },
+                      child: const Text("Masuk"),
                     ),
-                    const Text(
-                      "Masuk dengan Google",
-                      style: TextStyle(color: Colors.black54),
-                    ),
-                    Expanded(
-                      child: SizedBox(
-                        height: 1,
-                        child: Container(
-                          color: Colors.black26,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: kDefaultPadding * 1.5),
-                child: SizedBox(
-                  width: size.width,
-                  height: 50,
-                  child: ElevatedButton.icon(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(primary: Colors.white),
-                    label: const Text(
-                      "Google",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    icon: Image.asset("assets/icons/google.png"),
                   ),
                 ),
-              ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("belum punya akun?"),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => const Register()),
-                          );
-                        },
-                        child: const Text("Daftar"))
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(top: kDefaultPadding * 1.5),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          height: 1,
+                          child: Container(
+                            color: Colors.black26,
+                          ),
+                        ),
+                      ),
+                      const Text(
+                        "Masuk dengan Google",
+                        style: TextStyle(color: Colors.black54),
+                      ),
+                      Expanded(
+                        child: SizedBox(
+                          height: 1,
+                          child: Container(
+                            color: Colors.black26,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: kDefaultPadding * 1.5),
+                  child: SizedBox(
+                    width: size.width,
+                    height: 50,
+                    child: ElevatedButton.icon(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(primary: Colors.white),
+                      label: const Text(
+                        "Google",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      icon: Image.asset("assets/icons/google.png"),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("belum punya akun?"),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) => const Register()),
+                            );
+                          },
+                          child: const Text("Daftar"))
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ));
   }

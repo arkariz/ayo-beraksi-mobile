@@ -1,5 +1,6 @@
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -95,6 +96,7 @@ class _BiodataTextFieldState extends State<BiodataTextField> {
           ),
           IconButton(
               onPressed: () {
+                BlocProvider.of<ProfileBloc>(context).add(ChangeName({"name": widget.controller.text}));
                 setState(() => isReadOnly = !isReadOnly);
                 isReadOnly
                     ? FocusScope.of(context).requestFocus(FocusNode())

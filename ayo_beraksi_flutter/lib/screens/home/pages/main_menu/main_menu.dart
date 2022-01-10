@@ -19,23 +19,6 @@ class MainMenu extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
-          BlocBuilder<LoginBloc, LoginState>(
-            builder: (_, state) {
-              if (state is LoginLoading) {
-                return const Text("Loading");
-              }
-              if (state is LoginError) {
-                return Text("${state.error}");
-              }
-              if (state is LoginDone) {
-                return Text(
-                  "Hai, ${state.user!.name}",
-                  style: const TextStyle(fontSize: 16),
-                );
-              }
-              return const SizedBox();
-            },
-          ),
           Header(size: size),
           const Menu(),
         ],

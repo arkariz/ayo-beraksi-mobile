@@ -1,7 +1,8 @@
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/profil/components/alert_dialog.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/profil/components/avatar.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/profil/components/biodata.dart';
+import 'package:ayo_beraksi_flutter/features/profile/presentation/widgets/alert_dialog.dart';
+import 'package:ayo_beraksi_flutter/features/profile/presentation/widgets/avatar.dart';
+import 'package:ayo_beraksi_flutter/features/profile/presentation/widgets/biodata.dart';
+import 'package:ayo_beraksi_flutter/features/profile/presentation/widgets/profile_consumer.dart';
 import 'package:flutter/material.dart';
 
 class Profil extends StatefulWidget {
@@ -37,6 +38,7 @@ class _ProfilState extends State<Profil> {
             const SizedBox(
               height: kDefaultPadding * 3,
             ),
+            ProfileConsumer(size: size),
             SizedBox(
               width: size.width,
               child: ElevatedButton.icon(

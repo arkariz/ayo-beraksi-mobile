@@ -6,32 +6,32 @@ class SecondSection extends StatefulWidget {
   const SecondSection({
     Key? key,
     required this.size,
+    required this.kasusController,
+    required this.nilaiController,
+    required this.lokasiController,
+    required this.tanggalController,
+    required this.kronologiController,
   }) : super(key: key);
 
   final Size size;
+  final TextEditingController kasusController;
+  final TextEditingController nilaiController;
+  final TextEditingController lokasiController;
+  final TextEditingController tanggalController;
+  final TextEditingController kronologiController;
 
   @override
   State<SecondSection> createState() => _SecondSectionState();
 }
 
 class _SecondSectionState extends State<SecondSection> {
-  final kasusController = TextEditingController();
-
   final FocusNode kasusNode = FocusNode();
-
-  final nilaiController = TextEditingController();
 
   final FocusNode nilaiNode = FocusNode();
 
-  final lokasiController = TextEditingController();
-
   final FocusNode lokasiNode = FocusNode();
 
-  final tanggalController = TextEditingController();
-
   final FocusNode tanggalNode = FocusNode();
-
-  final kronologiController = TextEditingController();
 
   final FocusNode kronologiNode = FocusNode();
 
@@ -49,7 +49,7 @@ class _SecondSectionState extends State<SecondSection> {
           Padding(
             padding: const EdgeInsets.only(top: kDefaultPadding * 0.5),
             child: CustomTextField(
-              controller: kasusController,
+              controller: widget.kasusController,
               node: kasusNode,
               size: widget.size,
               label: "Kasus Penyuapan",
@@ -61,7 +61,7 @@ class _SecondSectionState extends State<SecondSection> {
             ),
           ),
           CustomTextField(
-            controller: nilaiController,
+            controller: widget.nilaiController,
             node: nilaiNode,
             size: widget.size,
             label: "Nilai suap yang diberikan",
@@ -72,7 +72,7 @@ class _SecondSectionState extends State<SecondSection> {
             ),
           ),
           CustomTextField(
-            controller: lokasiController,
+            controller: widget.lokasiController,
             node: lokasiNode,
             size: widget.size,
             label: "Lokasi Kejadian",
@@ -83,18 +83,18 @@ class _SecondSectionState extends State<SecondSection> {
             ),
           ),
           CustomTextField(
-            controller: tanggalController,
+            controller: widget.tanggalController,
             node: tanggalNode,
             size: widget.size,
             label: "Tanggal Kejadian",
-            type: TextInputType.text,
+            type: TextInputType.datetime,
             suffixIcon: const Icon(
               Icons.calendar_today,
               color: kPrimaryColor,
             ),
           ),
           CustomTextField(
-            controller: kronologiController,
+            controller: widget.kronologiController,
             node: kronologiNode,
             size: widget.size,
             label: "Kronologis Kejadian",

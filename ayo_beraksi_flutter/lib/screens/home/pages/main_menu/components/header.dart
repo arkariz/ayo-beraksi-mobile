@@ -28,12 +28,12 @@ class Header extends HookWidget {
                   padding: const EdgeInsets.only(right: kDefaultPadding),
                   child: BlocBuilder<LoginBloc, LoginState>(
                     builder: (_, state) {
-                      if (state is LoginLoading) {
-                        return const Text("Loading");
-                      }
-                      if (state is LoginError) {
-                        return Text("${state.error}");
-                      }
+                      // if (state is LoginLoading) {
+                      //   return const Text("Loading");
+                      // }
+                      // if (state is LoginError) {
+                      //   return Text("${state.error}");
+                      // }
                       if (state is LoginDone) {
                         return Text(
                           "Hai, ${state.user!.name}",
@@ -42,12 +42,7 @@ class Header extends HookWidget {
                       }
                       return const SizedBox();
                     },
-                  )
-                  // const Text(
-                  //   "Hai, Radias",
-                  //   style: TextStyle(fontSize: 16),
-                  // ),
-                  ),
+                  )),
               const CircleAvatar(
                 backgroundImage: AssetImage("assets/images/profile.jpg"),
                 radius: 25,
