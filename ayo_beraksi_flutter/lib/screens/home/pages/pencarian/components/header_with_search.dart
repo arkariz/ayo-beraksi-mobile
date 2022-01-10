@@ -1,5 +1,8 @@
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
+import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HeaderwithSearch extends StatelessWidget {
   const HeaderwithSearch({Key? key, required this.size}) : super(key: key);
@@ -23,12 +26,29 @@ class HeaderwithSearch extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Container(
-                    padding: const EdgeInsets.only(right: kDefaultPadding),
-                    child: const Text(
-                      "Hai, Radias",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(right: kDefaultPadding),
+                      child: BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
+                        if (state is ChangeNameInitial) {
+                          return BlocBuilder<LoginBloc, LoginState>(
+                            builder: (_, state) {
+                              if (state is LoginDone) {
+                                return Text(
+                                  "Hai, ${state.user!.name}",
+                                  style: const TextStyle(fontSize: 16),
+                                );
+                              }
+                              return const SizedBox();
+                            },
+                          );
+                        }
+                        if (state is ChangeNameSuccess) {
+                          return Text(
+                            "Hai, ${state.message!.name}",
+                            style: const TextStyle(fontSize: 16),
+                          );
+                        }
+                        return const SizedBox();
+                      })),
                   const CircleAvatar(
                     backgroundImage: AssetImage("assets/images/profile.jpg"),
                     radius: 25,

@@ -29,7 +29,7 @@ class ProfileBloc extends BlocWithState<ProfileEvent, ProfileState> {
 
       if (dataState is DataSuccess && dataState.data!.message.isNotEmpty) {
         final response = dataState.data;
-        final nameMessage = ChangeNameMessage(response!.message);
+        final nameMessage = ChangeNameMessage(response!.name, response.message);
         yield ChangeNameSuccess(nameMessage);
       }
       if (dataState is DataFailed) {
