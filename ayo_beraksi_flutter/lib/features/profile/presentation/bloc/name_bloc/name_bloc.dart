@@ -2,29 +2,33 @@ import 'package:ayo_beraksi_flutter/core/bloc/bloc_with_state.dart';
 import 'package:ayo_beraksi_flutter/core/params/profile_params.dart';
 import 'package:ayo_beraksi_flutter/core/resources/data_state.dart';
 import 'package:ayo_beraksi_flutter/features/profile/domain/entities/change_name_message.dart';
+import 'package:ayo_beraksi_flutter/features/profile/domain/entities/change_tlp.dart';
 import 'package:ayo_beraksi_flutter/features/profile/domain/usecases/change_name_usecase.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
-part 'profile_event.dart';
-part 'profile_state.dart';
+part 'name_event.dart';
+part 'name_state.dart';
 
-class ProfileBloc extends BlocWithState<ProfileEvent, ProfileState> {
-  final ChangeNameUseCase _ChangeNameUseCase;
+class NameBloc extends BlocWithState<NameEvent, NameState> {
+  final ChangeNameUseCase _changeNameUseCase;
 
-  ProfileBloc(this._ChangeNameUseCase) : super(ChangeNameInitial());
+  NameBloc(this._changeNameUseCase) : super(ChangeNameInitial());
 
   @override
-  Stream<ProfileState> mapEventToState(ProfileEvent event) async* {
+  Stream<NameState> mapEventToState(NameEvent event) async* {
     if (event is ChangeName) {
-      yield* _ChangeName(event.name);
+      yield* _changeName(event.name);
+    }
+    if (event is ResetNameEvent) {
+      yield ChangeNameInitial();
     }
   }
 
-  Stream<ProfileState> _ChangeName(Map<String, dynamic> params) async* {
+  Stream<NameState> _changeName(Map<String, dynamic> params) async* {
     yield* runBlocProcess(() async* {
-      final dataState = await _ChangeNameUseCase(
-        params: ChangeNameParams(profile: params),
+      final dataState = await _changeNameUseCase(
+        params: ChangeProfileParams(profile: params),
       );
 
       if (dataState is DataSuccess && dataState.data!.message.isNotEmpty) {

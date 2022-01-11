@@ -1,8 +1,8 @@
 import 'package:ayo_beraksi_flutter/common/agreement.dart';
 import 'package:ayo_beraksi_flutter/common/custom_back_button.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/pengaduan/components/first_section_pengaduan.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/pengaduan/components/second_section_pengaduan.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/pengaduan/first_section_pengaduan.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/pengaduan/second_section_pengaduan.dart';
 import 'package:flutter/material.dart';
 
 class PengaduanForm extends StatefulWidget {

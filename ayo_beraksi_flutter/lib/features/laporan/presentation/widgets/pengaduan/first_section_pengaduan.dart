@@ -31,7 +31,16 @@ class _FirstSectionPengaduanState extends State<FirstSectionPengaduan> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            "Identitas Terlapor",
+            "Tertuju Kepada",
+            style: TextStyle(fontSize: 18),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: kDefaultPadding * 0.5),
+            child: CustomTextField(
+                controller: namaController, node: namaNode, size: widget.size, label: "Nama", type: TextInputType.text),
+          ),
+          const Text(
+            "Yang bertandatangan di bawah ini",
             style: TextStyle(fontSize: 18),
           ),
           Padding(
@@ -40,16 +49,18 @@ class _FirstSectionPengaduanState extends State<FirstSectionPengaduan> {
                 controller: namaController,
                 node: namaNode,
                 size: widget.size,
-                label: "Nama Terlapor",
+                label: "Nomor Induk Kependudukan",
                 type: TextInputType.text),
           ),
+          CustomTextField(
+              controller: namaController, node: namaNode, size: widget.size, label: "Nama", type: TextInputType.text),
           CustomTextField(
             controller: alamatController,
             node: alamatNode,
             size: widget.size,
             label: "Alamat",
             type: TextInputType.text,
-            maxLines: 8,
+            maxLines: 6,
           ),
         ],
       ),

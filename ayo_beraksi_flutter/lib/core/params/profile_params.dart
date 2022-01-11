@@ -1,5 +1,5 @@
-class ChangeNameParams {
+class ChangeProfileParams {
   final Map<String, dynamic> profile;
 
-  const ChangeNameParams({required this.profile});
+  const ChangeProfileParams({required this.profile});
 }

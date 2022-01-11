@@ -1,5 +1,5 @@
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
-import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/name_bloc/name_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,8 +14,8 @@ class ProfileConsumer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer(
-      bloc: BlocProvider.of<ProfileBloc>(context),
-      builder: (context, ProfileState state) {
+      bloc: BlocProvider.of<NameBloc>(context),
+      builder: (context, NameState state) {
         if (state is ChangeNameFailed) {
           return SizedBox(
               width: size.width,
@@ -26,11 +26,12 @@ class ProfileConsumer extends StatelessWidget {
               )));
         }
         if (state is ChangeNameSuccess) {
-          return Text(state.message!.message);
+          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message!.message)));
+          // return Text(state.message!.message);
         }
         return const SizedBox();
       },
-      listener: (BuildContext context, ProfileState state) {
+      listener: (BuildContext context, NameState state) {
         if (state is LoginDone) {
           // Navigator.pushReplacement(
           //   context,

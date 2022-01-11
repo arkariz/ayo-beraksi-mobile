@@ -1,21 +1,22 @@
-part of 'profile_bloc.dart';
+part of 'name_bloc.dart';
 
-abstract class ProfileState extends Equatable {
+abstract class NameState extends Equatable {
   final ChangeNameMessage? message;
   final DioError? error;
 
-  const ProfileState({this.message, this.error});
+  const NameState({this.message, this.error});
 
   @override
   List<Object?> get props => [message, error];
 }
 
-class ChangeNameInitial extends ProfileState {}
+//Change Name
+class ChangeNameInitial extends NameState {}
 
-class ChangeNameSuccess extends ProfileState {
+class ChangeNameSuccess extends NameState {
   const ChangeNameSuccess(ChangeNameMessage? message) : super(message: message);
 }
 
-class ChangeNameFailed extends ProfileState {
+class ChangeNameFailed extends NameState {
   const ChangeNameFailed(DioError? error) : super(error: error);
 }

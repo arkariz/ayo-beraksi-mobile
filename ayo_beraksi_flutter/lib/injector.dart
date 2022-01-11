@@ -13,7 +13,9 @@ import 'package:ayo_beraksi_flutter/features/profile/data/datasources/profile_ap
 import 'package:ayo_beraksi_flutter/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:ayo_beraksi_flutter/features/profile/domain/repositories/profile_repository.dart';
 import 'package:ayo_beraksi_flutter/features/profile/domain/usecases/change_name_usecase.dart';
-import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/profile/domain/usecases/change_telepon_usecase.dart';
+import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/name_bloc/name_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/phone_bloc/phone_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/register/data/datasources/remote/register_api_service.dart';
 import 'package:ayo_beraksi_flutter/features/register/data/repositories/register_repository_impl.dart';
 import 'package:ayo_beraksi_flutter/features/register/domain/repositories/register_repository.dart';
@@ -46,10 +48,12 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<PostRegisterUseCase>(PostRegisterUseCase(injector()));
   injector.registerSingleton<PenyuapanUseCase>(PenyuapanUseCase(injector()));
   injector.registerSingleton<ChangeNameUseCase>(ChangeNameUseCase(injector()));
+  injector.registerSingleton<ChangeTeleponUseCase>(ChangeTeleponUseCase(injector()));
 
   // Blocs
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector()));
   injector.registerFactory<RegisterBloc>(() => RegisterBloc(injector()));
   injector.registerFactory<LaporanBloc>(() => LaporanBloc(injector()));
-  injector.registerFactory<ProfileBloc>(() => ProfileBloc(injector()));
+  injector.registerFactory<NameBloc>(() => NameBloc(injector()));
+  injector.registerFactory<PhoneBloc>(() => PhoneBloc(injector()));
 }

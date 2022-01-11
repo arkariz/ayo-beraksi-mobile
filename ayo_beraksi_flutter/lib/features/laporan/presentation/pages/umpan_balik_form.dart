@@ -1,8 +1,8 @@
 import 'package:ayo_beraksi_flutter/common/agreement.dart';
 import 'package:ayo_beraksi_flutter/common/custom_back_button.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/umpan_balik/components/first_section_umpan_balik.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/umpan_balik/components/second_section_umpan_balik.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/umpan_balik/first_section_umpan_balik.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/umpan_balik/second_section_umpan_balik.dart';
 import 'package:flutter/material.dart';
 
 class UmpanBalikForm extends StatefulWidget {

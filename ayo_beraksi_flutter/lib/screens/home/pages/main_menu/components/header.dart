@@ -1,6 +1,6 @@
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
-import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/name_bloc/name_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -27,7 +27,7 @@ class Header extends HookWidget {
             children: <Widget>[
               Container(
                   padding: const EdgeInsets.only(right: kDefaultPadding),
-                  child: BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
+                  child: BlocBuilder<NameBloc, NameState>(builder: (context, state) {
                     if (state is ChangeNameInitial) {
                       return BlocBuilder<LoginBloc, LoginState>(
                         builder: (_, state) {

@@ -1,5 +1,6 @@
 import 'package:ayo_beraksi_flutter/core/config/constant.dart';
 import 'package:ayo_beraksi_flutter/features/profile/data/models/change_name_message_model.dart';
+import 'package:ayo_beraksi_flutter/features/profile/data/models/change_telepon_model.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/dio.dart';
 import 'package:retrofit/http.dart';
@@ -12,5 +13,9 @@ abstract class ProfileApiService {
 
   @POST('/api/ganti/nama')
   Future<HttpResponse<ChangeUsernameMessageModel>> changeName(@Header('Authorization') String token,
+      @Header('Accept') String? accept, @Header("Content-Type") String? type, @Body() Map<String, dynamic> body);
+
+  @POST('/api/ganti/nohp')
+  Future<HttpResponse<ChangeTeleponModel>> changeTelepon(@Header('Authorization') String token,
       @Header('Accept') String? accept, @Header("Content-Type") String? type, @Body() Map<String, dynamic> body);
 }

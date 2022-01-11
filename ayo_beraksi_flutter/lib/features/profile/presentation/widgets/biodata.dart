@@ -1,6 +1,7 @@
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
-import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/name_bloc/name_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/phone_bloc/phone_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,13 +30,20 @@ class Biodata extends StatelessWidget {
 
           return Column(children: [
             BiodataTextField(
-                controller: nameController, node: nameNode, size: size, icon: Icons.person_outline, label: "NAMA"),
+              controller: nameController,
+              node: nameNode,
+              size: size,
+              icon: Icons.person_outline,
+              label: "NAMA",
+              blocEvent: "changeName",
+            ),
             BiodataTextField(
               controller: tlpController,
               node: tlpNode,
               size: size,
               icon: Icons.phone_outlined,
               label: "NOMOR TELEPON",
+              blocEvent: "changeTelepon",
             ),
             BiodataTextField(
               controller: mailController,
@@ -43,6 +51,7 @@ class Biodata extends StatelessWidget {
               size: size,
               icon: Icons.mail_outline,
               label: "EMAIL",
+              blocEvent: "changeEmail",
             )
           ]);
         }
@@ -59,7 +68,8 @@ class BiodataTextField extends StatefulWidget {
       required this.node,
       required this.size,
       required this.icon,
-      required this.label})
+      required this.label,
+      required this.blocEvent})
       : super(key: key);
 
   final TextEditingController controller;
@@ -67,6 +77,7 @@ class BiodataTextField extends StatefulWidget {
   final Size size;
   final IconData icon;
   final String label;
+  final String blocEvent;
 
   @override
   _BiodataTextFieldState createState() => _BiodataTextFieldState();
@@ -96,7 +107,14 @@ class _BiodataTextFieldState extends State<BiodataTextField> {
           ),
           IconButton(
               onPressed: () {
-                BlocProvider.of<ProfileBloc>(context).add(ChangeName({"name": widget.controller.text}));
+                if (widget.blocEvent == "changeName") {
+                  BlocProvider.of<NameBloc>(context).add(ChangeName({"name": widget.controller.text}));
+                } else if (widget.blocEvent == "changeTelepon") {
+                  BlocProvider.of<PhoneBloc>(context).add(ChangeTeleponEvent({"no_telp": widget.controller.text}));
+                } else {
+                  null;
+                }
+
                 setState(() => isReadOnly = !isReadOnly);
                 isReadOnly
                     ? FocusScope.of(context).requestFocus(FocusNode())

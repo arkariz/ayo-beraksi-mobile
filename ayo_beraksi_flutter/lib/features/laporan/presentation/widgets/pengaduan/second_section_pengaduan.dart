@@ -43,7 +43,7 @@ class _SecondSectionPengaduanState extends State<SecondSectionPengaduan> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            "Kronologis Kejadian",
+            "Laporan",
             style: TextStyle(fontSize: 18),
           ),
           Padding(
@@ -52,21 +52,25 @@ class _SecondSectionPengaduanState extends State<SecondSectionPengaduan> {
               controller: kasusController,
               node: kasusNode,
               size: widget.size,
-              label: "Tanggal Kejadian",
+              label: "Uraian Laporan",
               type: TextInputType.text,
-              suffixIcon: const Icon(
-                Icons.calendar_today_rounded,
-                color: kPrimaryColor,
-              ),
+              maxLines: 6,
             ),
           ),
-          CustomTextField(
-            controller: kronologiController,
-            node: kronologiNode,
-            size: widget.size,
-            label: "Kronologis Kejadian",
-            type: TextInputType.text,
-            maxLines: 8,
+          const Text(
+            "Saran dan Masukkan",
+            style: TextStyle(fontSize: 18),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: kDefaultPadding * 0.5),
+            child: CustomTextField(
+              controller: kronologiController,
+              node: kronologiNode,
+              size: widget.size,
+              label: "Saran dan Masukkan",
+              type: TextInputType.text,
+              maxLines: 6,
+            ),
           ),
         ],
       ),
