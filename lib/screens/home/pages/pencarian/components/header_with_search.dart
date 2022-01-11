@@ -25,7 +25,7 @@ class HeaderwithSearch extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.only(right: kDefaultPadding),
                     child: const Text(
-                      "Hai, Radias",
+                      "Hai, Rizky",
                       style: TextStyle(fontSize: 16),
                     ),
                   ),

@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 class Biodata extends StatelessWidget {
   Biodata({Key? key}) : super(key: key);
 
-  final nameController = TextEditingController(text: "Radias Mahes");
+  final nameController = TextEditingController(text: "Rizky");
   final FocusNode nameNode = FocusNode();
 
   final tlpController = TextEditingController(text: "08765423134");
   final FocusNode tlpNode = FocusNode();
 
-  final mailController = TextEditingController(text: "RadiasMahes@gmail.com");
+  final mailController = TextEditingController(text: "Rizky@gmail.com");
   final FocusNode mailNode = FocusNode();
 
   @override
@@ -19,11 +19,7 @@ class Biodata extends StatelessWidget {
 
     return Column(children: [
       BiodataTextField(
-          controller: nameController,
-          node: nameNode,
-          size: size,
-          icon: Icons.person_outline,
-          label: "NAMA"),
+          controller: nameController, node: nameNode, size: size, icon: Icons.person_outline, label: "NAMA"),
       BiodataTextField(
         controller: tlpController,
         node: tlpNode,
@@ -80,9 +76,7 @@ class _BiodataTextFieldState extends State<BiodataTextField> {
               decoration: InputDecoration(
                   icon: Icon(widget.icon),
                   labelText: widget.label,
-                  border: isReadOnly
-                      ? InputBorder.none
-                      : const OutlineInputBorder()),
+                  border: isReadOnly ? InputBorder.none : const OutlineInputBorder()),
               textInputAction: TextInputAction.done,
             ),
           ),
