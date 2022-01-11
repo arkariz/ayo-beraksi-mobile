@@ -1,6 +1,7 @@
 import 'package:ayo_beraksi_flutter/common/launch/launch_screen.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
-import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/laporan_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/pengaduan/pengaduan_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/penyuapan/laporan_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/name_bloc/name_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/phone_bloc/phone_bloc.dart';
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
         BlocProvider<RegisterBloc>(create: (BuildContext context) => injector()),
         BlocProvider<LaporanBloc>(create: (BuildContext context) => injector()),
         BlocProvider<NameBloc>(create: (BuildContext context) => injector()),
-        BlocProvider<PhoneBloc>(create: (BuildContext context) => injector())
+        BlocProvider<PhoneBloc>(create: (BuildContext context) => injector()),
+        BlocProvider<PengaduanBloc>(create: (BuildContext context) => injector())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

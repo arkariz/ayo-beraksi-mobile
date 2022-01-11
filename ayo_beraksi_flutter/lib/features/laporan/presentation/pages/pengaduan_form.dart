@@ -1,9 +1,12 @@
 import 'package:ayo_beraksi_flutter/common/agreement.dart';
 import 'package:ayo_beraksi_flutter/common/custom_back_button.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/pengaduan/pengaduan_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/pengaduan/first_section_pengaduan.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/pengaduan/pengaduan_consumer.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/pengaduan/second_section_pengaduan.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PengaduanForm extends StatefulWidget {
   const PengaduanForm({Key? key}) : super(key: key);
@@ -15,6 +18,13 @@ class PengaduanForm extends StatefulWidget {
 class _PengaduanFormState extends State<PengaduanForm> {
   final formFieldKey = GlobalKey<FormState>();
   bool _isChecked = false;
+
+  final kepadaController = TextEditingController();
+  final nikController = TextEditingController();
+  final namaController = TextEditingController();
+  final alamatController = TextEditingController();
+  final laporanController = TextEditingController();
+  final saranController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +43,23 @@ class _PengaduanFormState extends State<PengaduanForm> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const CustomBackButton(title: 'Laporan Pengaduan'),
-                FirstSectionPengaduan(size: size),
-                SecondSectionPengaduan(size: size),
+                FirstSectionPengaduan(
+                  size: size,
+                  nikController: nikController,
+                  kepadaController: kepadaController,
+                  namaController: namaController,
+                  alamatController: alamatController,
+                ),
+                SecondSectionPengaduan(
+                  size: size,
+                  laporanController: laporanController,
+                  saranController: saranController,
+                ),
                 Agreement(
                   size: size,
                   onChanged: (value) => setState(() => _isChecked = value),
                 ),
+                PengaduanConsumer(size: size),
                 Padding(
                   padding: const EdgeInsets.only(top: kDefaultPadding, bottom: kDefaultPadding),
                   child: SizedBox(
@@ -48,14 +69,13 @@ class _PengaduanFormState extends State<PengaduanForm> {
                       onPressed: _isChecked
                           ? () {
                               if (formFieldKey.currentState!.validate()) {
-                                null;
-                                // Navigator.pushReplacement(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //       builder: (context) => OTPScreen(
-                                //             phoneNumber: tlpController.text,
-                                //           )),
-                                // );
+                                BlocProvider.of<PengaduanBloc>(context).add(AddLaporanPengaduan({
+                                  "nama_ketua": kepadaController.text,
+                                  "alamat": alamatController.text,
+                                  "nik": nikController.text,
+                                  "uraian_laporan": laporanController.text,
+                                  "saran_masukan": saranController.text,
+                                }));
                               }
                             }
                           : null,

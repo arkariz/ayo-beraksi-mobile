@@ -1,13 +1,14 @@
 import 'package:ayo_beraksi_flutter/core/config/constant.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/data/models/laporan_model.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/data/models/pengaduan_model.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
-part 'penyuapan_api_service.g.dart';
+part 'laporan_api_service.g.dart';
 
 @RestApi(baseUrl: kBaseUrl)
-abstract class PenyuapanApiService {
-  factory PenyuapanApiService(Dio dio, {String baseUrl}) = _PenyuapanApiService;
+abstract class LaporanApiService {
+  factory LaporanApiService(Dio dio, {String baseUrl}) = _LaporanApiService;
 
   @POST(
       '/api/actions/laporan-penyuapan/add?jabatan={jabatan}&instansi={instansi}&kasus_suap={kasus_suap}&lokasi={lokasi}&tanggal_kejadian={tanggal_kejadian}&kronologis_kejadian={kronologis_kejadian}&id_pelapor={id_pelapor}&nama_terlapor={nama_terlapor}&nilai_suap={nilai_suap}')
@@ -25,4 +26,8 @@ abstract class PenyuapanApiService {
     @Path("nama_terlapor") String? namaTerlapor,
     @Path("nilai_suap") String? nilaiSuap,
   });
+
+  @POST("/api/actions/laporan-pengaduan/add")
+  Future<HttpResponse<PengaduanModel>> addLaporanPengaduan(@Header('Authorization') String? token,
+      @Header('Accept') String? accept, @Header("Content-Type") String? type, @Body() Map<String, dynamic> body);
 }

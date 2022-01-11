@@ -1,9 +1,9 @@
-import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/penyuapan/laporan_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/pengaduan/pengaduan_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AddPenyuapanConsumer extends StatelessWidget {
-  const AddPenyuapanConsumer({
+class PengaduanConsumer extends StatelessWidget {
+  const PengaduanConsumer({
     Key? key,
     required this.size,
   }) : super(key: key);
@@ -13,12 +13,12 @@ class AddPenyuapanConsumer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer(
-      bloc: BlocProvider.of<LaporanBloc>(context),
-      builder: (context, LaporanState state) {
-        if (state is LaporanPenyuapanSuccess) {
-          return const Text("success");
+      bloc: BlocProvider.of<PengaduanBloc>(context),
+      builder: (context, PengaduanState state) {
+        if (state is PengaduanSuccess) {
+          return Text(state.pengaduan!.message);
         }
-        if (state is LaporanPenyuapanFailed) {
+        if (state is PengaduanFailed) {
           return SizedBox(
               width: size.width,
               child: Center(
@@ -29,7 +29,7 @@ class AddPenyuapanConsumer extends StatelessWidget {
         }
         return const SizedBox();
       },
-      listener: (BuildContext context, LaporanState state) {
+      listener: (BuildContext context, PengaduanState state) {
         // if (state is LaporanPenyuapanSuccess) {
         //   Navigator.pushReplacement(
         //     context,

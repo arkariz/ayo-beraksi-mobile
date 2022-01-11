@@ -6,34 +6,23 @@ class SecondSectionPengaduan extends StatefulWidget {
   const SecondSectionPengaduan({
     Key? key,
     required this.size,
+    required this.laporanController,
+    required this.saranController,
   }) : super(key: key);
 
   final Size size;
+
+  final TextEditingController laporanController;
+  final TextEditingController saranController;
 
   @override
   State<SecondSectionPengaduan> createState() => _SecondSectionPengaduanState();
 }
 
 class _SecondSectionPengaduanState extends State<SecondSectionPengaduan> {
-  final kasusController = TextEditingController();
+  final FocusNode laporanNode = FocusNode();
 
-  final FocusNode kasusNode = FocusNode();
-
-  final nilaiController = TextEditingController();
-
-  final FocusNode nilaiNode = FocusNode();
-
-  final lokasiController = TextEditingController();
-
-  final FocusNode lokasiNode = FocusNode();
-
-  final tanggalController = TextEditingController();
-
-  final FocusNode tanggalNode = FocusNode();
-
-  final kronologiController = TextEditingController();
-
-  final FocusNode kronologiNode = FocusNode();
+  final FocusNode saranNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +38,8 @@ class _SecondSectionPengaduanState extends State<SecondSectionPengaduan> {
           Padding(
             padding: const EdgeInsets.only(top: kDefaultPadding * 0.5),
             child: CustomTextField(
-              controller: kasusController,
-              node: kasusNode,
+              controller: widget.laporanController,
+              node: laporanNode,
               size: widget.size,
               label: "Uraian Laporan",
               type: TextInputType.text,
@@ -64,12 +53,12 @@ class _SecondSectionPengaduanState extends State<SecondSectionPengaduan> {
           Padding(
             padding: const EdgeInsets.only(top: kDefaultPadding * 0.5),
             child: CustomTextField(
-              controller: kronologiController,
-              node: kronologiNode,
+              controller: widget.saranController,
+              node: saranNode,
               size: widget.size,
               label: "Saran dan Masukkan",
               type: TextInputType.text,
-              maxLines: 6,
+              maxLines: 8,
             ),
           ),
         ],
