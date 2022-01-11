@@ -1,9 +1,12 @@
 import 'package:ayo_beraksi_flutter/common/agreement.dart';
 import 'package:ayo_beraksi_flutter/common/custom_back_button.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/gratifikasi/gratifikasi_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/gratifikasi/first_section_gratifikasi.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/gratifikasi/gratifikasi_consumer.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/gratifikasi/second_section_gratifikasi.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GratifikasiForm extends StatefulWidget {
   const GratifikasiForm({Key? key}) : super(key: key);
@@ -15,6 +18,12 @@ class GratifikasiForm extends StatefulWidget {
 class _GratifikasiFormState extends State<GratifikasiForm> {
   final formFieldKey = GlobalKey<FormState>();
   bool _isChecked = false;
+
+  final namaController = TextEditingController();
+  final jabatanController = TextEditingController();
+  final instansiController = TextEditingController();
+  final tanggalController = TextEditingController();
+  final kronologiController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +41,22 @@ class _GratifikasiFormState extends State<GratifikasiForm> {
             child: Column(
               children: [
                 const CustomBackButton(title: 'Laporan Gratifikasi'),
-                FirstSectionGratifikasi(size: size),
-                SecondSectionGratifikasi(size: size),
+                FirstSectionGratifikasi(
+                  size: size,
+                  namaController: namaController,
+                  jabatanController: jabatanController,
+                  instansiController: instansiController,
+                ),
+                SecondSectionGratifikasi(
+                  size: size,
+                  tanggalController: tanggalController,
+                  kronologiController: kronologiController,
+                ),
                 Agreement(
                   size: size,
                   onChanged: (value) => setState(() => _isChecked = value),
                 ),
+                GratifikasiConsumer(size: size),
                 Padding(
                   padding: const EdgeInsets.only(top: kDefaultPadding, bottom: kDefaultPadding),
                   child: SizedBox(
@@ -47,14 +66,13 @@ class _GratifikasiFormState extends State<GratifikasiForm> {
                       onPressed: _isChecked
                           ? () {
                               if (formFieldKey.currentState!.validate()) {
-                                null;
-                                // Navigator.pushReplacement(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //       builder: (context) => OTPScreen(
-                                //             phoneNumber: tlpController.text,
-                                //           )),
-                                // );
+                                BlocProvider.of<GratifikasiBloc>(context).add(AddLaporanGratifikasi({
+                                  "nama_terlapor": namaController.text,
+                                  "jabatan": jabatanController.text,
+                                  "instansi": instansiController.text,
+                                  "tanggal_kejadian": tanggalController.text,
+                                  "kronologis_kejadian": kronologiController.text,
+                                }));
                               }
                             }
                           : null,

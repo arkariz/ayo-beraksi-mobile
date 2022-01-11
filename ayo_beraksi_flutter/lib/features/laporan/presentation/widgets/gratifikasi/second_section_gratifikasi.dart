@@ -6,33 +6,21 @@ class SecondSectionGratifikasi extends StatefulWidget {
   const SecondSectionGratifikasi({
     Key? key,
     required this.size,
+    required this.tanggalController,
+    required this.kronologiController,
   }) : super(key: key);
 
   final Size size;
+  final TextEditingController tanggalController;
+
+  final TextEditingController kronologiController;
 
   @override
   State<SecondSectionGratifikasi> createState() => _SecondSectionGratifikasiState();
 }
 
 class _SecondSectionGratifikasiState extends State<SecondSectionGratifikasi> {
-  final kasusController = TextEditingController();
-
-  final FocusNode kasusNode = FocusNode();
-
-  final nilaiController = TextEditingController();
-
-  final FocusNode nilaiNode = FocusNode();
-
-  final lokasiController = TextEditingController();
-
-  final FocusNode lokasiNode = FocusNode();
-
-  final tanggalController = TextEditingController();
-
   final FocusNode tanggalNode = FocusNode();
-
-  final kronologiController = TextEditingController();
-
   final FocusNode kronologiNode = FocusNode();
 
   @override
@@ -49,8 +37,8 @@ class _SecondSectionGratifikasiState extends State<SecondSectionGratifikasi> {
           Padding(
             padding: const EdgeInsets.only(top: kDefaultPadding * 0.5),
             child: CustomTextField(
-              controller: kasusController,
-              node: kasusNode,
+              controller: widget.tanggalController,
+              node: tanggalNode,
               size: widget.size,
               label: "Tanggal Kejadian",
               type: TextInputType.text,
@@ -61,7 +49,7 @@ class _SecondSectionGratifikasiState extends State<SecondSectionGratifikasi> {
             ),
           ),
           CustomTextField(
-            controller: kronologiController,
+            controller: widget.kronologiController,
             node: kronologiNode,
             size: widget.size,
             label: "Kronologis Kejadian",

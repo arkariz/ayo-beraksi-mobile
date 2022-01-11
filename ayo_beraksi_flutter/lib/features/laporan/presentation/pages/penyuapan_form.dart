@@ -66,7 +66,6 @@ class _PenyuapanFormState extends State<PenyuapanForm> {
                   onChanged: (value) => setState(() => _isChecked = value),
                 ),
                 AddPenyuapanConsumer(size: size),
-                Text(namaController.text),
                 Padding(
                   padding: const EdgeInsets.only(top: kDefaultPadding, bottom: kDefaultPadding),
                   child: SizedBox(

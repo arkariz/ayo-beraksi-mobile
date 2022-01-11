@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:ayo_beraksi_flutter/features/laporan/data/datasources/remote/laporan_api_service.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/gratifikasi.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/laporan.dart';
 import 'package:ayo_beraksi_flutter/core/resources/data_state.dart';
 import 'package:ayo_beraksi_flutter/core/params/add_laporan_request.dart';
@@ -52,6 +53,26 @@ class LaporanRepositoryImpl implements LaporanRepository {
     try {
       final token = await _userLocalDataSource.getUserCache();
       final httpResponse = await _laporanApiService.addLaporanPengaduan(
+          "Bearer $token", "application/json", "application/json", params!.laporan);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      }
+      return DataFailed(DioError(
+          error: httpResponse.response.statusMessage,
+          response: httpResponse.response,
+          requestOptions: httpResponse.response.requestOptions,
+          type: DioErrorType.response));
+    } on DioError catch (e) {
+      return DataFailed(e);
+    }
+  }
+
+  @override
+  Future<DataState<Gratifikasi>> addLaporanGratifikasi(AddLaporanRequestParams? params) async {
+    try {
+      final token = await _userLocalDataSource.getUserCache();
+      final httpResponse = await _laporanApiService.addLaporanGratifikasi(
           "Bearer $token", "application/json", "application/json", params!.laporan);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {

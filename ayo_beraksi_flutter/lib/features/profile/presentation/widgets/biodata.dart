@@ -98,6 +98,7 @@ class _BiodataTextFieldState extends State<BiodataTextField> {
               focusNode: widget.node,
               readOnly: isReadOnly ? true : false,
               controller: widget.controller,
+              keyboardType: widget.blocEvent == "changeTelepon" ? TextInputType.number : TextInputType.text,
               decoration: InputDecoration(
                   icon: Icon(widget.icon),
                   labelText: widget.label,

@@ -1,7 +1,7 @@
 import 'package:ayo_beraksi_flutter/features/login/domain/entities/user.dart';
 
 class UserModel extends User {
-  const UserModel(int id, String name, String email, String noTlp, String nip, int roleId, String token)
+  const UserModel(int id, String name, String email, String noTlp, String? nip, int roleId, String token)
       : super(name, id, email, noTlp, nip, roleId, token);
 
   factory UserModel.fromJson(Map<String, dynamic> json) {

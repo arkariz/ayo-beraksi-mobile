@@ -6,22 +6,27 @@ class FirstSectionGratifikasi extends StatefulWidget {
   const FirstSectionGratifikasi({
     Key? key,
     required this.size,
+    required this.namaController,
+    required this.jabatanController,
+    required this.instansiController,
   }) : super(key: key);
 
   final Size size;
+
+  final TextEditingController namaController;
+
+  final TextEditingController jabatanController;
+
+  final TextEditingController instansiController;
 
   @override
   State<FirstSectionGratifikasi> createState() => _FirstSectionGratifikasiState();
 }
 
 class _FirstSectionGratifikasiState extends State<FirstSectionGratifikasi> {
-  final namaController = TextEditingController();
-
   final FocusNode namaNode = FocusNode();
-
-  final alamatController = TextEditingController();
-
-  final FocusNode alamatNode = FocusNode();
+  final FocusNode jabatanNode = FocusNode();
+  final FocusNode instansiNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -37,19 +42,25 @@ class _FirstSectionGratifikasiState extends State<FirstSectionGratifikasi> {
           Padding(
             padding: const EdgeInsets.only(top: kDefaultPadding * 0.5),
             child: CustomTextField(
-                controller: namaController,
+                controller: widget.namaController,
                 node: namaNode,
                 size: widget.size,
                 label: "Nama Terlapor",
                 type: TextInputType.text),
           ),
           CustomTextField(
-            controller: alamatController,
-            node: alamatNode,
+            controller: widget.jabatanController,
+            node: jabatanNode,
             size: widget.size,
-            label: "Alamat",
+            label: "Jabatan",
             type: TextInputType.text,
-            maxLines: 8,
+          ),
+          CustomTextField(
+            controller: widget.instansiController,
+            node: instansiNode,
+            size: widget.size,
+            label: "Instansi/Perusahaan",
+            type: TextInputType.text,
           ),
         ],
       ),

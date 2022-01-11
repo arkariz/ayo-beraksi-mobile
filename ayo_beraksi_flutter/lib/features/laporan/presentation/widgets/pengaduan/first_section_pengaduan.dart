@@ -62,7 +62,7 @@ class _FirstSectionPengaduanState extends State<FirstSectionPengaduan> {
                 node: nikNode,
                 size: widget.size,
                 label: "Nomor Induk Kependudukan",
-                type: TextInputType.text),
+                type: TextInputType.number),
           ),
           CustomTextField(
               controller: widget.namaController,

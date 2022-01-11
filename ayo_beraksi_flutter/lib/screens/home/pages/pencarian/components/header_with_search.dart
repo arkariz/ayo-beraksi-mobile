@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HeaderwithSearch extends StatelessWidget {
-  const HeaderwithSearch({Key? key, required this.size}) : super(key: key);
-
-  final Size size;
+  const HeaderwithSearch({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

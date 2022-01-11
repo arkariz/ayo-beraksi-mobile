@@ -65,7 +65,7 @@ class _SecondSectionState extends State<SecondSection> {
             node: nilaiNode,
             size: widget.size,
             label: "Nilai suap yang diberikan",
-            type: TextInputType.text,
+            type: TextInputType.number,
             suffixIcon: const Icon(
               Icons.monetization_on_outlined,
               color: kPrimaryColor,

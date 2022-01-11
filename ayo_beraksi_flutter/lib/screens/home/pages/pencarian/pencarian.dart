@@ -16,14 +16,16 @@ class Pencarian extends StatelessWidget {
         right: kDefaultPadding,
         top: kDefaultPadding * 2,
       ),
-      child: Column(
-        children: <Widget>[
-          HeaderwithSearch(size: size),
-          SizedBox(
-            height: size.height * 0.2,
-          ),
-          const SearchResult()
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            const HeaderwithSearch(),
+            SizedBox(
+              height: size.height * 0.2,
+            ),
+            const SearchResult()
+          ],
+        ),
       ),
     );
   }

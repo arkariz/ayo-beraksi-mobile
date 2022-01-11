@@ -79,6 +79,34 @@ class _LaporanApiService implements LaporanApiService {
     return httpResponse;
   }
 
+  @override
+  Future<HttpResponse<GratifikasiModel>> addLaporanGratifikasi(
+      token, accept, type, body) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{
+      r'Authorization': token,
+      r'Accept': accept,
+      r'Content-Type': type
+    };
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GratifikasiModel>>(Options(
+                method: 'POST',
+                headers: _headers,
+                extra: _extra,
+                contentType: type)
+            .compose(_dio.options, '/api/actions/laporan-gratifikasi/add',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = GratifikasiModel.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
