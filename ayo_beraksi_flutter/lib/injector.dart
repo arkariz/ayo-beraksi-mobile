@@ -12,6 +12,10 @@ import 'package:ayo_beraksi_flutter/features/login/data/repositories/login_repos
 import 'package:ayo_beraksi_flutter/features/login/domain/repositories/login_repository.dart';
 import 'package:ayo_beraksi_flutter/features/login/domain/usecases/get_user_usecases.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/notification/data/datasources/notification_api_service.dart';
+import 'package:ayo_beraksi_flutter/features/notification/domain/repositories/notification_repository.dart';
+import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/post_fcm_token_usecase.dart';
+import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/notification_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/data/datasources/profile_api_service.dart';
 import 'package:ayo_beraksi_flutter/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:ayo_beraksi_flutter/features/profile/domain/repositories/profile_repository.dart';
@@ -28,6 +32,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 import 'features/laporan/presentation/bloc/pengaduan/pengaduan_bloc.dart';
+import 'features/notification/data/repositories/notification_repository_impl.dart';
 
 final injector = GetIt.instance;
 
@@ -42,15 +47,18 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<RegisterApiService>(RegisterApiService(injector()));
   injector.registerSingleton<LaporanApiService>(LaporanApiService(injector()));
   injector.registerSingleton<ProfileApiService>(ProfileApiService(injector()));
+  injector.registerSingleton<NotificationApiService>(NotificationApiService(injector()));
 
   injector.registerSingleton<LoginRepository>(LoginRepositoryImpl(injector(), injector()));
   injector.registerSingleton<RegisterRepository>(RegisterRepositoryImpl(injector()));
   injector.registerSingleton<LaporanRepository>(LaporanRepositoryImpl(injector(), injector()));
   injector.registerSingleton<ProfileRepository>(ProfileRepositoryImpl(injector(), injector()));
+  injector.registerSingleton<NotificationRepository>(NotificationRepositoryImpl(injector(), injector()));
 
   // UseCases
   injector.registerSingleton<GetUserUseCase>(GetUserUseCase(injector()));
   injector.registerSingleton<PostRegisterUseCase>(PostRegisterUseCase(injector()));
+  injector.registerSingleton<PostFcmTokenUseCase>(PostFcmTokenUseCase(injector()));
 
   injector.registerSingleton<PenyuapanUseCase>(PenyuapanUseCase(injector()));
   injector.registerSingleton<PengaduanUseCase>(PengaduanUseCase(injector()));
@@ -62,6 +70,7 @@ Future<void> initializeDependencies() async {
   // Blocs
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector()));
   injector.registerFactory<RegisterBloc>(() => RegisterBloc(injector()));
+  injector.registerFactory<NotificationBloc>(() => NotificationBloc(injector()));
 
   injector.registerFactory<LaporanBloc>(() => LaporanBloc(injector()));
   injector.registerFactory<PengaduanBloc>(() => PengaduanBloc(injector()));

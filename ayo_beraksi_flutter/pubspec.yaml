@@ -32,10 +32,15 @@ dependencies:
   dio: ^4.0.4
   equatable: ^2.0.3
   expandable: ^5.0.1
+  firebase_analytics: ^9.0.5
+  firebase_analytics_web: ^0.4.0+5
+  firebase_core: ^1.11.0
+  firebase_messaging: ^11.2.5
   flutter:
     sdk: flutter
   flutter_bloc: ^7.1.0
   flutter_hooks: ^0.18.2
+  flutter_local_notifications: ^9.2.0
   flutter_rating_bar: ^4.0.0
   fluttertoast: ^8.0.8
   get_it: ^7.2.0

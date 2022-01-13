@@ -21,7 +21,7 @@ class Menu extends StatelessWidget {
             primaryColor: kRedPrimaryColor,
             secondaryColor: kRedSecondaryColor,
             title: "Penyuapan",
-            icon: "assets/icons/bribe.png",
+            icon: "assets/icons/penyuapan-icon.png",
             onPressed: () {
               Navigator.push(
                 context,
@@ -33,7 +33,7 @@ class Menu extends StatelessWidget {
             primaryColor: kPurplePrimaryColor,
             secondaryColor: kPurpleSecondaryColor,
             title: "Pengaduan",
-            icon: "assets/icons/web-chat.png",
+            icon: "assets/icons/pengaduan-icon.png",
             onPressed: () {
               Navigator.push(
                 context,
@@ -45,7 +45,7 @@ class Menu extends StatelessWidget {
             primaryColor: kYellowPrimary,
             secondaryColor: kYellowSecondary,
             title: "Gratifikasi",
-            icon: "assets/icons/money.png",
+            icon: "assets/icons/gratifikasi-icon.png",
             onPressed: () {
               Navigator.push(
                 context,
@@ -57,7 +57,7 @@ class Menu extends StatelessWidget {
             primaryColor: kGreenPrimary,
             secondaryColor: kGreenSecondary,
             title: "Umpan Balik",
-            icon: "assets/icons/umpan-balik.png",
+            icon: "assets/icons/feedback-icon.png",
             onPressed: () {
               Navigator.push(
                 context,
@@ -69,12 +69,12 @@ class Menu extends StatelessWidget {
               primaryColor: kBluePrimary,
               secondaryColor: kBlueSecondary,
               title: "Manajemen",
-              icon: "assets/icons/manajemen.png"),
+              icon: "assets/icons/manajemen-icon.png"),
           MenuCard(
             primaryColor: kOrangePrimary,
             secondaryColor: kOrangeSecondary,
             title: "Bantuan",
-            icon: "assets/icons/bantuan.png",
+            icon: "assets/icons/bantuan-icon.png",
             onPressed: () {
               Navigator.push(
                 context,

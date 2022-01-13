@@ -19,9 +19,9 @@ class LoginConsumer extends StatelessWidget {
     return BlocConsumer(
       bloc: BlocProvider.of<LoginBloc>(context),
       builder: (context, LoginState state) {
-        // if (state is LoginLoading) {
-        //   return const Text("loading");
-        // }
+        if (state is LoginDone) {
+          print("test ${state.user!.token}");
+        }
         if (state is LoginError) {
           return SizedBox(
               width: size.width,
@@ -31,12 +31,7 @@ class LoginConsumer extends StatelessWidget {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Theme.of(context).errorColor),
               )));
         }
-        // if (state is LoginDone) {
-        //   return const Text("login");
-        // }
-        // if (state is LoggedOut) {
-        //   return const Text("Log out");
-        // }
+
         return const SizedBox();
       },
       listener: (BuildContext context, LoginState state) {

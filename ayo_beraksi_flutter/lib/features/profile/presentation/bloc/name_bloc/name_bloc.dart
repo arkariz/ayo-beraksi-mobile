@@ -2,7 +2,6 @@ import 'package:ayo_beraksi_flutter/core/bloc/bloc_with_state.dart';
 import 'package:ayo_beraksi_flutter/core/params/profile_params.dart';
 import 'package:ayo_beraksi_flutter/core/resources/data_state.dart';
 import 'package:ayo_beraksi_flutter/features/profile/domain/entities/change_name_message.dart';
-import 'package:ayo_beraksi_flutter/features/profile/domain/entities/change_tlp.dart';
 import 'package:ayo_beraksi_flutter/features/profile/domain/usecases/change_name_usecase.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
