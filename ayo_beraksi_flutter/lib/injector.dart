@@ -10,6 +10,7 @@ import 'package:ayo_beraksi_flutter/features/login/data/datasources/local/user_l
 import 'package:ayo_beraksi_flutter/features/login/data/datasources/remote/login_api_service.dart';
 import 'package:ayo_beraksi_flutter/features/login/data/repositories/login_repository_impl.dart';
 import 'package:ayo_beraksi_flutter/features/login/domain/repositories/login_repository.dart';
+import 'package:ayo_beraksi_flutter/features/login/domain/usecases/delete_user_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/login/domain/usecases/get_user_usecases.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/notification/data/datasources/notification_api_service.dart';
@@ -57,6 +58,7 @@ Future<void> initializeDependencies() async {
 
   // UseCases
   injector.registerSingleton<GetUserUseCase>(GetUserUseCase(injector()));
+  injector.registerSingleton<DeleteUserUseCase>(DeleteUserUseCase(injector()));
   injector.registerSingleton<PostRegisterUseCase>(PostRegisterUseCase(injector()));
   injector.registerSingleton<PostFcmTokenUseCase>(PostFcmTokenUseCase(injector()));
 
@@ -68,7 +70,7 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<ChangeTeleponUseCase>(ChangeTeleponUseCase(injector()));
 
   // Blocs
-  injector.registerFactory<LoginBloc>(() => LoginBloc(injector()));
+  injector.registerFactory<LoginBloc>(() => LoginBloc(injector(), injector()));
   injector.registerFactory<RegisterBloc>(() => RegisterBloc(injector()));
   injector.registerFactory<NotificationBloc>(() => NotificationBloc(injector()));
 

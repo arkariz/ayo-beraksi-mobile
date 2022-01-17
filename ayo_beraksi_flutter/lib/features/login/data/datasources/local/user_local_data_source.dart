@@ -11,6 +11,8 @@ abstract class UserLocalDataSource {
   Future<String?> getUserCache();
 
   Future<void> cacheUser(UserModel userToCache);
+
+  Future<void> deleteUser();
 }
 
 class UserLocalDataSourceImpl implements UserLocalDataSource {
@@ -40,5 +42,19 @@ class UserLocalDataSourceImpl implements UserLocalDataSource {
 
     var userBox = await Hive.openBox(CACHED_USER, encryptionCipher: HiveAesCipher(key));
     userBox.put('user', userToCache.token);
+  }
+
+  @override
+  Future<void> deleteUser() async {
+    var keyBox = await Hive.openBox(CACHE_KEYBOX);
+    if (!keyBox.containsKey('key')) {
+      var key = Hive.generateSecureKey();
+      keyBox.put('key', key);
+    }
+
+    var key = keyBox.get('key') as Uint8List;
+
+    var userBox = await Hive.openBox(CACHED_USER, encryptionCipher: HiveAesCipher(key));
+    userBox.delete('user');
   }
 }

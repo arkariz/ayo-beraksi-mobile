@@ -2,6 +2,7 @@ import 'package:ayo_beraksi_flutter/core/bloc/bloc_with_state.dart';
 import 'package:ayo_beraksi_flutter/core/params/login_request.dart';
 import 'package:ayo_beraksi_flutter/core/resources/data_state.dart';
 import 'package:ayo_beraksi_flutter/features/login/domain/entities/user.dart';
+import 'package:ayo_beraksi_flutter/features/login/domain/usecases/delete_user_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/login/domain/usecases/get_user_usecases.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
@@ -11,8 +12,9 @@ part 'login_state.dart';
 
 class LoginBloc extends BlocWithState<LoginEvent, LoginState> {
   final GetUserUseCase _getUserUseCase;
+  final DeleteUserUseCase _deleteUserUseCase;
 
-  LoginBloc(this._getUserUseCase) : super(const LoginLoading());
+  LoginBloc(this._getUserUseCase, this._deleteUserUseCase) : super(const LoginLoading());
 
   @override
   Stream<LoginState> mapEventToState(LoginEvent event) async* {
@@ -20,6 +22,7 @@ class LoginBloc extends BlocWithState<LoginEvent, LoginState> {
       yield* _getUser(event.auth);
     }
     if (event is DestroyToken) {
+      await _deleteUserUseCase();
       yield* _destroyToken();
     }
   }

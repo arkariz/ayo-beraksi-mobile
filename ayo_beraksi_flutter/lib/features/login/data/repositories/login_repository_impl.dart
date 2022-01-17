@@ -46,4 +46,10 @@ class LoginRepositoryImpl implements LoginRepository {
     final user = await _userLocalDataSource.getUserCache();
     return DataSuccess(user);
   }
+
+  @override
+  Future<DataState<String?>> deleteUser() async {
+    await _userLocalDataSource.deleteUser();
+    return const DataSuccess("delete item");
+  }
 }
