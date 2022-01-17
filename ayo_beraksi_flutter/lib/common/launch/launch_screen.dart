@@ -1,4 +1,5 @@
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/pages/pengaduan_form.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/pages/login.dart';
 import 'package:ayo_beraksi_flutter/features/register/presentation/pages/register.dart';
 import 'package:flutter/material.dart';
@@ -88,6 +89,64 @@ class LaunchScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: kDefaultPadding * 1.5,
+                    bottom: kDefaultPadding * 1.5,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          height: 1,
+                          child: Container(
+                            color: Colors.black26,
+                          ),
+                        ),
+                      ),
+                      const Text(
+                        "Masuk sebagai Tamu",
+                        style: TextStyle(color: Colors.black54),
+                      ),
+                      Expanded(
+                        child: SizedBox(
+                          height: 1,
+                          child: Container(
+                            color: Colors.black26,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: size.width,
+                  height: 45,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PengaduanForm(),
+                        ),
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Padding(
+                          padding: EdgeInsets.only(right: 10),
+                          child: Icon(Icons.person_outlined),
+                        ),
+                        Text("Pengaduan"),
+                      ],
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      onPrimary: Colors.black54,
+                    ),
+                  ),
+                )
               ],
             ),
           ),

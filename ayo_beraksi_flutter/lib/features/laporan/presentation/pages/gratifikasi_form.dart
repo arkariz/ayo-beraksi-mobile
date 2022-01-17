@@ -79,6 +79,19 @@ class _GratifikasiFormState extends State<GratifikasiForm> {
                       child: const Text("Kirim"),
                     ),
                   ),
+                ),
+                BlocListener<GratifikasiBloc, GratifikasiState>(
+                  listener: (context, state) {
+                    if (state is GratifikasiSuccess) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: kPrimaryColor,
+                          content: Text('Laporan Gratifikasi Anda Berhasil Dikirim!'),
+                        ),
+                      );
+                    }
+                  },
+                  child: const SizedBox(),
                 )
               ],
             ),

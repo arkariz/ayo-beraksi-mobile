@@ -95,6 +95,19 @@ class _PenyuapanFormState extends State<PenyuapanForm> {
                       );
                     }),
                   ),
+                ),
+                BlocListener<LaporanBloc, LaporanState>(
+                  listener: (context, state) {
+                    if (state is LaporanPenyuapanSuccess) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: kPrimaryColor,
+                          content: Text('Laporan Penyuapan Anda Berhasil Dikirim!'),
+                        ),
+                      );
+                    }
+                  },
+                  child: const SizedBox(),
                 )
               ],
             ),

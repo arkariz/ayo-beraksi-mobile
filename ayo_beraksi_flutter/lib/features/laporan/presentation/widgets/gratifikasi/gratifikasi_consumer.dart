@@ -15,9 +15,9 @@ class GratifikasiConsumer extends StatelessWidget {
     return BlocConsumer(
       bloc: BlocProvider.of<GratifikasiBloc>(context),
       builder: (context, GratifikasiState state) {
-        if (state is GratifikasiSuccess) {
-          return Text(state.gratifikasi!.message);
-        }
+        // if (state is GratifikasiSuccess) {
+        //   return Text(state.gratifikasi!.message);
+        // }
         if (state is GratifikasiFailed) {
           return SizedBox(
               width: size.width,

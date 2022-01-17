@@ -15,9 +15,9 @@ class AddPenyuapanConsumer extends StatelessWidget {
     return BlocConsumer(
       bloc: BlocProvider.of<LaporanBloc>(context),
       builder: (context, LaporanState state) {
-        if (state is LaporanPenyuapanSuccess) {
-          return const Text("success");
-        }
+        // if (state is LaporanPenyuapanSuccess) {
+        //   return const Text("success");
+        // }
         if (state is LaporanPenyuapanFailed) {
           return SizedBox(
               width: size.width,
@@ -29,14 +29,7 @@ class AddPenyuapanConsumer extends StatelessWidget {
         }
         return const SizedBox();
       },
-      listener: (BuildContext context, LaporanState state) {
-        // if (state is LaporanPenyuapanSuccess) {
-        //   Navigator.pushReplacement(
-        //     context,
-        //     MaterialPageRoute(builder: (context) => const LaunchScreen()),
-        //   );
-        // }
-      },
+      listener: (BuildContext context, LaporanState state) {},
     );
   }
 }

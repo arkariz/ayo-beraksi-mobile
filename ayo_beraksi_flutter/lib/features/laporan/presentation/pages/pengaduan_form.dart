@@ -82,6 +82,19 @@ class _PengaduanFormState extends State<PengaduanForm> {
                       child: const Text("Kirim"),
                     ),
                   ),
+                ),
+                BlocListener<PengaduanBloc, PengaduanState>(
+                  listener: (context, state) {
+                    if (state is PengaduanSuccess) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: kPrimaryColor,
+                          content: Text('Pengaduan Anda Berhasil Dikirim!'),
+                        ),
+                      );
+                    }
+                  },
+                  child: const SizedBox(),
                 )
               ],
             ),

@@ -44,7 +44,7 @@ class _SecondSectionGratifikasiState extends State<SecondSectionGratifikasi> {
               node: tanggalNode,
               size: widget.size,
               label: "Tanggal Kejadian",
-              type: TextInputType.text,
+              type: TextInputType.datetime,
               suffixIcon: const Icon(
                 Icons.calendar_today_rounded,
                 color: kPrimaryColor,
