@@ -12,14 +12,15 @@ class LaunchScreen extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            height: size.height,
+        body: SizedBox(
+          height: size.height,
+          child: SingleChildScrollView(
             padding: const EdgeInsets.only(
               left: kDefaultPadding + 5,
               right: kDefaultPadding + 5,
-              top: kDefaultPadding * 2,
+              top: kDefaultPadding * 3,
             ),
+            scrollDirection: Axis.vertical,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -48,35 +49,45 @@ class LaunchScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: kDefaultPadding * 2),
-                  child: SizedBox(
-                    width: size.width,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const Register()),
-                        );
-                      },
-                      child: const Text("Daftar"),
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: size.width * 0.4,
+                        height: 45,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const Register()),
+                            );
+                          },
+                          child: const Text("Daftar"),
+                        ),
+                      ),
+                      SizedBox(
+                        width: size.width * 0.4,
+                        height: 45,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Login(),
+                              ),
+                            );
+                          },
+                          child: const Text("Masuk"),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            onPrimary: kPrimaryColor,
+                            side: const BorderSide(color: kPrimaryColor),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: kDefaultPadding * 0.2),
-                  child: SizedBox(
-                    width: size.width,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Login()),
-                        );
-                      },
-                      child: const Text("Masuk"),
-                      style: ElevatedButton.styleFrom(primary: Colors.white, onPrimary: kPrimaryColor),
-                    ),
-                  ),
-                )
               ],
             ),
           ),

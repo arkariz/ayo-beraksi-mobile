@@ -1,6 +1,7 @@
 import 'package:ayo_beraksi_flutter/common/custom_text_field.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class SecondSection extends StatefulWidget {
   const SecondSection({
@@ -34,6 +35,8 @@ class _SecondSectionState extends State<SecondSection> {
   final FocusNode tanggalNode = FocusNode();
 
   final FocusNode kronologiNode = FocusNode();
+
+  DateTime selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +95,9 @@ class _SecondSectionState extends State<SecondSection> {
               Icons.calendar_today,
               color: kPrimaryColor,
             ),
+            onPressed: () {
+              _selectDate(context);
+            },
           ),
           CustomTextField(
             controller: widget.kronologiController,
@@ -104,5 +110,23 @@ class _SecondSectionState extends State<SecondSection> {
         ],
       ),
     );
+  }
+
+  Future _selectDate(BuildContext context) async {
+    final DateTime? selected = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(1999),
+      lastDate: DateTime(2100),
+    );
+    if (selected != null && selected != selectedDate) {
+      setState(() {
+        selectedDate = selected;
+        widget.tanggalController
+          ..text = DateFormat('yyyy-MM-dd').format(selectedDate)
+          ..selection = TextSelection.fromPosition(
+              TextPosition(offset: widget.tanggalController.text.length, affinity: TextAffinity.upstream));
+      });
+    }
   }
 }

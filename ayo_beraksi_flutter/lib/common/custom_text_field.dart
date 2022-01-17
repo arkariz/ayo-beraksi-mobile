@@ -12,6 +12,7 @@ class CustomTextField extends StatefulWidget {
     required this.type,
     this.maxLines,
     this.suffixIcon,
+    this.onPressed,
   }) : super(key: key);
 
   final TextEditingController controller;
@@ -22,6 +23,7 @@ class CustomTextField extends StatefulWidget {
   final String label;
   final TextInputType type;
   final int? maxLines;
+  final VoidCallback? onPressed;
 
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
@@ -50,7 +52,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
             prefixIcon: widget.icon,
             labelStyle: const TextStyle(color: Colors.black38),
             labelText: widget.label,
-            suffixIcon: widget.suffixIcon,
+            suffixIcon: widget.suffixIcon == null
+                ? widget.suffixIcon
+                : IconButton(onPressed: widget.onPressed ?? () {}, icon: widget.suffixIcon!),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Colors.black26)),
           ),

@@ -18,8 +18,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 
 Future<void> _messageHandler(RemoteMessage message) async {
-  NotificationService()
-      .showNotification(message.notification.hashCode, message.notification!.title!, message.notification!.body!, 2);
+  RemoteNotification? notification = message.notification;
+  AndroidNotification? android = message.notification?.android;
+  if (notification != null && android != null) {
+    NotificationService().showNotification(
+      notification.hashCode,
+      notification.title!,
+      notification.body!,
+      2,
+      'high_importance_channel', // id
+      'High Importance Notifications',
+    );
+  }
 }
 
 Future<void> main() async {
