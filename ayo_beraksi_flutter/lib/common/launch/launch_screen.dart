@@ -1,5 +1,5 @@
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
-import 'package:ayo_beraksi_flutter/features/laporan/presentation/pages/pengaduan_form.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/pages/umpan_balik_form.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/pages/login.dart';
 import 'package:ayo_beraksi_flutter/features/register/presentation/pages/register.dart';
 import 'package:flutter/material.dart';
@@ -127,7 +127,7 @@ class LaunchScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const PengaduanForm(),
+                          builder: (context) => const UmpanBalikForm(),
                         ),
                       );
                     },
@@ -138,7 +138,7 @@ class LaunchScreen extends StatelessWidget {
                           padding: EdgeInsets.only(right: 10),
                           child: Icon(Icons.person_outlined),
                         ),
-                        Text("Pengaduan"),
+                        Text("Feedback"),
                       ],
                     ),
                     style: ElevatedButton.styleFrom(
