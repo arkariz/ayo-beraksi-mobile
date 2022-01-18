@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HeaderwithSearch extends StatelessWidget {
-  const HeaderwithSearch({Key? key}) : super(key: key);
+  const HeaderwithSearch({Key? key, required this.searchNode, required this.searchTextField}) : super(key: key);
+
+  final FocusNode searchNode;
+  final TextField searchTextField;
 
   @override
   Widget build(BuildContext context) {
@@ -66,18 +69,7 @@ class HeaderwithSearch extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: TextField(
-                  onChanged: (value) {},
-                  decoration: const InputDecoration(
-                      hintText: "Cari",
-                      hintStyle: TextStyle(color: Colors.black12),
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      suffixIcon: Icon(
-                        Icons.search_outlined,
-                        color: kPrimaryColor,
-                      )),
-                ),
+                child: searchTextField,
               ))
         ],
       ),
