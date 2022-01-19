@@ -1,9 +1,11 @@
 import 'package:ayo_beraksi_flutter/features/laporan/data/datasources/remote/laporan_api_service.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/data/repositories/penyuapan_repository_impl.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/repositories/laporan_repository.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/domain/usecases/feedback_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/usecases/gratifikasi_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/usecases/pengaduan_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/usecases/penyuapan_usecase.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/feedback/feedback_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/gratifikasi/gratifikasi_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/penyuapan/laporan_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/login/data/datasources/local/user_local_data_source.dart';
@@ -11,6 +13,7 @@ import 'package:ayo_beraksi_flutter/features/login/data/datasources/remote/login
 import 'package:ayo_beraksi_flutter/features/login/data/repositories/login_repository_impl.dart';
 import 'package:ayo_beraksi_flutter/features/login/domain/repositories/login_repository.dart';
 import 'package:ayo_beraksi_flutter/features/login/domain/usecases/delete_user_usecase.dart';
+import 'package:ayo_beraksi_flutter/features/login/domain/usecases/get_cache_user_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/login/domain/usecases/get_user_usecases.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/notification/data/datasources/notification_api_service.dart';
@@ -58,6 +61,7 @@ Future<void> initializeDependencies() async {
 
   // UseCases
   injector.registerSingleton<GetUserUseCase>(GetUserUseCase(injector()));
+  injector.registerSingleton<GetCacheUserUceCase>(GetCacheUserUceCase(injector()));
   injector.registerSingleton<DeleteUserUseCase>(DeleteUserUseCase(injector()));
   injector.registerSingleton<PostRegisterUseCase>(PostRegisterUseCase(injector()));
   injector.registerSingleton<PostFcmTokenUseCase>(PostFcmTokenUseCase(injector()));
@@ -65,18 +69,20 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<PenyuapanUseCase>(PenyuapanUseCase(injector()));
   injector.registerSingleton<PengaduanUseCase>(PengaduanUseCase(injector()));
   injector.registerSingleton<GratifikasiUseCase>(GratifikasiUseCase(injector()));
+  injector.registerSingleton<FeedbackUseCase>(FeedbackUseCase(injector()));
 
   injector.registerSingleton<ChangeNameUseCase>(ChangeNameUseCase(injector()));
   injector.registerSingleton<ChangeTeleponUseCase>(ChangeTeleponUseCase(injector()));
 
   // Blocs
-  injector.registerFactory<LoginBloc>(() => LoginBloc(injector(), injector()));
+  injector.registerFactory<LoginBloc>(() => LoginBloc(injector(), injector(), injector()));
   injector.registerFactory<RegisterBloc>(() => RegisterBloc(injector()));
   injector.registerFactory<NotificationBloc>(() => NotificationBloc(injector()));
 
   injector.registerFactory<LaporanBloc>(() => LaporanBloc(injector()));
   injector.registerFactory<PengaduanBloc>(() => PengaduanBloc(injector()));
   injector.registerFactory<GratifikasiBloc>(() => GratifikasiBloc(injector()));
+  injector.registerFactory<FeedbackBloc>(() => FeedbackBloc(injector()));
 
   injector.registerFactory<NameBloc>(() => NameBloc(injector()));
   injector.registerFactory<PhoneBloc>(() => PhoneBloc(injector()));

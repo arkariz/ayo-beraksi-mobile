@@ -13,4 +13,6 @@ class GetUser extends LoginEvent {
   const GetUser(this.auth);
 }
 
+class CheckUserLogin extends LoginEvent {}
+
 class DestroyToken extends LoginEvent {}

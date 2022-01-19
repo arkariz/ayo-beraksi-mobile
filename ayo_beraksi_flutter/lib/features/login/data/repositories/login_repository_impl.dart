@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:ayo_beraksi_flutter/features/login/data/datasources/local/user_local_data_source.dart';
 import 'package:ayo_beraksi_flutter/features/login/data/datasources/remote/login_api_service.dart';
+import 'package:ayo_beraksi_flutter/features/login/data/models/user_hive_model.dart';
 import 'package:ayo_beraksi_flutter/features/login/data/models/user_model.dart';
 import 'package:ayo_beraksi_flutter/features/login/domain/entities/user.dart';
 import 'package:ayo_beraksi_flutter/core/resources/data_state.dart';
@@ -22,8 +23,15 @@ class LoginRepositoryImpl implements LoginRepository {
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         final user = httpResponse.data;
-        final UserModel userModel =
-            UserModel(user.id, user.name, user.email, user.noTlp, user.nip, user.roleId, user.token);
+        final userModel = HiveUser(
+          user.id!,
+          user.name!,
+          user.email!,
+          user.noTlp!,
+          user.nip,
+          user.roleId!,
+          user.token!,
+        );
 
         _userLocalDataSource.cacheUser(userModel);
 
@@ -42,9 +50,31 @@ class LoginRepositoryImpl implements LoginRepository {
   }
 
   @override
-  Future<DataState<String?>> getUserCache() async {
-    final user = await _userLocalDataSource.getUserCache();
-    return DataSuccess(user);
+  Future<DataState<User>> getUserCache() async {
+    final hiveUser = await _userLocalDataSource.getUserCache();
+
+    try {
+      if (hiveUser != null || hiveUser?.name != null) {
+        final user = User(
+          hiveUser!.name,
+          hiveUser.id,
+          hiveUser.email,
+          hiveUser.noTlp,
+          hiveUser.nip,
+          hiveUser.roleId,
+          hiveUser.token,
+        );
+        return DataSuccess(user);
+      }
+      return DataFailed(
+        DioError(
+          error: "empty",
+          requestOptions: RequestOptions(path: "empty"),
+        ),
+      );
+    } on DioError catch (e) {
+      return DataFailed(e);
+    }
   }
 
   @override

@@ -1,9 +1,11 @@
 import 'package:ayo_beraksi_flutter/common/agreement.dart';
 import 'package:ayo_beraksi_flutter/common/custom_back_button.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/feedback/feedback_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/umpan_balik/first_section_umpan_balik.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/umpan_balik/second_section_umpan_balik.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UmpanBalikForm extends StatefulWidget {
   const UmpanBalikForm({Key? key}) : super(key: key);
@@ -18,6 +20,8 @@ class _UmpanBalikFormState extends State<UmpanBalikForm> {
   bool _isBad = true;
   double rating = 0.0;
   int idSelected = 0;
+
+  final alasanController = TextEditingController();
 
   final listChoices = <ItemChoice>[
     ItemChoice(1, 'Baik'),
@@ -56,7 +60,10 @@ class _UmpanBalikFormState extends State<UmpanBalikForm> {
                     }),
                   ),
                   _isBad
-                      ? SecondSectionUmpanBalik(size: size)
+                      ? SecondSectionUmpanBalik(
+                          size: size,
+                          alasanController: alasanController,
+                        )
                       : Container(
                           padding: const EdgeInsets.only(top: kDefaultPadding),
                           child: Column(
@@ -86,13 +93,40 @@ class _UmpanBalikFormState extends State<UmpanBalikForm> {
                         onPressed: _isChecked
                             ? () {
                                 if (formFieldKey.currentState!.validate()) {
-                                  null;
+                                  BlocProvider.of<FeedbackBloc>(context).add(
+                                    AddFeedback({
+                                      "bintang_kepuasan": rating == 0.0 ? null : rating.toString(),
+                                      "respon_kepuasan": listChoices[idSelected].label,
+                                      "alasan": alasanController.text,
+                                    }),
+                                  );
                                 }
                               }
                             : null,
                         child: const Text("Kirim"),
                       ),
                     ),
+                  ),
+                  BlocListener<FeedbackBloc, FeedbackState>(
+                    listener: (context, state) {
+                      if (state is FeedbackSuccess) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: kPrimaryColor,
+                            content: Text('Terimakasih, Feedback Anda Berhasil Dikirim!'),
+                          ),
+                        );
+                      }
+                      if (state is FeedbackFailed) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: kPrimaryColor,
+                            content: Text('Maaf, ada kesalahan. Feedback tidak terkirim'),
+                          ),
+                        );
+                      }
+                    },
+                    child: const SizedBox(),
                   )
                 ],
               ),

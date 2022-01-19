@@ -10,6 +10,10 @@ abstract class LoginState extends Equatable {
   List<Object?> get props => [user, error];
 }
 
+class LoginInit extends LoginState {
+  const LoginInit();
+}
+
 class LoginLoading extends LoginState {
   const LoginLoading();
 }

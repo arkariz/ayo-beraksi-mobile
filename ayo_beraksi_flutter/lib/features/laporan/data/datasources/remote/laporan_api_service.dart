@@ -1,4 +1,5 @@
 import 'package:ayo_beraksi_flutter/core/config/constant.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/data/models/feedback_model.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/data/models/gratifikasi_model.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/data/models/laporan_model.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/data/models/pengaduan_model.dart';
@@ -34,5 +35,9 @@ abstract class LaporanApiService {
 
   @POST("/api/actions/laporan-gratifikasi/add")
   Future<HttpResponse<GratifikasiModel>> addLaporanGratifikasi(@Header('Authorization') String? token,
+      @Header('Accept') String? accept, @Header("Content-Type") String? type, @Body() Map<String, dynamic> body);
+
+  @POST("/api/feedback/add")
+  Future<HttpResponse<FeedbackModel>> addFeedback(
       @Header('Accept') String? accept, @Header("Content-Type") String? type, @Body() Map<String, dynamic> body);
 }

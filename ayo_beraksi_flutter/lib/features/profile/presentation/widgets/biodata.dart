@@ -24,9 +24,9 @@ class Biodata extends StatelessWidget {
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         if (state is LoginDone) {
-          nameController.text = state.user!.name;
-          tlpController.text = state.user!.noTlp;
-          mailController.text = state.user!.email;
+          nameController.text = state.user!.name!;
+          tlpController.text = state.user!.noTlp!;
+          mailController.text = state.user!.email!;
 
           return Column(children: [
             BiodataTextField(

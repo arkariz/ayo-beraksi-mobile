@@ -1,15 +1,20 @@
 import 'package:ayo_beraksi_flutter/common/launch/launch_screen.dart';
+import 'package:ayo_beraksi_flutter/common/splash_screen.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/core/resources/notification_service.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/feedback/feedback_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/gratifikasi/gratifikasi_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/pengaduan/pengaduan_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/penyuapan/laporan_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/login/data/models/user_hive_model.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/notification_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/name_bloc/name_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/phone_bloc/phone_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/register/presentation/bloc/register_bloc.dart';
 import 'package:ayo_beraksi_flutter/injector.dart';
+import 'package:ayo_beraksi_flutter/screens/home/home_screen.dart';
+import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/main_menu.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +42,7 @@ Future<void> main() async {
 
   await initializeDependencies();
   await Hive.initFlutter();
+  Hive.registerAdapter<HiveUser>(HiveUserAdapter());
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_messageHandler);
 
@@ -57,7 +63,8 @@ class MyApp extends StatelessWidget {
         BlocProvider<PhoneBloc>(create: (BuildContext context) => injector()),
         BlocProvider<PengaduanBloc>(create: (BuildContext context) => injector()),
         BlocProvider<GratifikasiBloc>(create: (BuildContext context) => injector()),
-        BlocProvider<NotificationBloc>(create: (BuildContext context) => injector())
+        BlocProvider<NotificationBloc>(create: (BuildContext context) => injector()),
+        BlocProvider<FeedbackBloc>(create: (BuildContext context) => injector())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -68,7 +75,23 @@ class MyApp extends StatelessWidget {
             colorScheme: const ColorScheme.light().copyWith(primary: kPrimaryColor),
             textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
             visualDensity: VisualDensity.adaptivePlatformDensity),
-        home: const LaunchScreen(),
+        home: BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
+          BlocProvider.of<LoginBloc>(context).add(CheckUserLogin());
+
+          if (state is LoginDone) {
+            return const HomeScreen();
+          }
+          if (state is LoginLoading) {
+            return const SplashScreen();
+          }
+          if (state is LoginInit) {
+            return const LaunchScreen();
+          }
+          // if (state is LoggedOut) {
+          //   return const LaunchScreen();
+          // }
+          return const SizedBox();
+        }),
       ),
     );
   }

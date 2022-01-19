@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class FirstSectionUmpanBalik extends StatelessWidget {
-  FirstSectionUmpanBalik({
+  const FirstSectionUmpanBalik({
     Key? key,
     required this.size,
     required this.onChangeRate,
@@ -11,8 +11,6 @@ class FirstSectionUmpanBalik extends StatelessWidget {
 
   final Size size;
 
-  final kronologiController = TextEditingController();
-  final FocusNode kronologiNode = FocusNode();
   final Function(double) onChangeRate;
 
   @override
