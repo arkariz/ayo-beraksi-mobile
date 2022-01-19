@@ -20,16 +20,66 @@ class MainMenu extends StatefulWidget {
 
 class _MainMenuState extends State<MainMenu> {
   final List<Map<String, dynamic>> _allLaporan = [
-    {"id": 1, "title": "Laporan Pengaduan Masyarakat Mengenai Pelayanan Publik", "date": "29"},
-    {"id": 2, "title": "Laporan Pengaduan Masyarakat Mengenai Pelayanan Publik", "date": "40"},
-    {"id": 3, "title": "Laporan Pengaduan Masyarakat Mengenai Pelayanan Publik", "date": "5"},
-    {"id": 4, "title": "Laporan Pengaduan Masyarakat Mengenai Pelayanan Publik", "date": "35"},
-    {"id": 5, "title": "Laporan Pengaduan Masyarakat Mengenai Pelayanan Publik", "date": "21"},
-    {"id": 6, "title": "Laporan Pengaduan Masyarakat Mengenai Pelayanan Publik", "date": "55"},
-    {"id": 7, "title": "Laporan Pengaduan Masyarakat Mengenai Pelayanan Publik", "date": "30"},
-    {"id": 8, "title": "Laporan Pengaduan Masyarakat Mengenai Pelayanan Publik", "date": "14"},
-    {"id": 9, "title": "Laporan Gratifikasi", "date": "100"},
-    {"id": 10, "title": "Laporan Penyuapan", "date": "32"},
+    {
+      "id": 1,
+      "title": "Laporan Pengaduan",
+      "subtitle": "Laporan anda telah kami tolak karena hal yang disampaika tidak benar",
+      "date": "20 Januari 2022",
+    },
+    {
+      "id": 2,
+      "title": "Laporan Pengaduan Gratifikasi",
+      "subtitle": "Laporan anda telah kami tolak karena hal yang disampaika tidak benar",
+      "date": "20 Januari 2022"
+    },
+    {
+      "id": 3,
+      "title": "Feedback",
+      "subtitle": "Laporan anda telah kami terima, tetaplah menyampaikan hal yang baik",
+      "date": "20 Januari 2022"
+    },
+    {
+      "id": 4,
+      "title": "Laporan Penyuapan",
+      "subtitle": "Laporan anda telah kami terima, tetaplah menyampaikan hal yang baik",
+      "date": "20 Januari 2022"
+    },
+    {
+      "id": 5,
+      "title": "Laporan Pengaduan",
+      "subtitle": "Laporan anda telah kami tolak karena hal yang disampaika tidak benar",
+      "date": "20 Januari 2022"
+    },
+    {
+      "id": 6,
+      "title": "Laporan Pengaduan",
+      "subtitle": "Laporan anda telah kami tolak karena hal yang disampaika tidak benar",
+      "date": "20 Januari 2022"
+    },
+    {
+      "id": 7,
+      "title": "Laporan Pengaduan",
+      "subtitle": "Laporan anda telah kami tolak karena hal yang disampaika tidak benar",
+      "date": "20 Januari 2022"
+    },
+    {
+      "id": 8,
+      "title": "Laporan Pengaduan",
+      "subtitle": "Laporan anda telah kami tolak karena hal yang disampaika tidak benar",
+      "date": "20 Januari 2022"
+    },
+    {
+      "id": 9,
+      "title": "Laporan Gratifikasi",
+      "subtitle": "Laporan anda telah kami tolak karena hal yang disampaika tidak benar",
+      "date": "20 Januari 2022"
+    },
+    {
+      "id": 10,
+      "title": "Laporan Penyuapan",
+      "subtitle": "Laporan anda telah kami tolak karena hal yang disampaika tidak benar",
+      "date": "20 Januari 2022"
+    },
   ];
 
   List<Map<String, dynamic>> _foundLaporan = [];

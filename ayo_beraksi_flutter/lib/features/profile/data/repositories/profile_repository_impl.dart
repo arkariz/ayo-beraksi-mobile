@@ -20,8 +20,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
     try {
       final token = await _userLocalDataSource.getUserCache();
 
-      final httpResponse =
-          await _profileApiService.changeName("Bearer $token", "application/json", "application/json", params!.profile);
+      final httpResponse = await _profileApiService.changeName(
+          "Bearer ${token!.token}", "application/json", "application/json", params!.profile);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
@@ -44,7 +44,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
       final token = await _userLocalDataSource.getUserCache();
 
       final httpResponse = await _profileApiService.changeTelepon(
-          "Bearer $token", "application/json", "application/json", params!.profile);
+          "Bearer ${token!.token}", "application/json", "application/json", params!.profile);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);

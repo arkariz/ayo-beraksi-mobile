@@ -20,7 +20,7 @@ class NotificationRepositoryImpl implements NotificationRepository {
       final token = await _userLocalDataSource.getUserCache();
 
       final httpResponse = await _notificationApiService.postFcmToken(
-          "Bearer $token", "application/json", "application/json", params!.auth);
+          "Bearer ${token!.token}", "application/json", "application/json", params!.auth);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
