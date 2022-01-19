@@ -3,6 +3,8 @@ import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/core/resources/notification_service.dart';
 import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/notification_bloc.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/components/header.dart';
+import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/components/laporan_listview.dart';
+import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/components/listview_header.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/components/menu.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,21 @@ class MainMenu extends StatefulWidget {
 }
 
 class _MainMenuState extends State<MainMenu> {
+  final List<Map<String, dynamic>> _allLaporan = [
+    {"id": 1, "title": "Laporan Pengaduan Masyarakat Mengenai Pelayanan Publik", "date": "29"},
+    {"id": 2, "title": "Laporan Pengaduan Masyarakat Mengenai Pelayanan Publik", "date": "40"},
+    {"id": 3, "title": "Laporan Pengaduan Masyarakat Mengenai Pelayanan Publik", "date": "5"},
+    {"id": 4, "title": "Laporan Pengaduan Masyarakat Mengenai Pelayanan Publik", "date": "35"},
+    {"id": 5, "title": "Laporan Pengaduan Masyarakat Mengenai Pelayanan Publik", "date": "21"},
+    {"id": 6, "title": "Laporan Pengaduan Masyarakat Mengenai Pelayanan Publik", "date": "55"},
+    {"id": 7, "title": "Laporan Pengaduan Masyarakat Mengenai Pelayanan Publik", "date": "30"},
+    {"id": 8, "title": "Laporan Pengaduan Masyarakat Mengenai Pelayanan Publik", "date": "14"},
+    {"id": 9, "title": "Laporan Gratifikasi", "date": "100"},
+    {"id": 10, "title": "Laporan Penyuapan", "date": "32"},
+  ];
+
+  List<Map<String, dynamic>> _foundLaporan = [];
+
   void _getFcmToken(BuildContext context) {
     final messaging = FirebaseMessaging.instance;
 
@@ -55,6 +72,8 @@ class _MainMenuState extends State<MainMenu> {
 
   @override
   void initState() {
+    _foundLaporan = _allLaporan;
+
     tz.initializeTimeZones();
     final service = NotificationService();
     service.initNotification();
@@ -72,11 +91,27 @@ class _MainMenuState extends State<MainMenu> {
         left: kDefaultPadding,
         right: kDefaultPadding,
         top: kDefaultPadding * 2,
+        bottom: 5,
       ),
-      child: Column(
+      child: ListView(
+        shrinkWrap: true,
+        physics: const ClampingScrollPhysics(),
         children: <Widget>[
           Header(size: size),
-          const Menu(),
+          SizedBox(
+            height: size.height * 0.75,
+            child: const Menu(),
+          ),
+          SizedBox(
+            height: size.height * 0.8,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const ListViewHeader(),
+                LaporanListView(foundLaporan: _foundLaporan),
+              ],
+            ),
+          ),
         ],
       ),
     );

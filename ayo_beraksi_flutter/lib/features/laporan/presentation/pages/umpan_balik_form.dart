@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:ayo_beraksi_flutter/common/agreement.dart';
 import 'package:ayo_beraksi_flutter/common/custom_back_button.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
@@ -99,6 +101,11 @@ class _UmpanBalikFormState extends State<UmpanBalikForm> {
                                       "respon_kepuasan": listChoices[idSelected].label,
                                       "alasan": alasanController.text,
                                     }),
+                                  );
+
+                                  Timer(
+                                    const Duration(seconds: 2),
+                                    () => Navigator.of(context).pop(),
                                   );
                                 }
                               }
