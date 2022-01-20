@@ -3,10 +3,12 @@ import 'package:ayo_beraksi_flutter/features/laporan/data/repositories/penyuapan
 import 'package:ayo_beraksi_flutter/features/laporan/domain/repositories/laporan_repository.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/usecases/feedback_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/usecases/gratifikasi_usecase.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/domain/usecases/laporanlist_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/usecases/pengaduan_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/usecases/penyuapan_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/feedback/feedback_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/gratifikasi/gratifikasi_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/laporan_list/laporan_list_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/penyuapan/laporan_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/login/data/datasources/local/user_local_data_source.dart';
 import 'package:ayo_beraksi_flutter/features/login/data/datasources/remote/login_api_service.dart';
@@ -70,6 +72,7 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<PengaduanUseCase>(PengaduanUseCase(injector()));
   injector.registerSingleton<GratifikasiUseCase>(GratifikasiUseCase(injector()));
   injector.registerSingleton<FeedbackUseCase>(FeedbackUseCase(injector()));
+  injector.registerSingleton<LaporanListUsecase>(LaporanListUsecase(injector()));
 
   injector.registerSingleton<ChangeNameUseCase>(ChangeNameUseCase(injector()));
   injector.registerSingleton<ChangeTeleponUseCase>(ChangeTeleponUseCase(injector()));
@@ -83,6 +86,7 @@ Future<void> initializeDependencies() async {
   injector.registerFactory<PengaduanBloc>(() => PengaduanBloc(injector()));
   injector.registerFactory<GratifikasiBloc>(() => GratifikasiBloc(injector()));
   injector.registerFactory<FeedbackBloc>(() => FeedbackBloc(injector()));
+  injector.registerFactory<LaporanListBloc>(() => LaporanListBloc(injector()));
 
   injector.registerFactory<NameBloc>(() => NameBloc(injector()));
   injector.registerFactory<PhoneBloc>(() => PhoneBloc(injector()));

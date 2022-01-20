@@ -1,10 +1,11 @@
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/laporan_list.dart';
 import 'package:flutter/material.dart';
 
 class LaporanListView extends StatelessWidget {
   const LaporanListView({Key? key, required this.foundLaporan}) : super(key: key);
 
-  final List<Map<String, dynamic>> foundLaporan;
+  final List<LaporanItem>? foundLaporan;
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +15,9 @@ class LaporanListView extends StatelessWidget {
           removeTop: true,
           context: context,
           child: ListView.builder(
-            itemCount: foundLaporan.length,
+            itemCount: foundLaporan?.length ?? 0,
             itemBuilder: (context, index) => Card(
-              key: ValueKey(foundLaporan[index]["id"]),
+              key: ValueKey(foundLaporan?[index].id ?? 0),
               child: ListTile(
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -27,20 +28,21 @@ class LaporanListView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            foundLaporan[index]["title"],
+                            foundLaporan?[index].tipeLaporan ?? "empty",
                             style: const TextStyle(
                               fontSize: 18,
                             ),
                           ),
                           Text(
-                            foundLaporan[index]["subtitle"],
+                            foundLaporan?[index].deskripsiStatus ??
+                                "Laporan sudah kami terima dan akan segera kami proses",
                             style: const TextStyle(color: Colors.black26, fontSize: 13),
                             softWrap: true,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8.0),
                             child: Text(
-                              foundLaporan[index]["date"],
+                              foundLaporan?[index].tanggalPelaporan ?? "empty",
                               style: const TextStyle(
                                 fontSize: 11,
                               ),

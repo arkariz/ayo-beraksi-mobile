@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:ayo_beraksi_flutter/core/params/no_params.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/data/datasources/remote/laporan_api_service.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/feedback.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/gratifikasi.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/laporan.dart';
 import 'package:ayo_beraksi_flutter/core/resources/data_state.dart';
 import 'package:ayo_beraksi_flutter/core/params/add_laporan_request.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/laporan_list.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/pengaduan.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/repositories/laporan_repository.dart';
 import 'package:ayo_beraksi_flutter/features/login/data/datasources/local/user_local_data_source.dart';
@@ -104,6 +106,35 @@ class LaporanRepositoryImpl implements LaporanRepository {
           requestOptions: httpResponse.response.requestOptions,
           type: DioErrorType.response));
     } on DioError catch (e) {
+      return DataFailed(e);
+    }
+  }
+
+  @override
+  Future<DataState<LaporanList>> getLaporanList(NoParams? params) async {
+    try {
+      final token = await _userLocalDataSource.getUserCache();
+      final httpResponse =
+          await _laporanApiService.getLaporanList("Bearer ${token!.token}", "application/json", "application/json");
+
+      final te = httpResponse.data;
+      print("tes $te");
+
+      // final tes = httpResponse.data;
+      // for (var i in tes) {
+      //   print("test ${i.namaPelapor}");
+      // }
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data);
+      }
+      return DataFailed(DioError(
+          error: httpResponse.response.statusMessage,
+          response: httpResponse.response,
+          requestOptions: httpResponse.response.requestOptions,
+          type: DioErrorType.response));
+    } on DioError catch (e) {
+      print("tes ${e.error}");
       return DataFailed(e);
     }
   }

@@ -4,6 +4,7 @@ import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/core/resources/notification_service.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/feedback/feedback_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/gratifikasi/gratifikasi_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/laporan_list/laporan_list_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/pengaduan/pengaduan_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/penyuapan/laporan_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/login/data/models/user_hive_model.dart';
@@ -64,7 +65,8 @@ class MyApp extends StatelessWidget {
         BlocProvider<PengaduanBloc>(create: (BuildContext context) => injector()),
         BlocProvider<GratifikasiBloc>(create: (BuildContext context) => injector()),
         BlocProvider<NotificationBloc>(create: (BuildContext context) => injector()),
-        BlocProvider<FeedbackBloc>(create: (BuildContext context) => injector())
+        BlocProvider<FeedbackBloc>(create: (BuildContext context) => injector()),
+        BlocProvider<LaporanListBloc>(create: (BuildContext context) => injector())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -87,9 +89,9 @@ class MyApp extends StatelessWidget {
           if (state is LoginInit) {
             return const LaunchScreen();
           }
-          // if (state is LoggedOut) {
-          //   return const LaunchScreen();
-          // }
+          if (state is LoggedOut) {
+            return const LaunchScreen();
+          }
           return const SizedBox();
         }),
       ),

@@ -1,6 +1,8 @@
 import 'package:ayo_beraksi_flutter/common/statefull_wraper.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/core/resources/notification_service.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/laporan_list.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/laporan_list/laporan_list_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/notification_bloc.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/components/header.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/components/laporan_listview.dart';
@@ -122,6 +124,7 @@ class _MainMenuState extends State<MainMenu> {
 
   @override
   void initState() {
+    BlocProvider.of<LaporanListBloc>(context).add(GetLaporanList());
     _foundLaporan = _allLaporan;
 
     tz.initializeTimeZones();
@@ -158,7 +161,11 @@ class _MainMenuState extends State<MainMenu> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const ListViewHeader(),
-                LaporanListView(foundLaporan: _foundLaporan),
+                BlocBuilder<LaporanListBloc, LaporanListState>(
+                  builder: (context, state) {
+                    return LaporanListView(foundLaporan: state.laporanList?.laporanList);
+                  },
+                ),
               ],
             ),
           ),
