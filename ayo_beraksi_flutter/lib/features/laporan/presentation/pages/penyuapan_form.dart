@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:ayo_beraksi_flutter/common/agreement.dart';
 import 'package:ayo_beraksi_flutter/common/custom_back_button.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/laporan_list/laporan_list_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/penyuapan/laporan_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/penyuapan/add_penyuapan_consumer.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/penyuapan/first_section.dart';
@@ -104,6 +107,13 @@ class _PenyuapanFormState extends State<PenyuapanForm> {
                           backgroundColor: kPrimaryColor,
                           content: Text('Laporan Penyuapan Anda Berhasil Dikirim!'),
                         ),
+                      );
+
+                      BlocProvider.of<LaporanListBloc>(context).add(GetLaporanList());
+
+                      Timer(
+                        const Duration(seconds: 2),
+                        () => Navigator.of(context).pop(),
                       );
                     }
                   },

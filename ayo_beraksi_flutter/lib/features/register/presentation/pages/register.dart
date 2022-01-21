@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:ayo_beraksi_flutter/common/custom_password_field.dart';
 import 'package:ayo_beraksi_flutter/common/custom_text_field.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
@@ -155,6 +157,23 @@ class _RegisterState extends State<Register> {
                         child: const Text("Masuk"))
                   ],
                 ),
+              ),
+              BlocListener<RegisterBloc, RegisterState>(
+                listener: (context, state) {
+                  if (state is RegisterSuccess) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        backgroundColor: kPrimaryColor,
+                        content: Text('Pendaftaran Berhasil!'),
+                      ),
+                    );
+                    Timer(
+                      const Duration(seconds: 2),
+                      () => Navigator.of(context).pop(),
+                    );
+                  }
+                },
+                child: const SizedBox(),
               )
             ],
           ),

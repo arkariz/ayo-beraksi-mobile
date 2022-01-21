@@ -143,8 +143,8 @@ class _MainMenuState extends State<MainMenu> {
       padding: const EdgeInsets.only(
         left: kDefaultPadding,
         right: kDefaultPadding,
-        top: kDefaultPadding * 2,
         bottom: 5,
+        top: 8,
       ),
       child: ListView(
         shrinkWrap: true,

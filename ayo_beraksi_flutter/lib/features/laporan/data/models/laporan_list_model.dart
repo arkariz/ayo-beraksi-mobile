@@ -4,29 +4,52 @@ class LaporanListModel extends LaporanList {
   const LaporanListModel(List<LaporanItem> laporanList) : super(laporanList);
 
   factory LaporanListModel.fromJson(Map<String, dynamic> json) {
-    List<dynamic> data = json['data'];
+    final data = json['data'];
 
     final List<LaporanItem> laporanList = [];
 
-    for (var i in data) {
-      var laporan = LaporanItem(
-        i["no_laporan"],
-        i["pengirim"],
-        i["nama_terlapor"],
-        i["jabatan"],
-        i["instansi"],
-        i["nama_pelapor"],
-        i["tanggal_kejadian"],
-        i["tanggal_pelaporan"],
-        i["kronologis_kejadian"],
-        i["status"],
-        i["deskripsi_status"],
-        i["tindakLanjut"],
-        i["id"],
-        i["tipe_laporan"],
-      );
-      laporanList.add(laporan);
+    if (data is List) {
+      for (var i in data) {
+        var laporan = LaporanItem(
+          i["no_laporan"],
+          i["pengirim"],
+          i["nama_terlapor"],
+          i["jabatan"],
+          i["instansi"],
+          i["nama_pelapor"],
+          i["tanggal_kejadian"],
+          i["tanggal_pelaporan"],
+          i["kronologis_kejadian"],
+          i["status"],
+          i["deskripsi_status"],
+          i["tindakLanjut"],
+          i["id"],
+          i["tipe_laporan"],
+        );
+        laporanList.add(laporan);
+      }
+    } else {
+      data.forEach((key, i) {
+        var laporan = LaporanItem(
+          i["no_laporan"],
+          i["pengirim"],
+          i["nama_terlapor"],
+          i["jabatan"],
+          i["instansi"],
+          i["nama_pelapor"],
+          i["tanggal_kejadian"],
+          i["tanggal_pelaporan"],
+          i["kronologis_kejadian"],
+          i["status"],
+          i["deskripsi_status"],
+          i["tindakLanjut"],
+          i["id"],
+          i["tipe_laporan"],
+        );
+        laporanList.add(laporan);
+      });
     }
+
     return LaporanListModel(laporanList);
   }
 }

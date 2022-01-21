@@ -9,7 +9,7 @@ class ListViewHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 5, right: 5, bottom: kDefaultPadding),
+      padding: const EdgeInsets.only(top: 10, left: 5, right: 5, bottom: kDefaultPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [

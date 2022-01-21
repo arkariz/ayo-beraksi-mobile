@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:ayo_beraksi_flutter/common/agreement.dart';
 import 'package:ayo_beraksi_flutter/common/custom_back_button.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/gratifikasi/gratifikasi_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/laporan_list/laporan_list_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/gratifikasi/first_section_gratifikasi.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/gratifikasi/gratifikasi_consumer.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/widgets/gratifikasi/second_section_gratifikasi.dart';
@@ -88,6 +91,13 @@ class _GratifikasiFormState extends State<GratifikasiForm> {
                           backgroundColor: kPrimaryColor,
                           content: Text('Laporan Gratifikasi Anda Berhasil Dikirim!'),
                         ),
+                      );
+
+                      BlocProvider.of<LaporanListBloc>(context).add(GetLaporanList());
+
+                      Timer(
+                        const Duration(seconds: 2),
+                        () => Navigator.of(context).pop(),
                       );
                     }
                   },
