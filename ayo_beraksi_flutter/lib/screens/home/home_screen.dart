@@ -1,6 +1,6 @@
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/main_menu.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/notifikasi/notifikasi.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/pencarian/pencarian.dart';
+import 'package:ayo_beraksi_flutter/features/search/presentation/pages/pencarian.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/pages/profil.dart';
 import 'package:flutter/material.dart';
 

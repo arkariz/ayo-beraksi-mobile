@@ -1,5 +1,5 @@
 import 'package:ayo_beraksi_flutter/features/laporan/data/datasources/remote/laporan_api_service.dart';
-import 'package:ayo_beraksi_flutter/features/laporan/data/repositories/penyuapan_repository_impl.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/data/repositories/laporan_repository_impl.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/repositories/laporan_repository.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/usecases/feedback_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/usecases/gratifikasi_usecase.dart';
@@ -34,6 +34,7 @@ import 'package:ayo_beraksi_flutter/features/register/data/repositories/register
 import 'package:ayo_beraksi_flutter/features/register/domain/repositories/register_repository.dart';
 import 'package:ayo_beraksi_flutter/features/register/domain/usecases/post_register_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/register/presentation/bloc/register_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/search/presentation/bloc/search_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -81,6 +82,7 @@ Future<void> initializeDependencies() async {
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector(), injector(), injector()));
   injector.registerFactory<RegisterBloc>(() => RegisterBloc(injector()));
   injector.registerFactory<NotificationBloc>(() => NotificationBloc(injector()));
+  injector.registerFactory<SearchBloc>(() => SearchBloc(injector()));
 
   injector.registerFactory<LaporanBloc>(() => LaporanBloc(injector()));
   injector.registerFactory<PengaduanBloc>(() => PengaduanBloc(injector()));

@@ -13,6 +13,7 @@ import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/noti
 import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/name_bloc/name_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/phone_bloc/phone_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/register/presentation/bloc/register_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/search/presentation/bloc/search_bloc.dart';
 import 'package:ayo_beraksi_flutter/injector.dart';
 import 'package:ayo_beraksi_flutter/screens/home/home_screen.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/main_menu.dart';
@@ -66,7 +67,8 @@ class MyApp extends StatelessWidget {
         BlocProvider<GratifikasiBloc>(create: (BuildContext context) => injector()),
         BlocProvider<NotificationBloc>(create: (BuildContext context) => injector()),
         BlocProvider<FeedbackBloc>(create: (BuildContext context) => injector()),
-        BlocProvider<LaporanListBloc>(create: (BuildContext context) => injector())
+        BlocProvider<LaporanListBloc>(create: (BuildContext context) => injector()),
+        BlocProvider<SearchBloc>(create: (BuildContext context) => injector())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

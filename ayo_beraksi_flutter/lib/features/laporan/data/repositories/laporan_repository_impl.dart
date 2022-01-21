@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:ayo_beraksi_flutter/core/params/no_params.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/data/datasources/local/laporan_local_datasource.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/data/datasources/remote/laporan_api_service.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/feedback.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/gratifikasi.dart';
@@ -114,16 +115,11 @@ class LaporanRepositoryImpl implements LaporanRepository {
   Future<DataState<LaporanList>> getLaporanList(NoParams? params) async {
     try {
       final token = await _userLocalDataSource.getUserCache();
-      final httpResponse =
-          await _laporanApiService.getLaporanList("Bearer ${token!.token}", "application/json", "application/json");
-
-      final te = httpResponse.data;
-      print("tes $te");
-
-      // final tes = httpResponse.data;
-      // for (var i in tes) {
-      //   print("test ${i.namaPelapor}");
-      // }
+      final httpResponse = await _laporanApiService.getLaporanList(
+        "Bearer ${token!.token}",
+        "application/json",
+        "application/json",
+      );
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
