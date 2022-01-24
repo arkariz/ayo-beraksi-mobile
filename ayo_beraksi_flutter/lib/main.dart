@@ -1,5 +1,5 @@
-import 'package:ayo_beraksi_flutter/common/launch/launch_screen.dart';
-import 'package:ayo_beraksi_flutter/common/splash_screen.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/launch_screen.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/splash_screen.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/core/resources/notification_service.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/feedback/feedback_bloc.dart';
@@ -16,7 +16,6 @@ import 'package:ayo_beraksi_flutter/features/register/presentation/bloc/register
 import 'package:ayo_beraksi_flutter/features/search/presentation/bloc/search_bloc.dart';
 import 'package:ayo_beraksi_flutter/injector.dart';
 import 'package:ayo_beraksi_flutter/screens/home/home_screen.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/main_menu.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';

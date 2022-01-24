@@ -1,5 +1,4 @@
 import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/feedback.dart';
-import 'package:ayo_beraksi_flutter/features/login/domain/entities/user.dart';
 
 class FeedbackModel extends Feedback {
   const FeedbackModel(

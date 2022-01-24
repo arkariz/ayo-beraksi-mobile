@@ -1,10 +1,8 @@
 import 'package:ayo_beraksi_flutter/core/bloc/bloc_with_state.dart';
 import 'package:ayo_beraksi_flutter/core/params/add_laporan_request.dart';
 import 'package:ayo_beraksi_flutter/core/resources/data_state.dart';
-import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/Gratifikasi.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/feedback.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/usecases/feedback_usecase.dart';
-import 'package:ayo_beraksi_flutter/features/laporan/domain/usecases/gratifikasi_usecase.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 

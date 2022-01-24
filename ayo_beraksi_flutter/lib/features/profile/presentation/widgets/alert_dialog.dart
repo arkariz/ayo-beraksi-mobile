@@ -1,4 +1,4 @@
-import 'package:ayo_beraksi_flutter/common/launch/launch_screen.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/launch_screen.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/name_bloc/name_bloc.dart';

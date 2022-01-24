@@ -25,7 +25,7 @@ class LaunchScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(width: size.width, child: Image.asset("assets/images/logo.png", scale: 2)),
+                SizedBox(width: size.width, child: Image.asset("assets/images/logo.png", scale: 3)),
                 SizedBox(
                   width: size.width,
                   child: RichText(

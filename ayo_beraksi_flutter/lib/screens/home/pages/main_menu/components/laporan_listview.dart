@@ -1,7 +1,6 @@
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/laporan_list.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class LaporanListView extends StatelessWidget {
   const LaporanListView({Key? key, required this.foundLaporan}) : super(key: key);

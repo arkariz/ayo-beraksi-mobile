@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:ayo_beraksi_flutter/common/custom_password_field.dart';
-import 'package:ayo_beraksi_flutter/common/custom_text_field.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/custom_password_field.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/custom_text_field.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/features/register/presentation/bloc/register_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/register/presentation/widgets/register_consumer.dart';

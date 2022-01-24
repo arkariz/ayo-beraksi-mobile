@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
-  final pages = [const MainMenu(), Pencarian(), const Notifikasi(), const Profil()];
+  final pages = [const MainMenu(), const Pencarian(), const Notifikasi(), const Profil()];
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,6 @@ import 'package:ayo_beraksi_flutter/features/laporan/data/models/gratifikasi_mod
 import 'package:ayo_beraksi_flutter/features/laporan/data/models/laporan_list_model.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/data/models/laporan_model.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/data/models/pengaduan_model.dart';
-import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/laporan_list.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 

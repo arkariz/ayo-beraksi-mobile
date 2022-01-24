@@ -1,4 +1,4 @@
-import 'package:ayo_beraksi_flutter/common/custom_back_button.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/custom_back_button.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';

@@ -1,5 +1,4 @@
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/feedback/feedback_bloc.dart';
-import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/penyuapan/laporan_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +16,7 @@ class FeedbackConsumer extends StatelessWidget {
       bloc: BlocProvider.of<FeedbackBloc>(context),
       builder: (context, FeedbackState state) {
         if (state is FeedbackSuccess) {
-          return Text("success");
+          return const Text("success");
         }
         if (state is FeedbackFailed) {
           return SizedBox(

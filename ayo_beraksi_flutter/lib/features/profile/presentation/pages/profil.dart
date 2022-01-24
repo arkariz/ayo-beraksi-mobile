@@ -3,7 +3,6 @@ import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/name_bloc
 import 'package:ayo_beraksi_flutter/features/profile/presentation/widgets/alert_dialog.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/widgets/avatar.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/widgets/biodata.dart';
-import 'package:ayo_beraksi_flutter/features/profile/presentation/widgets/profile_consumer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

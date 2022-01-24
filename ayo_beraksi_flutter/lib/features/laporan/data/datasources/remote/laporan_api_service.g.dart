@@ -32,15 +32,10 @@ class _LaporanApiService implements LaporanApiService {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{
-      r'Authorization': token,
-      r'Accept': accept,
-      r'Content-Type': type
-    };
+    final _headers = <String, dynamic>{r'Authorization': token, r'Accept': accept, r'Content-Type': type};
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<
-        HttpResponse<LaporanModel>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<LaporanModel>>(Options(
             method: 'POST', headers: _headers, extra: _extra, contentType: type)
         .compose(_dio.options,
             '/api/actions/laporan-penyuapan/add?jabatan=${jabatan}&instansi=${instansi}&kasus_suap=${kasusSuap}&lokasi=${lokasi}&tanggal_kejadian=${tanggalKejadian}&kronologis_kejadian=${kronologisKejadian}&id_pelapor=${idPelapor}&nama_terlapor=${namaTerlapor}&nilai_suap=${nilaiSuap}',
@@ -52,27 +47,17 @@ class _LaporanApiService implements LaporanApiService {
   }
 
   @override
-  Future<HttpResponse<PengaduanModel>> addLaporanPengaduan(
-      token, accept, type, body) async {
+  Future<HttpResponse<PengaduanModel>> addLaporanPengaduan(token, accept, type, body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{
-      r'Authorization': token,
-      r'Accept': accept,
-      r'Content-Type': type
-    };
+    final _headers = <String, dynamic>{r'Authorization': token, r'Accept': accept, r'Content-Type': type};
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<PengaduanModel>>(Options(
-                method: 'POST',
-                headers: _headers,
-                extra: _extra,
-                contentType: type)
-            .compose(_dio.options, '/api/actions/laporan-pengaduan/add',
-                queryParameters: queryParameters, data: _data)
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<PengaduanModel>>(
+        Options(method: 'POST', headers: _headers, extra: _extra, contentType: type)
+            .compose(_dio.options, '/api/actions/laporan-pengaduan/add', queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = PengaduanModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -80,28 +65,18 @@ class _LaporanApiService implements LaporanApiService {
   }
 
   @override
-  Future<HttpResponse<GratifikasiModel>> addLaporanGratifikasi(
-      token, accept, type, body) async {
+  Future<HttpResponse<GratifikasiModel>> addLaporanGratifikasi(token, accept, type, body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{
-      r'Authorization': token,
-      r'Accept': accept,
-      r'Content-Type': type
-    };
+    final _headers = <String, dynamic>{r'Authorization': token, r'Accept': accept, r'Content-Type': type};
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<GratifikasiModel>>(Options(
-                method: 'POST',
-                headers: _headers,
-                extra: _extra,
-                contentType: type)
-            .compose(_dio.options, '/api/actions/laporan-gratifikasi/add',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<GratifikasiModel>>(Options(
+            method: 'POST', headers: _headers, extra: _extra, contentType: type)
+        .compose(_dio.options, '/api/actions/laporan-gratifikasi/add', queryParameters: queryParameters, data: _data)
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GratifikasiModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -112,21 +87,13 @@ class _LaporanApiService implements LaporanApiService {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{
-      r'Accept': accept,
-      r'Content-Type': type
-    };
+    final _headers = <String, dynamic>{r'Accept': accept, r'Content-Type': type};
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<FeedbackModel>>(Options(
-                method: 'POST',
-                headers: _headers,
-                extra: _extra,
-                contentType: type)
-            .compose(_dio.options, '/api/feedback/add',
-                queryParameters: queryParameters, data: _data)
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<FeedbackModel>>(
+        Options(method: 'POST', headers: _headers, extra: _extra, contentType: type)
+            .compose(_dio.options, '/api/feedback/add', queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = FeedbackModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -134,26 +101,16 @@ class _LaporanApiService implements LaporanApiService {
   }
 
   @override
-  Future<HttpResponse<LaporanListModel>> getLaporanList(
-      token, accept, type) async {
+  Future<HttpResponse<LaporanListModel>> getLaporanList(token, accept, type) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{
-      r'Authorization': token,
-      r'Accept': accept,
-      r'Content-Type': type
-    };
+    final _headers = <String, dynamic>{r'Authorization': token, r'Accept': accept, r'Content-Type': type};
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<LaporanListModel>>(Options(
-                method: 'GET',
-                headers: _headers,
-                extra: _extra,
-                contentType: type)
-            .compose(_dio.options, '/api/actions/laporan/get-list/all',
-                queryParameters: queryParameters, data: _data)
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<HttpResponse<LaporanListModel>>(
+        Options(method: 'GET', headers: _headers, extra: _extra, contentType: type)
+            .compose(_dio.options, '/api/actions/laporan/get-list/all', queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = LaporanListModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -162,8 +119,7 @@ class _LaporanApiService implements LaporanApiService {
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
-        !(requestOptions.responseType == ResponseType.bytes ||
-            requestOptions.responseType == ResponseType.stream)) {
+        !(requestOptions.responseType == ResponseType.bytes || requestOptions.responseType == ResponseType.stream)) {
       if (T == String) {
         requestOptions.responseType = ResponseType.plain;
       } else {
