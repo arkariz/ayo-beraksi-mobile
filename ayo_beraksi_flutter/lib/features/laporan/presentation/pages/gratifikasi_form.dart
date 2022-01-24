@@ -75,6 +75,7 @@ class _GratifikasiFormState extends State<GratifikasiForm> {
                                   "instansi": instansiController.text,
                                   "tanggal_kejadian": tanggalController.text,
                                   "kronologis_kejadian": kronologiController.text,
+                                  "status": "Sedang diproses"
                                 }));
                               }
                             }

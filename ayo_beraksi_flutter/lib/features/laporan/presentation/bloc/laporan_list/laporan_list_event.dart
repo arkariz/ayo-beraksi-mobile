@@ -8,3 +8,9 @@ abstract class LaporanListEvent extends Equatable {
 }
 
 class GetLaporanList extends LaporanListEvent {}
+
+class FilterLaporanList extends LaporanListEvent {
+  final String enteredWord;
+
+  const FilterLaporanList(this.enteredWord);
+}

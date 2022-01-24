@@ -4,6 +4,7 @@ import 'package:ayo_beraksi_flutter/core/resources/data_state.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/laporan_list.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/usecases/laporanlist_usecase.dart';
 import 'package:equatable/equatable.dart';
+import 'package:intl/intl.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';
@@ -38,7 +39,8 @@ class SearchBloc extends BlocWithState<SearchEvent, SearchState> {
 
       if (dataState is DataSuccess) {
         final response = dataState.data;
-        _allLaporan = response!.laporanList;
+        // _formatDate(response!.laporanList);
+        _allLaporan = _formatDate(response!.laporanList);
         yield SearchInit(laporanList: response);
       }
     });
@@ -69,5 +71,34 @@ class SearchBloc extends BlocWithState<SearchEvent, SearchState> {
     }
 
     _foundLaporan = results;
+  }
+
+  List<LaporanItem> _formatDate(List<LaporanItem> laporan) {
+    List<LaporanItem> result = [];
+    for (var i in laporan) {
+      final date = DateFormat("yyyy-MM-dd").parse(i.tanggalPelaporan ?? i.tanggalPengaduan!);
+      final formatedDate = DateFormat.yMMMMd().format(date);
+
+      final formatedLaporan = LaporanItem(
+        i.noLaporan,
+        i.pengirim,
+        i.namaTerlapor,
+        i.jabatan,
+        i.instansi,
+        i.namaPelapor,
+        i.tanggalKejadian,
+        formatedDate,
+        formatedDate,
+        i.kronologisKejadian,
+        i.status,
+        i.deskripsiStatus,
+        i.tindakLanjut,
+        i.id,
+        i.tipeLaporan,
+      );
+
+      result.add(formatedLaporan);
+    }
+    return result;
   }
 }

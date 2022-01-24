@@ -22,6 +22,7 @@ class LaporanItem extends Equatable {
       this.namaPelapor,
       this.tanggalKejadian,
       this.tanggalPelaporan,
+      this.tanggalPengaduan,
       this.kronologisKejadian,
       this.status,
       this.deskripsiStatus,
@@ -32,12 +33,13 @@ class LaporanItem extends Equatable {
   final int? noLaporan;
   final String? pengirim;
   final String? namaTerlapor;
-  final String jabatan;
-  final String instansi;
-  final String namaPelapor;
-  final String tanggalKejadian;
-  final String tanggalPelaporan;
-  final String kronologisKejadian;
+  final String? jabatan;
+  final String? instansi;
+  final String? namaPelapor;
+  final String? tanggalKejadian;
+  final String? tanggalPelaporan;
+  final String? tanggalPengaduan;
+  final String? kronologisKejadian;
   final String? status;
   final String? deskripsiStatus;
   final String? tindakLanjut;
@@ -54,6 +56,7 @@ class LaporanItem extends Equatable {
         namaPelapor,
         tanggalKejadian,
         tanggalPelaporan,
+        tanggalPengaduan,
         kronologisKejadian,
         status,
         deskripsiStatus,

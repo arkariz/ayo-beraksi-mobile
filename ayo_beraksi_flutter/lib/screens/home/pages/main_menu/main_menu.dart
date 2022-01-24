@@ -21,71 +21,6 @@ class MainMenu extends StatefulWidget {
 }
 
 class _MainMenuState extends State<MainMenu> {
-  final List<Map<String, dynamic>> _allLaporan = [
-    {
-      "id": 1,
-      "title": "Laporan Pengaduan",
-      "subtitle": "Laporan anda telah kami tolak karena hal yang disampaika tidak benar",
-      "date": "20 Januari 2022",
-    },
-    {
-      "id": 2,
-      "title": "Laporan Pengaduan Gratifikasi",
-      "subtitle": "Laporan anda telah kami tolak karena hal yang disampaika tidak benar",
-      "date": "20 Januari 2022"
-    },
-    {
-      "id": 3,
-      "title": "Feedback",
-      "subtitle": "Laporan anda telah kami terima, tetaplah menyampaikan hal yang baik",
-      "date": "20 Januari 2022"
-    },
-    {
-      "id": 4,
-      "title": "Laporan Penyuapan",
-      "subtitle": "Laporan anda telah kami terima, tetaplah menyampaikan hal yang baik",
-      "date": "20 Januari 2022"
-    },
-    {
-      "id": 5,
-      "title": "Laporan Pengaduan",
-      "subtitle": "Laporan anda telah kami tolak karena hal yang disampaika tidak benar",
-      "date": "20 Januari 2022"
-    },
-    {
-      "id": 6,
-      "title": "Laporan Pengaduan",
-      "subtitle": "Laporan anda telah kami tolak karena hal yang disampaika tidak benar",
-      "date": "20 Januari 2022"
-    },
-    {
-      "id": 7,
-      "title": "Laporan Pengaduan",
-      "subtitle": "Laporan anda telah kami tolak karena hal yang disampaika tidak benar",
-      "date": "20 Januari 2022"
-    },
-    {
-      "id": 8,
-      "title": "Laporan Pengaduan",
-      "subtitle": "Laporan anda telah kami tolak karena hal yang disampaika tidak benar",
-      "date": "20 Januari 2022"
-    },
-    {
-      "id": 9,
-      "title": "Laporan Gratifikasi",
-      "subtitle": "Laporan anda telah kami tolak karena hal yang disampaika tidak benar",
-      "date": "20 Januari 2022"
-    },
-    {
-      "id": 10,
-      "title": "Laporan Penyuapan",
-      "subtitle": "Laporan anda telah kami tolak karena hal yang disampaika tidak benar",
-      "date": "20 Januari 2022"
-    },
-  ];
-
-  List<Map<String, dynamic>> _foundLaporan = [];
-
   void _getFcmToken(BuildContext context) {
     final messaging = FirebaseMessaging.instance;
 
@@ -125,7 +60,6 @@ class _MainMenuState extends State<MainMenu> {
   @override
   void initState() {
     BlocProvider.of<LaporanListBloc>(context).add(GetLaporanList());
-    _foundLaporan = _allLaporan;
 
     tz.initializeTimeZones();
     final service = NotificationService();
@@ -163,7 +97,18 @@ class _MainMenuState extends State<MainMenu> {
                 const ListViewHeader(),
                 BlocBuilder<LaporanListBloc, LaporanListState>(
                   builder: (context, state) {
-                    return LaporanListView(foundLaporan: state.laporanList?.laporanList);
+                    if (state.laporanList != null) {
+                      if (state.laporanList!.isNotEmpty) {
+                        return LaporanListView(foundLaporan: state.laporanList);
+                      } else {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: kDefaultPadding * 3),
+                          child: Image.asset("assets/images/complete.png"),
+                        );
+                      }
+                    } else {
+                      return const SizedBox();
+                    }
                   },
                 ),
               ],
