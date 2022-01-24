@@ -1,9 +1,9 @@
-import 'package:ayo_beraksi_flutter/constants.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/bantuan/bantuan_screen.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/gratifikasi/gratifikasi_form.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/pengaduan/pengaduan_form.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/penyuapan/penyuapan_form.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/forms/umpan_balik/umpan_balik_form.dart';
+import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/pages/bantuan_screen.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/pages/gratifikasi_form.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/pages/pengaduan_form.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/pages/penyuapan_form.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/pages/umpan_balik_form.dart';
 import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {
@@ -11,79 +11,78 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: GridView.count(
-        crossAxisCount: 2,
-        mainAxisSpacing: kDefaultPadding,
-        crossAxisSpacing: kDefaultPadding,
-        children: <Widget>[
-          MenuCard(
-            primaryColor: kRedPrimaryColor,
-            secondaryColor: kRedSecondaryColor,
-            title: "Penyuapan",
-            icon: "assets/icons/bribe.png",
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const PenyuapanForm()),
-              );
-            },
-          ),
-          MenuCard(
-            primaryColor: kPurplePrimaryColor,
-            secondaryColor: kPurpleSecondaryColor,
-            title: "Pengaduan",
-            icon: "assets/icons/web-chat.png",
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const PengaduanForm()),
-              );
-            },
-          ),
-          MenuCard(
-            primaryColor: kYellowPrimary,
-            secondaryColor: kYellowSecondary,
-            title: "Gratifikasi",
-            icon: "assets/icons/money.png",
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const GratifikasiForm()),
-              );
-            },
-          ),
-          MenuCard(
-            primaryColor: kGreenPrimary,
-            secondaryColor: kGreenSecondary,
-            title: "Umpan Balik",
-            icon: "assets/icons/umpan-balik.png",
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const UmpanBalikForm()),
-              );
-            },
-          ),
-          const MenuCard(
-              primaryColor: kBluePrimary,
-              secondaryColor: kBlueSecondary,
-              title: "Manajemen",
-              icon: "assets/icons/manajemen.png"),
-          MenuCard(
-            primaryColor: kOrangePrimary,
-            secondaryColor: kOrangeSecondary,
-            title: "Bantuan",
-            icon: "assets/icons/bantuan.png",
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const BantuanScreen()),
-              );
-            },
-          )
-        ],
-      ),
+    return GridView.count(
+      physics: const NeverScrollableScrollPhysics(),
+      crossAxisCount: 2,
+      mainAxisSpacing: kDefaultPadding,
+      crossAxisSpacing: kDefaultPadding,
+      children: <Widget>[
+        MenuCard(
+          primaryColor: kRedPrimaryColor,
+          secondaryColor: kRedSecondaryColor,
+          title: "Penyuapan",
+          icon: "assets/icons/penyuapan-icon.png",
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const PenyuapanForm()),
+            );
+          },
+        ),
+        MenuCard(
+          primaryColor: kPurplePrimaryColor,
+          secondaryColor: kPurpleSecondaryColor,
+          title: "Pengaduan",
+          icon: "assets/icons/pengaduan-icon.png",
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const PengaduanForm()),
+            );
+          },
+        ),
+        MenuCard(
+          primaryColor: kYellowPrimary,
+          secondaryColor: kYellowSecondary,
+          title: "Gratifikasi",
+          icon: "assets/icons/gratifikasi-icon.png",
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const GratifikasiForm()),
+            );
+          },
+        ),
+        MenuCard(
+          primaryColor: kGreenPrimary,
+          secondaryColor: kGreenSecondary,
+          title: "Umpan Balik",
+          icon: "assets/icons/feedback-icon.png",
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const UmpanBalikForm()),
+            );
+          },
+        ),
+        const MenuCard(
+            primaryColor: kBluePrimary,
+            secondaryColor: kBlueSecondary,
+            title: "Manajemen",
+            icon: "assets/icons/manajemen-icon.png"),
+        MenuCard(
+          primaryColor: kOrangePrimary,
+          secondaryColor: kOrangeSecondary,
+          title: "Bantuan",
+          icon: "assets/icons/bantuan-icon.png",
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const BantuanScreen()),
+            );
+          },
+        )
+      ],
     );
   }
 }

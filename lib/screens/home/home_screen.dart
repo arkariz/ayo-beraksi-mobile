@@ -1,7 +1,7 @@
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/main_menu.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/notifikasi/notifikasi.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/pencarian/pencarian.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/profil/profil.dart';
+import 'package:ayo_beraksi_flutter/features/search/presentation/pages/pencarian.dart';
+import 'package:ayo_beraksi_flutter/features/profile/presentation/pages/profil.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
-  final pages = [const MainMenu(), const Pencarian(), const Notifikasi(), const Profil()];
+  final pages = [const MainMenu(), Pencarian(), const Notifikasi(), const Profil()];
 
   @override
   Widget build(BuildContext context) {

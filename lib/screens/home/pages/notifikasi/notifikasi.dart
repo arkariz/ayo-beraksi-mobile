@@ -1,4 +1,4 @@
-import 'package:ayo_beraksi_flutter/constants.dart';
+import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/notifikasi/components/notifikasi_body.dart';
 import 'package:flutter/material.dart';
 
