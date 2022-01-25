@@ -6,3 +6,4 @@ const String token =
 const CACHE_KEYBOX = 'cachekeybox';
 const CACHED_USER = 'encryptionUserBox';
 const CACHED_LAPORAN = 'cachedLaporan';
+const CACHED_NOTIFICATION = 'cachedNotification';

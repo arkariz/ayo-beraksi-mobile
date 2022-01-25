@@ -9,15 +9,9 @@ class Notifikasi extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.only(
-        top: kDefaultPadding * 2,
-      ),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: <Widget>[NotifikasiBody(size: size)],
+        padding: const EdgeInsets.only(
+          top: kDefaultPadding * 2,
         ),
-      ),
-    );
+        child: NotifikasiBody(size: size));
   }
 }

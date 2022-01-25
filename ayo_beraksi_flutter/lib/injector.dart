@@ -18,10 +18,15 @@ import 'package:ayo_beraksi_flutter/features/login/domain/usecases/delete_user_u
 import 'package:ayo_beraksi_flutter/features/login/domain/usecases/get_cache_user_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/login/domain/usecases/get_user_usecases.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
-import 'package:ayo_beraksi_flutter/features/notification/data/datasources/notification_api_service.dart';
+import 'package:ayo_beraksi_flutter/features/notification/data/datasources/local/hiveBox/notification_box.dart';
+import 'package:ayo_beraksi_flutter/features/notification/data/datasources/local/notification_local_datasource.dart';
+import 'package:ayo_beraksi_flutter/features/notification/data/datasources/remote/notification_api_service.dart';
+import 'package:ayo_beraksi_flutter/features/notification/data/models/notification_model.dart';
 import 'package:ayo_beraksi_flutter/features/notification/domain/repositories/notification_repository.dart';
+import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/get_all_notification_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/post_fcm_token_usecase.dart';
-import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/notification_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/save_notification_usecase.dart';
+import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/fcm/fcm_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/data/datasources/profile_api_service.dart';
 import 'package:ayo_beraksi_flutter/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:ayo_beraksi_flutter/features/profile/domain/repositories/profile_repository.dart';
@@ -40,6 +45,7 @@ import 'package:get_it/get_it.dart';
 
 import 'features/laporan/presentation/bloc/pengaduan/pengaduan_bloc.dart';
 import 'features/notification/data/repositories/notification_repository_impl.dart';
+import 'features/notification/presentation/bloc/notification/notification_bloc.dart';
 
 final injector = GetIt.instance;
 
@@ -47,7 +53,10 @@ Future<void> initializeDependencies() async {
   // Dio client
   injector.registerSingleton<Dio>(Dio());
 
+  // injector.registerSingleton<NotificationBox>(NotificationBox());
+
   injector.registerSingleton<UserLocalDataSource>(UserLocalDataSourceImpl());
+  injector.registerSingleton<NotificationLocalDataSource>(NotificationLocalDataSourceImpl());
 
   // Dependencies
   injector.registerSingleton<LoginApiService>(LoginApiService(injector()));
@@ -60,7 +69,7 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<RegisterRepository>(RegisterRepositoryImpl(injector()));
   injector.registerSingleton<LaporanRepository>(LaporanRepositoryImpl(injector(), injector()));
   injector.registerSingleton<ProfileRepository>(ProfileRepositoryImpl(injector(), injector()));
-  injector.registerSingleton<NotificationRepository>(NotificationRepositoryImpl(injector(), injector()));
+  injector.registerSingleton<NotificationRepository>(NotificationRepositoryImpl(injector(), injector(), injector()));
 
   // UseCases
   injector.registerSingleton<GetUserUseCase>(GetUserUseCase(injector()));
@@ -78,10 +87,14 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<ChangeNameUseCase>(ChangeNameUseCase(injector()));
   injector.registerSingleton<ChangeTeleponUseCase>(ChangeTeleponUseCase(injector()));
 
+  injector.registerSingleton<SaveNotificationUseCase>(SaveNotificationUseCase(injector()));
+  injector.registerSingleton<GetAllNotificationUseCase>(GetAllNotificationUseCase(injector()));
+
   // Blocs
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector(), injector(), injector()));
   injector.registerFactory<RegisterBloc>(() => RegisterBloc(injector()));
-  injector.registerFactory<NotificationBloc>(() => NotificationBloc(injector()));
+  injector.registerFactory<NotificationBloc>(() => NotificationBloc(injector(), injector()));
+  injector.registerFactory<FcmBloc>(() => FcmBloc(injector()));
   injector.registerFactory<SearchBloc>(() => SearchBloc(injector()));
 
   injector.registerFactory<LaporanBloc>(() => LaporanBloc(injector()));

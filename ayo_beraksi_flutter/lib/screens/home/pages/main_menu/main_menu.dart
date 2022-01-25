@@ -1,7 +1,10 @@
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
+import 'package:ayo_beraksi_flutter/core/params/notification_params.dart';
 import 'package:ayo_beraksi_flutter/core/resources/notification_service.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/laporan_list/laporan_list_bloc.dart';
-import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/notification_bloc.dart';
+import '../../../../features/notification/domain/entities/notification.dart' as ne;
+import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/fcm/fcm_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/notification/notification_bloc.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/components/header.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/components/laporan_listview.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/main_menu/components/listview_header.dart';
@@ -31,15 +34,14 @@ class _MainMenuState extends State<MainMenu> {
       provisional: false,
       sound: true,
     );
-
     messaging.getToken().then((value) {
-      BlocProvider.of<NotificationBloc>(context).add(PostFcmToken({'token': value}));
+      BlocProvider.of<FcmBloc>(context).add(PostFcmToken({'token': value}));
     });
   }
 
   void _listenNotification(String channelId, String channelName) {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print("test ${message.notification!.title}");
+      // print("test ${message.notification!.title}");
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
       if (notification != null && android != null) {
@@ -51,6 +53,16 @@ class _MainMenuState extends State<MainMenu> {
           channelId,
           channelName,
         );
+
+        var remoteNotification = NotificationParams(
+          notification: ne.Notification(
+            notification.hashCode,
+            notification.title!,
+            notification.body!,
+          ),
+        );
+
+        BlocProvider.of<NotificationBloc>(context).add(SaveNotificationEvent(remoteNotification));
       }
     });
   }
@@ -58,6 +70,7 @@ class _MainMenuState extends State<MainMenu> {
   @override
   void initState() {
     BlocProvider.of<LaporanListBloc>(context).add(GetLaporanList());
+    BlocProvider.of<NotificationBloc>(context).add(GetAllNotificationEvent());
 
     tz.initializeTimeZones();
     final service = NotificationService();

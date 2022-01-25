@@ -1,3 +1,4 @@
+import 'package:ayo_beraksi_flutter/core/config/constant.dart';
 import 'package:ayo_beraksi_flutter/core/widgets/launch_screen.dart';
 import 'package:ayo_beraksi_flutter/core/widgets/splash_screen.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
@@ -9,7 +10,9 @@ import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/pengaduan
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/penyuapan/laporan_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/login/data/models/user_hive_model.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
-import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/notification_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/notification/data/models/notification_model.dart';
+import 'package:ayo_beraksi_flutter/features/notification/domain/entities/notification.dart' as ne;
+import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/fcm/fcm_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/name_bloc/name_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/phone_bloc/phone_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/register/presentation/bloc/register_bloc.dart';
@@ -23,6 +26,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 
+import 'core/params/notification_params.dart';
+import 'features/notification/presentation/bloc/notification/notification_bloc.dart';
+
 Future<void> _messageHandler(RemoteMessage message) async {
   RemoteNotification? notification = message.notification;
   AndroidNotification? android = message.notification?.android;
@@ -35,6 +41,15 @@ Future<void> _messageHandler(RemoteMessage message) async {
       'high_importance_channel', // id
       'High Importance Notifications',
     );
+    // final notificationBloc = NotificationBloc(injector(), injector());
+    var remoteNotification = NotificationModel(
+      notification.hashCode,
+      notification.title!,
+      notification.body!,
+    );
+    var box = await Hive.openBox<NotificationModel>(CACHED_NOTIFICATION);
+    box.add(remoteNotification);
+    // notificationBloc.add(SaveNotificationEvent(remoteNotification));
   }
 }
 
@@ -44,14 +59,41 @@ Future<void> main() async {
   await initializeDependencies();
   await Hive.initFlutter();
   Hive.registerAdapter<HiveUser>(HiveUserAdapter());
+  Hive.registerAdapter<NotificationModel>(NotificationModelAdapter());
+
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_messageHandler);
 
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance?.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    var isBackground = state == AppLifecycleState.paused;
+    if (isBackground) {
+      Hive.close();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +107,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<PengaduanBloc>(create: (BuildContext context) => injector()),
         BlocProvider<GratifikasiBloc>(create: (BuildContext context) => injector()),
         BlocProvider<NotificationBloc>(create: (BuildContext context) => injector()),
+        BlocProvider<FcmBloc>(create: (BuildContext context) => injector()),
         BlocProvider<FeedbackBloc>(create: (BuildContext context) => injector()),
         BlocProvider<LaporanListBloc>(create: (BuildContext context) => injector()),
         BlocProvider<SearchBloc>(create: (BuildContext context) => injector())

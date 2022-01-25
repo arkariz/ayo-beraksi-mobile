@@ -1,5 +1,8 @@
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
+import 'package:ayo_beraksi_flutter/features/notification/domain/entities/notification.dart' as ne;
+import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/notification/notification_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NotifikasiBody extends StatefulWidget {
   const NotifikasiBody({Key? key, required this.size}) : super(key: key);
@@ -11,31 +14,62 @@ class NotifikasiBody extends StatefulWidget {
 }
 
 class _NotifikasiBodyState extends State<NotifikasiBody> {
+  List<ne.Notification> notifications = [];
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        NotificationItem(size: widget.size),
-        NotificationItem(size: widget.size),
-        NotificationItem(size: widget.size),
-        NotificationItem(size: widget.size),
-        NotificationItem(size: widget.size),
-        NotificationItem(size: widget.size),
-        NotificationItem(size: widget.size),
-        NotificationItem(size: widget.size),
-        NotificationItem(size: widget.size),
-        NotificationItem(size: widget.size),
-        NotificationItem(size: widget.size),
-        NotificationItem(size: widget.size),
-      ],
+    return BlocConsumer<NotificationBloc, NotificationState>(
+      builder: (context, state) {
+        return Align(
+          alignment: Alignment.topCenter,
+          child: ListView.builder(
+            shrinkWrap: true,
+            reverse: true,
+            itemCount: state.notifications?.length ?? 0,
+            itemBuilder: (context, index) {
+              return NotificationItem(
+                size: widget.size,
+                title: notifications[index].title,
+                body: notifications[index].body,
+              );
+            },
+          ),
+        );
+      },
+      listener: (context, state) {
+        if (state is SaveNotificationSuccess) {
+          BlocProvider.of<NotificationBloc>(context).add(GetAllNotificationEvent());
+        }
+        if (state is GetNotificationSuccess) {
+          setState(() => notifications = state.notifications!);
+        }
+      },
     );
+    // Column(
+    //   children: [
+    //     NotificationItem(size: widget.size),
+    //     NotificationItem(size: widget.size),
+    //     NotificationItem(size: widget.size),
+    //     NotificationItem(size: widget.size),
+    //     NotificationItem(size: widget.size),
+    //     NotificationItem(size: widget.size),
+    //     NotificationItem(size: widget.size),
+    //     NotificationItem(size: widget.size),
+    //     NotificationItem(size: widget.size),
+    //     NotificationItem(size: widget.size),
+    //     NotificationItem(size: widget.size),
+    //     NotificationItem(size: widget.size),
+    //   ],
+    // );
   }
 }
 
 class NotificationItem extends StatefulWidget {
-  const NotificationItem({Key? key, required this.size}) : super(key: key);
+  const NotificationItem({Key? key, required this.size, required this.title, required this.body}) : super(key: key);
 
   final Size size;
+  final String title;
+  final String body;
 
   @override
   State<NotificationItem> createState() => _NotificationItemState();
@@ -68,22 +102,22 @@ class _NotificationItemState extends State<NotificationItem> {
                 padding: const EdgeInsets.only(left: 8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
-                      "Laporan Penyuapan Ditolak",
-                      style: TextStyle(fontSize: 16, color: Colors.black87),
+                      widget.title,
+                      style: const TextStyle(fontSize: 16, color: Colors.black87),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 8.0),
+                      padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
-                        "Pesanan Anda telah kami tolak karena, hal yang disampaikan tidak benar",
-                        style: TextStyle(
+                        widget.body,
+                        style: const TextStyle(
                           fontSize: 13,
                           color: Colors.grey,
                         ),
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(top: 5.0),
                       child: Text(
                         "3 menit yang lalu",

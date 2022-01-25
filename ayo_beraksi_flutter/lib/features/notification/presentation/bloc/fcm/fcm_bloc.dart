@@ -6,16 +6,16 @@ import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/post_f
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
-part 'notification_event.dart';
-part 'notification_state.dart';
+part 'fcm_event.dart';
+part 'fcm_state.dart';
 
-class NotificationBloc extends BlocWithState<NotificationEvent, NotificationState> {
+class FcmBloc extends BlocWithState<FcmEvent, FcmState> {
   final PostFcmTokenUseCase _postFcmTokenUseCase;
 
-  NotificationBloc(this._postFcmTokenUseCase) : super(PostFcmTokenInitial());
+  FcmBloc(this._postFcmTokenUseCase) : super(PostFcmTokenInitial());
 
   @override
-  Stream<NotificationState> mapEventToState(NotificationEvent event) async* {
+  Stream<FcmState> mapEventToState(FcmEvent event) async* {
     if (event is PostFcmToken) {
       yield* _postFcmToken(event.token);
     }
@@ -24,7 +24,7 @@ class NotificationBloc extends BlocWithState<NotificationEvent, NotificationStat
     }
   }
 
-  Stream<NotificationState> _postFcmToken(Map<String, dynamic> params) async* {
+  Stream<FcmState> _postFcmToken(Map<String, dynamic> params) async* {
     yield* runBlocProcess(() async* {
       final dataState = await _postFcmTokenUseCase(
         params: LoginRequestParams(auth: params),
