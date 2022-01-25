@@ -90,6 +90,7 @@ class _PenyuapanFormState extends State<PenyuapanForm> {
                                     "lokasi": lokasiController.text,
                                     "tanggal_kejadian": tanggalController.text,
                                     "kronologis_kejadian": kronologiController.text,
+                                    "status": "Sedang diproses"
                                   }));
                                 }
                               }

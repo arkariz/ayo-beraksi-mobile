@@ -78,6 +78,7 @@ class _PengaduanFormState extends State<PengaduanForm> {
                                   "nik": nikController.text,
                                   "uraian_laporan": laporanController.text,
                                   "saran_masukan": saranController.text,
+                                  "status": "Sedang diproses"
                                 }));
                               }
                             }
