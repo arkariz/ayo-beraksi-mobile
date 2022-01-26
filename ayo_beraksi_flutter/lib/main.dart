@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:ayo_beraksi_flutter/core/config/constant.dart';
+import 'package:ayo_beraksi_flutter/core/params/notification_params.dart';
 import 'package:ayo_beraksi_flutter/core/widgets/launch_screen.dart';
 import 'package:ayo_beraksi_flutter/core/widgets/splash_screen.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
@@ -30,6 +31,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'features/notification/presentation/bloc/notification/notification_bloc.dart';
 
 // Future<void> _saveNotification(RemoteNotification notification, String path) async {
@@ -58,7 +60,10 @@ Future<void> _messageHandler(RemoteMessage message) async {
       'high_importance_channel', // id
       'High Importance Notifications',
     );
-    // Isolate.spawn<RemoteNotification>(_saveNotification, notification);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(CACHED_NOTIF_ID, notification.hashCode);
+    await prefs.setString(CACHED_NOTIF_TITLE, notification.title!);
+    await prefs.setString(CACHED_NOTIF_BODY, notification.body!);
   }
 }
 
@@ -84,26 +89,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance?.addObserver(this);
-  // }
-
-  // @override
-  // void dispose() {
-  //   WidgetsBinding.instance?.removeObserver(this);
-  //   super.dispose();
-  // }
-
-  // @override
-  // void didChangeAppLifecycleState(AppLifecycleState state) {
-  //   var isBackground = state == AppLifecycleState.paused;
-  //   if (isBackground) {
-  //     Hive.close();
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

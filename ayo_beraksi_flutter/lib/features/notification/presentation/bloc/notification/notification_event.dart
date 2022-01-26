@@ -13,10 +13,4 @@ class SaveNotificationEvent extends NotificationEvent {
   const SaveNotificationEvent(this.notification);
 }
 
-class SaveNotificationBg extends NotificationEvent {
-  final NotificationParams notification;
-
-  const SaveNotificationBg(this.notification);
-}
-
 class GetAllNotificationEvent extends NotificationEvent {}

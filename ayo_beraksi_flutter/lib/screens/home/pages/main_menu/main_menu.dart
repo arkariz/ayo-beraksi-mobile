@@ -54,15 +54,15 @@ class _MainMenuState extends State<MainMenu> {
           channelName,
         );
 
-        // var remoteNotification = NotificationParams(
-        //   notification: ne.Notification(
-        //     notification.hashCode,
-        //     notification.title!,
-        //     notification.body!,
-        //   ),
-        // );
+        var remoteNotification = NotificationParams(
+          notification: ne.Notification(
+            notification.hashCode,
+            notification.title!,
+            notification.body!,
+          ),
+        );
 
-        // BlocProvider.of<NotificationBloc>(context).add(SaveNotificationEvent(remoteNotification));
+        BlocProvider.of<NotificationBloc>(context).add(SaveNotificationEvent(remoteNotification));
       }
     });
   }
@@ -110,7 +110,7 @@ class _MainMenuState extends State<MainMenu> {
                   builder: (context, state) {
                     if (state.laporanList != null) {
                       if (state.laporanList!.isNotEmpty) {
-                        return LaporanListView(foundLaporan: state.laporanList);
+                        return LaporanListView(foundLaporan: state.laporanList!.reversed.toList());
                       } else {
                         return Padding(
                           padding: const EdgeInsets.only(top: kDefaultPadding * 3),

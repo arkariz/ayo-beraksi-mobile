@@ -18,7 +18,6 @@ class LaporanListView extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: ListView.builder(
               shrinkWrap: true,
-              reverse: true,
               itemCount: foundLaporan?.length ?? 0,
               itemBuilder: (context, index) => Card(
                 key: ValueKey(foundLaporan?[index].id ?? 0),

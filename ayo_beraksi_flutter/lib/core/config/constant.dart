@@ -7,3 +7,7 @@ const CACHE_KEYBOX = 'cachekeybox';
 const CACHED_USER = 'encryptionUserBox';
 const CACHED_LAPORAN = 'cachedLaporan';
 const CACHED_NOTIFICATION = 'cachedNotification';
+
+const CACHED_NOTIF_ID = 'cachedNotifID';
+const CACHED_NOTIF_TITLE = 'cachedNotifTitle';
+const CACHED_NOTIF_BODY = 'cachedNotifBody';

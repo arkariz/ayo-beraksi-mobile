@@ -51,9 +51,6 @@ class NotificationService {
     String channelId,
     String channelName,
   ) async {
-    NotificationParams notification = NotificationParams(notification: Notification(id, title, body));
-    NotificationBloc(injector(), injector()).add(SaveNotificationBg(notification));
-
     await flutterLocalNotificationsPlugin.zonedSchedule(
       id,
       title,
