@@ -8,7 +8,8 @@ class Notifikasi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Padding(
+    return Container(
+        alignment: Alignment.topCenter,
         padding: const EdgeInsets.only(
           top: kDefaultPadding * 2,
         ),

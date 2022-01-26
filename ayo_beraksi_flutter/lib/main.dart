@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:isolate';
+
 import 'package:ayo_beraksi_flutter/core/config/constant.dart';
 import 'package:ayo_beraksi_flutter/core/widgets/launch_screen.dart';
 import 'package:ayo_beraksi_flutter/core/widgets/splash_screen.dart';
@@ -21,13 +24,27 @@ import 'package:ayo_beraksi_flutter/injector.dart';
 import 'package:ayo_beraksi_flutter/screens/home/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
-
-import 'core/params/notification_params.dart';
+import 'package:path_provider/path_provider.dart';
 import 'features/notification/presentation/bloc/notification/notification_bloc.dart';
+
+// Future<void> _saveNotification(RemoteNotification notification, String path) async {
+//   var remoteNotification = NotificationModel(
+//     notification.hashCode,
+//     notification.title!,
+//     notification.body!,
+//   );
+
+//   Hive.init(path);
+//   Hive.registerAdapter<NotificationModel>(NotificationModelAdapter());
+//   var box = await Hive.openBox<NotificationModel>(CACHED_NOTIFICATION);
+//   box.add(remoteNotification);
+//   box.close();
+// }
 
 Future<void> _messageHandler(RemoteMessage message) async {
   RemoteNotification? notification = message.notification;
@@ -41,15 +58,7 @@ Future<void> _messageHandler(RemoteMessage message) async {
       'high_importance_channel', // id
       'High Importance Notifications',
     );
-    // final notificationBloc = NotificationBloc(injector(), injector());
-    var remoteNotification = NotificationModel(
-      notification.hashCode,
-      notification.title!,
-      notification.body!,
-    );
-    var box = await Hive.openBox<NotificationModel>(CACHED_NOTIFICATION);
-    box.add(remoteNotification);
-    // notificationBloc.add(SaveNotificationEvent(remoteNotification));
+    // Isolate.spawn<RemoteNotification>(_saveNotification, notification);
   }
 }
 
@@ -75,25 +84,25 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance?.addObserver(this);
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   WidgetsBinding.instance?.addObserver(this);
+  // }
 
-  @override
-  void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   WidgetsBinding.instance?.removeObserver(this);
+  //   super.dispose();
+  // }
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    var isBackground = state == AppLifecycleState.paused;
-    if (isBackground) {
-      Hive.close();
-    }
-  }
+  // @override
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   var isBackground = state == AppLifecycleState.paused;
+  //   if (isBackground) {
+  //     Hive.close();
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,7 @@
+import 'package:ayo_beraksi_flutter/core/params/notification_params.dart';
+import 'package:ayo_beraksi_flutter/features/notification/domain/entities/notification.dart';
+import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/notification/notification_bloc.dart';
+import 'package:ayo_beraksi_flutter/injector.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 
@@ -47,6 +51,9 @@ class NotificationService {
     String channelId,
     String channelName,
   ) async {
+    NotificationParams notification = NotificationParams(notification: Notification(id, title, body));
+    NotificationBloc(injector(), injector()).add(SaveNotificationBg(notification));
+
     await flutterLocalNotificationsPlugin.zonedSchedule(
       id,
       title,

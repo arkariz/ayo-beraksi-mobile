@@ -54,15 +54,15 @@ class _MainMenuState extends State<MainMenu> {
           channelName,
         );
 
-        var remoteNotification = NotificationParams(
-          notification: ne.Notification(
-            notification.hashCode,
-            notification.title!,
-            notification.body!,
-          ),
-        );
+        // var remoteNotification = NotificationParams(
+        //   notification: ne.Notification(
+        //     notification.hashCode,
+        //     notification.title!,
+        //     notification.body!,
+        //   ),
+        // );
 
-        BlocProvider.of<NotificationBloc>(context).add(SaveNotificationEvent(remoteNotification));
+        // BlocProvider.of<NotificationBloc>(context).add(SaveNotificationEvent(remoteNotification));
       }
     });
   }

@@ -20,6 +20,9 @@ class NotificationBloc extends BlocWithState<NotificationEvent, NotificationStat
     if (event is SaveNotificationEvent) {
       yield* _saveNotification(event.notification);
     }
+    if (event is SaveNotificationBg) {
+      yield* _saveNotificationBg(event.notification);
+    }
     if (event is GetAllNotificationEvent) {
       yield* _getNotification();
     }
@@ -32,7 +35,24 @@ class NotificationBloc extends BlocWithState<NotificationEvent, NotificationStat
       );
 
       if (dataState is DataSuccess && dataState.data != null) {
+        final response = params.notification;
+        yield SaveNotificationSuccess(response);
+      }
+      if (dataState is DataFailed) {
         final response = dataState.data;
+        yield SaveNotificationFailed(response);
+      }
+    });
+  }
+
+  Stream<NotificationState> _saveNotificationBg(NotificationParams params) async* {
+    yield* runBlocProcess(() async* {
+      final dataState = await _saveNotificationUseCase(
+        params: params,
+      );
+
+      if (dataState is DataSuccess && dataState.data != null) {
+        final response = params.notification;
         yield SaveNotificationSuccess(response);
       }
       if (dataState is DataFailed) {

@@ -1,4 +1,5 @@
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
+import 'package:ayo_beraksi_flutter/core/params/notification_params.dart';
 import 'package:ayo_beraksi_flutter/features/notification/domain/entities/notification.dart' as ne;
 import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/notification/notification_bloc.dart';
 import 'package:flutter/material.dart';
@@ -20,47 +21,36 @@ class _NotifikasiBodyState extends State<NotifikasiBody> {
   Widget build(BuildContext context) {
     return BlocConsumer<NotificationBloc, NotificationState>(
       builder: (context, state) {
-        return Align(
-          alignment: Alignment.topCenter,
-          child: ListView.builder(
-            shrinkWrap: true,
-            reverse: true,
-            itemCount: state.notifications?.length ?? 0,
-            itemBuilder: (context, index) {
-              return NotificationItem(
-                size: widget.size,
-                title: notifications[index].title,
-                body: notifications[index].body,
-              );
-            },
-          ),
+        List<ne.Notification> reversedNotif = notifications.reversed.toList();
+        return ListView.builder(
+          shrinkWrap: true,
+          // reverse: true,
+          itemCount: notifications.length,
+          itemBuilder: (context, index) {
+            return NotificationItem(
+              size: widget.size,
+              title: reversedNotif[index].title,
+              body: reversedNotif[index].body,
+            );
+          },
         );
       },
       listener: (context, state) {
         if (state is SaveNotificationSuccess) {
           BlocProvider.of<NotificationBloc>(context).add(GetAllNotificationEvent());
         }
+        if (state is SaveNotificationSuccessBg) {
+          BlocProvider.of<NotificationBloc>(context).add(
+            SaveNotificationEvent(
+              NotificationParams(notification: state.notification!),
+            ),
+          );
+        }
         if (state is GetNotificationSuccess) {
           setState(() => notifications = state.notifications!);
         }
       },
     );
-    // Column(
-    //   children: [
-    //     NotificationItem(size: widget.size),
-    //     NotificationItem(size: widget.size),
-    //     NotificationItem(size: widget.size),
-    //     NotificationItem(size: widget.size),
-    //     NotificationItem(size: widget.size),
-    //     NotificationItem(size: widget.size),
-    //     NotificationItem(size: widget.size),
-    //     NotificationItem(size: widget.size),
-    //     NotificationItem(size: widget.size),
-    //     NotificationItem(size: widget.size),
-    //     NotificationItem(size: widget.size),
-    //     NotificationItem(size: widget.size),
-    //   ],
-    // );
   }
 }
 

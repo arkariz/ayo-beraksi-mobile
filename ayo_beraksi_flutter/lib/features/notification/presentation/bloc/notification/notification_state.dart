@@ -2,10 +2,11 @@ part of 'notification_bloc.dart';
 
 abstract class NotificationState extends Equatable {
   final List<Notification>? notifications;
+  final Notification? notification;
   final String? error;
   final String? message;
 
-  const NotificationState({this.notifications, this.error, this.message});
+  const NotificationState({this.notifications, this.notification, this.error, this.message});
 
   @override
   List<Object?> get props => [notifications, error, message];
@@ -24,7 +25,11 @@ class GetNotificationFailed extends NotificationState {
 class SaveNotificationInitial extends NotificationState {}
 
 class SaveNotificationSuccess extends NotificationState {
-  const SaveNotificationSuccess(String? message) : super(message: message);
+  const SaveNotificationSuccess(Notification? notification) : super(notification: notification);
+}
+
+class SaveNotificationSuccessBg extends NotificationState {
+  const SaveNotificationSuccessBg(Notification? notification) : super(notification: notification);
 }
 
 class SaveNotificationFailed extends NotificationState {
