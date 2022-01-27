@@ -24,7 +24,7 @@ class _NotificationApiService implements NotificationApiService {
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    final _result = await _dio.fetch<List<dynamic>>(_setStreamType<HttpResponse<FcmModel>>(
+    final _result = await _dio.fetch<List>(_setStreamType<HttpResponse<FcmModel>>(
         Options(method: 'POST', headers: _headers, extra: _extra, contentType: type)
             .compose(_dio.options, '/api/save-token', queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));

@@ -5,14 +5,16 @@ class Notification extends Equatable {
     this.id,
     this.title,
     this.body,
+    this.dateTime,
   );
 
   final int id;
   final String title;
   final String body;
+  final DateTime dateTime;
 
   @override
-  List<Object> get props => [id, title, body];
+  List<Object> get props => [id, title, body, dateTime];
 
   @override
   bool get stringify => true;

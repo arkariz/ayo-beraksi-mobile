@@ -19,9 +19,6 @@ class LoginConsumer extends StatelessWidget {
     return BlocConsumer(
       bloc: BlocProvider.of<LoginBloc>(context),
       builder: (context, LoginState state) {
-        if (state is LoginDone) {
-          print("test ${state.user!.token}");
-        }
         if (state is LoginError) {
           return SizedBox(
               width: size.width,

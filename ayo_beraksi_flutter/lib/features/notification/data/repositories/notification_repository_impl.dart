@@ -51,6 +51,7 @@ class NotificationRepositoryImpl implements NotificationRepository {
       notification.id,
       notification.title,
       notification.body,
+      notification.dateTime,
     );
     _notificationLocalDataSource.save(notificationModel);
     return const DataSuccess("success");
@@ -62,7 +63,7 @@ class NotificationRepositoryImpl implements NotificationRepository {
     final List<Notification> result = [];
 
     for (var i in notificationModel) {
-      final notificaton = Notification(i.id!, i.title!, i.body!);
+      final notificaton = Notification(i.id!, i.title!, i.body!, i.dateTime);
       result.add(notificaton);
     }
 

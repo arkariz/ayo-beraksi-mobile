@@ -6,6 +6,7 @@ import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/noti
 import 'package:ayo_beraksi_flutter/screens/home/pages/notifikasi/components/notifikasi_empty.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NotifikasiBody extends StatefulWidget {
@@ -43,8 +44,10 @@ class _NotifikasiBodyState extends State<NotifikasiBody> with WidgetsBindingObse
       String? body = prefs.getString(CACHED_NOTIF_BODY);
 
       if (notifId != null) {
-        NotificationParams notification = NotificationParams(notification: ne.Notification(notifId, title!, body!));
+        NotificationParams notification =
+            NotificationParams(notification: ne.Notification(notifId, title!, body!, DateTime.now()));
         BlocProvider.of<NotificationBloc>(context).add(SaveNotificationEvent(notification));
+        // prefs.clear();
       }
     }
   }
@@ -66,6 +69,7 @@ class _NotifikasiBodyState extends State<NotifikasiBody> with WidgetsBindingObse
                       size: widget.size,
                       title: reversedNotif[index].title,
                       body: reversedNotif[index].body,
+                      dateTime: reversedNotif[index].dateTime,
                     );
                   },
                 ),
@@ -84,11 +88,14 @@ class _NotifikasiBodyState extends State<NotifikasiBody> with WidgetsBindingObse
 }
 
 class NotificationItem extends StatefulWidget {
-  const NotificationItem({Key? key, required this.size, required this.title, required this.body}) : super(key: key);
+  const NotificationItem(
+      {Key? key, required this.size, required this.title, required this.body, required this.dateTime})
+      : super(key: key);
 
   final Size size;
   final String title;
   final String body;
+  final DateTime dateTime;
 
   @override
   State<NotificationItem> createState() => _NotificationItemState();
@@ -136,11 +143,11 @@ class _NotificationItemState extends State<NotificationItem> {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 5.0),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5.0),
                       child: Text(
-                        "3 menit yang lalu",
-                        style: TextStyle(
+                        Jiffy(widget.dateTime).fromNow(),
+                        style: const TextStyle(
                           fontSize: 12,
                           color: Colors.black26,
                         ),

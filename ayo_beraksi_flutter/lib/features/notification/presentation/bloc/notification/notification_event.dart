@@ -14,3 +14,5 @@ class SaveNotificationEvent extends NotificationEvent {
 }
 
 class GetAllNotificationEvent extends NotificationEvent {}
+
+class NotificationInitial extends NotificationEvent {}

@@ -23,6 +23,9 @@ class NotificationBloc extends BlocWithState<NotificationEvent, NotificationStat
     if (event is GetAllNotificationEvent) {
       yield* _getNotification();
     }
+    if (event is NotificationInitial) {
+      yield GetNotificationInitial();
+    }
   }
 
   Stream<NotificationState> _saveNotification(NotificationParams params) async* {

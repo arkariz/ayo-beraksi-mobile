@@ -1,8 +1,4 @@
-import 'dart:io';
-import 'dart:isolate';
-
 import 'package:ayo_beraksi_flutter/core/config/constant.dart';
-import 'package:ayo_beraksi_flutter/core/params/notification_params.dart';
 import 'package:ayo_beraksi_flutter/core/widgets/launch_screen.dart';
 import 'package:ayo_beraksi_flutter/core/widgets/splash_screen.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
@@ -15,7 +11,6 @@ import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/penyuapan
 import 'package:ayo_beraksi_flutter/features/login/data/models/user_hive_model.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/notification/data/models/notification_model.dart';
-import 'package:ayo_beraksi_flutter/features/notification/domain/entities/notification.dart' as ne;
 import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/fcm/fcm_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/name_bloc/name_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/phone_bloc/phone_bloc.dart';
@@ -25,28 +20,12 @@ import 'package:ayo_beraksi_flutter/injector.dart';
 import 'package:ayo_beraksi_flutter/screens/home/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'features/notification/presentation/bloc/notification/notification_bloc.dart';
-
-// Future<void> _saveNotification(RemoteNotification notification, String path) async {
-//   var remoteNotification = NotificationModel(
-//     notification.hashCode,
-//     notification.title!,
-//     notification.body!,
-//   );
-
-//   Hive.init(path);
-//   Hive.registerAdapter<NotificationModel>(NotificationModelAdapter());
-//   var box = await Hive.openBox<NotificationModel>(CACHED_NOTIFICATION);
-//   box.add(remoteNotification);
-//   box.close();
-// }
 
 Future<void> _messageHandler(RemoteMessage message) async {
   RemoteNotification? notification = message.notification;
@@ -88,7 +67,7 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -116,12 +95,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
             visualDensity: VisualDensity.adaptivePlatformDensity),
         home: BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
-          BlocProvider.of<LoginBloc>(context).add(CheckUserLogin());
-
           if (state is LoginDone) {
             return const HomeScreen();
           }
           if (state is LoginLoading) {
+            BlocProvider.of<LoginBloc>(context).add(CheckUserLogin());
             return const SplashScreen();
           }
           if (state is LoginInit) {

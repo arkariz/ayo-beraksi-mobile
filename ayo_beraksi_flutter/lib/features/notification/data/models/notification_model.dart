@@ -13,9 +13,8 @@ class NotificationModel extends HiveObject {
   @HiveField(2)
   String? body;
 
-  NotificationModel(
-    this.id,
-    this.title,
-    this.body,
-  );
+  @HiveField(3)
+  DateTime dateTime;
+
+  NotificationModel(this.id, this.title, this.body, this.dateTime);
 }

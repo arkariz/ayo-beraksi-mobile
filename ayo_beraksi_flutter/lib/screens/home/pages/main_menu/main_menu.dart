@@ -41,7 +41,6 @@ class _MainMenuState extends State<MainMenu> {
 
   void _listenNotification(String channelId, String channelName) {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      // print("test ${message.notification!.title}");
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
       if (notification != null && android != null) {
@@ -59,6 +58,7 @@ class _MainMenuState extends State<MainMenu> {
             notification.hashCode,
             notification.title!,
             notification.body!,
+            DateTime.now(),
           ),
         );
 

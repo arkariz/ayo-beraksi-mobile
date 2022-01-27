@@ -1,6 +1,7 @@
 import 'package:ayo_beraksi_flutter/core/widgets/launch_screen.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
+import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/notification/notification_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/name_bloc/name_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/phone_bloc/phone_bloc.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,10 +28,9 @@ class AlrtDialog extends StatelessWidget {
               BlocProvider.of<LoginBloc>(context).add(DestroyToken());
               BlocProvider.of<NameBloc>(context).add(ResetNameEvent());
               BlocProvider.of<PhoneBloc>(context).add(ResetPhoneEvent());
-              Navigator.pushReplacement(
-                context,
-                CupertinoPageRoute(builder: (context) => const LaunchScreen()),
-              );
+              BlocProvider.of<NotificationBloc>(context).add(NotificationInitial());
+              Navigator.pushAndRemoveUntil(
+                  context, CupertinoPageRoute(builder: (context) => const LaunchScreen()), (e) => false);
             })
       ],
     );
