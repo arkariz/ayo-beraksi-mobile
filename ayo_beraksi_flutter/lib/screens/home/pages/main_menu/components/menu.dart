@@ -65,11 +65,11 @@ class Menu extends StatelessWidget {
             );
           },
         ),
-        const MenuCard(
-            primaryColor: kBluePrimary,
-            secondaryColor: kBlueSecondary,
-            title: "Manajemen",
-            icon: "assets/icons/manajemen-icon.png"),
+        // const MenuCard(
+        //     primaryColor: kBluePrimary,
+        //     secondaryColor: kBlueSecondary,
+        //     title: "Manajemen",
+        //     icon: "assets/icons/manajemen-icon.png"),
         MenuCard(
           primaryColor: kOrangePrimary,
           secondaryColor: kOrangeSecondary,

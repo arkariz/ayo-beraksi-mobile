@@ -8,6 +8,9 @@ class Avatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(
+          height: kDefaultPadding * 2,
+        ),
         const CircleAvatar(
           backgroundImage: AssetImage("assets/images/profile.jpg"),
           radius: 61,
@@ -21,7 +24,10 @@ class Avatar extends StatelessWidget {
             "Ganti foto profil",
             style: TextStyle(color: kPrimaryColor),
           ),
-        )
+        ),
+        const SizedBox(
+          height: kDefaultPadding * 2,
+        ),
       ],
     );
   }

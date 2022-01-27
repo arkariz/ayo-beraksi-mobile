@@ -162,7 +162,7 @@ class _NotificationItemState extends State<NotificationItem> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "${widget.title} ${widget.isRead}",
+                      widget.title,
                       style: const TextStyle(fontSize: 16, color: Colors.black87),
                     ),
                     Padding(

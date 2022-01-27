@@ -24,6 +24,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'features/notification/presentation/bloc/notification/notification_bloc.dart';
 
@@ -48,6 +49,8 @@ Future<void> _messageHandler(RemoteMessage message) async {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Jiffy.locale("id");
 
   await initializeDependencies();
   await Hive.initFlutter();

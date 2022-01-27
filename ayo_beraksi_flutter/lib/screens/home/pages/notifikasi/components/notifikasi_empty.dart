@@ -6,11 +6,10 @@ class NotifikasiEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
           Image.asset(
             "assets/images/notification.png",
             scale: 2,
@@ -22,6 +21,6 @@ class NotifikasiEmpty extends StatelessWidget {
               style: TextStyle(color: Colors.black54, fontSize: 24),
             ),
           )
-        ]));
+        ]);
   }
 }
