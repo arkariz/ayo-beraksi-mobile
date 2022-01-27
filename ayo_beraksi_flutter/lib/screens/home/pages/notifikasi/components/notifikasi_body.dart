@@ -1,6 +1,7 @@
 import 'package:ayo_beraksi_flutter/core/config/constant.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/core/params/notification_params.dart';
+import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/laporan_list/laporan_list_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/notification/domain/entities/notification.dart' as ne;
 import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/notification/notification_bloc.dart';
 import 'package:ayo_beraksi_flutter/screens/home/pages/notifikasi/components/notifikasi_empty.dart';
@@ -84,16 +85,13 @@ class _NotifikasiBodyState extends State<NotifikasiBody> with WidgetsBindingObse
       listener: (context, state) {
         if (state is SaveNotificationSuccess) {
           BlocProvider.of<NotificationBloc>(context).add(GetAllNotificationEvent());
+          BlocProvider.of<LaporanListBloc>(context).add(GetLaporanList());
         }
         if (state is GetNotificationSuccess) {
           setState(() => notifications = state.notifications!);
         }
         if (state is UpdateNotificationSuccess) {
           setState(() => notifications = state.notifications!);
-          print("tes update");
-        }
-        if (state is UpdateNotificationFailed) {
-          print("tes update failed");
         }
       },
     );
