@@ -9,4 +9,5 @@ abstract class NotificationRepository {
   Future<DataState<Fcm>> postFcmToken(LoginRequestParams? params);
   Future<DataState<String>> saveNotification(NotificationParams? params);
   Future<DataState<List<Notification>>> getAllNotification(NoParams? params);
+  Future<DataState<List<Notification>>> updateNotification(UpdateNotificationParams? params);
 }

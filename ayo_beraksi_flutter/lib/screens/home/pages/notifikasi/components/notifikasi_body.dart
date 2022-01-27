@@ -44,10 +44,15 @@ class _NotifikasiBodyState extends State<NotifikasiBody> with WidgetsBindingObse
       String? body = prefs.getString(CACHED_NOTIF_BODY);
 
       if (notifId != null) {
-        NotificationParams notification =
-            NotificationParams(notification: ne.Notification(notifId, title!, body!, DateTime.now()));
+        NotificationParams notification = NotificationParams(
+            notification: ne.Notification(
+          notifId,
+          title!,
+          body!,
+          DateTime.now(),
+          false,
+        ));
         BlocProvider.of<NotificationBloc>(context).add(SaveNotificationEvent(notification));
-        // prefs.clear();
       }
     }
   }
@@ -56,7 +61,6 @@ class _NotifikasiBodyState extends State<NotifikasiBody> with WidgetsBindingObse
   Widget build(BuildContext context) {
     return BlocConsumer<NotificationBloc, NotificationState>(
       builder: (context, state) {
-        List<ne.Notification> reversedNotif = notifications.reversed.toList();
         return Align(
           alignment: Alignment.topCenter,
           child: notifications.isEmpty
@@ -67,9 +71,11 @@ class _NotifikasiBodyState extends State<NotifikasiBody> with WidgetsBindingObse
                   itemBuilder: (context, index) {
                     return NotificationItem(
                       size: widget.size,
-                      title: reversedNotif[index].title,
-                      body: reversedNotif[index].body,
-                      dateTime: reversedNotif[index].dateTime,
+                      title: notifications[index].title,
+                      body: notifications[index].body,
+                      dateTime: notifications[index].dateTime,
+                      isRead: notifications[index].isRead,
+                      index: notifications.length - 1 - index,
                     );
                   },
                 ),
@@ -82,39 +88,67 @@ class _NotifikasiBodyState extends State<NotifikasiBody> with WidgetsBindingObse
         if (state is GetNotificationSuccess) {
           setState(() => notifications = state.notifications!);
         }
+        if (state is UpdateNotificationSuccess) {
+          setState(() => notifications = state.notifications!);
+          print("tes update");
+        }
+        if (state is UpdateNotificationFailed) {
+          print("tes update failed");
+        }
       },
     );
   }
 }
 
 class NotificationItem extends StatefulWidget {
-  const NotificationItem(
-      {Key? key, required this.size, required this.title, required this.body, required this.dateTime})
-      : super(key: key);
+  const NotificationItem({
+    Key? key,
+    required this.size,
+    required this.title,
+    required this.body,
+    required this.dateTime,
+    required this.isRead,
+    required this.index,
+  }) : super(key: key);
 
   final Size size;
   final String title;
   final String body;
   final DateTime dateTime;
+  final bool isRead;
+  final int index;
 
   @override
   State<NotificationItem> createState() => _NotificationItemState();
 }
 
 class _NotificationItemState extends State<NotificationItem> {
-  bool isRead = false;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => setState(() => isRead = true),
+      onTap: () {
+        BlocProvider.of<NotificationBloc>(context).add(
+          UpdateNotificationEvent(
+            UpdateNotificationParams(
+              index: widget.index,
+              notification: ne.Notification(
+                widget.index,
+                widget.title,
+                widget.body,
+                widget.dateTime,
+                true,
+              ),
+            ),
+          ),
+        );
+      },
       child: Container(
-        color: isRead ? Colors.black12 : Colors.transparent,
+        color: widget.isRead ? Colors.black12 : Colors.transparent,
         padding: const EdgeInsets.all(kDefaultPadding),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            isRead
+            widget.isRead
                 ? const SizedBox()
                 : const Icon(
                     Icons.brightness_1_rounded,
@@ -130,7 +164,7 @@ class _NotificationItemState extends State<NotificationItem> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.title,
+                      "${widget.title} ${widget.isRead}",
                       style: const TextStyle(fontSize: 16, color: Colors.black87),
                     ),
                     Padding(

@@ -59,6 +59,7 @@ class _MainMenuState extends State<MainMenu> {
             notification.title!,
             notification.body!,
             DateTime.now(),
+            false,
           ),
         );
 

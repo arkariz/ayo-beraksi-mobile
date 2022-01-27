@@ -30,3 +30,13 @@ class SaveNotificationSuccess extends NotificationState {
 class SaveNotificationFailed extends NotificationState {
   const SaveNotificationFailed(String? error) : super(error: error);
 }
+
+class UpdateNotificationInitial extends NotificationState {}
+
+class UpdateNotificationSuccess extends NotificationState {
+  const UpdateNotificationSuccess(List<Notification>? notifications) : super(notifications: notifications);
+}
+
+class UpdateNotificationFailed extends NotificationState {
+  const UpdateNotificationFailed(String? error) : super(error: error);
+}

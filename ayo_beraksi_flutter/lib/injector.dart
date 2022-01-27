@@ -26,6 +26,7 @@ import 'package:ayo_beraksi_flutter/features/notification/domain/repositories/no
 import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/get_all_notification_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/post_fcm_token_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/save_notification_usecase.dart';
+import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/update_notification_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/fcm/fcm_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/data/datasources/profile_api_service.dart';
 import 'package:ayo_beraksi_flutter/features/profile/data/repositories/profile_repository_impl.dart';
@@ -89,11 +90,12 @@ Future<void> initializeDependencies() async {
 
   injector.registerSingleton<SaveNotificationUseCase>(SaveNotificationUseCase(injector()));
   injector.registerSingleton<GetAllNotificationUseCase>(GetAllNotificationUseCase(injector()));
+  injector.registerSingleton<UpdateNotificationUsecase>(UpdateNotificationUsecase(injector()));
 
   // Blocs
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector(), injector(), injector()));
   injector.registerFactory<RegisterBloc>(() => RegisterBloc(injector()));
-  injector.registerFactory<NotificationBloc>(() => NotificationBloc(injector(), injector()));
+  injector.registerFactory<NotificationBloc>(() => NotificationBloc(injector(), injector(), injector()));
   injector.registerFactory<FcmBloc>(() => FcmBloc(injector()));
   injector.registerFactory<SearchBloc>(() => SearchBloc(injector()));
 

@@ -52,6 +52,7 @@ class NotificationRepositoryImpl implements NotificationRepository {
       notification.title,
       notification.body,
       notification.dateTime,
+      false,
     );
     _notificationLocalDataSource.save(notificationModel);
     return const DataSuccess("success");
@@ -63,10 +64,36 @@ class NotificationRepositoryImpl implements NotificationRepository {
     final List<Notification> result = [];
 
     for (var i in notificationModel) {
-      final notificaton = Notification(i.id!, i.title!, i.body!, i.dateTime);
+      final notificaton = Notification(i.id!, i.title!, i.body!, i.dateTime, i.isRead);
       result.add(notificaton);
     }
 
-    return DataSuccess(result);
+    return DataSuccess(result.reversed.toList());
+  }
+
+  @override
+  Future<DataState<List<Notification>>> updateNotification(UpdateNotificationParams? params) async {
+    final notification = params!.notification;
+    final notificationModel = NotificationModel(
+      notification.id,
+      notification.title,
+      notification.body,
+      notification.dateTime,
+      notification.isRead,
+    );
+
+    final allNotification = await _notificationLocalDataSource.updateNotification(params.index, notificationModel);
+    final List<Notification> result = [];
+
+    if (allNotification.isEmpty) {
+      return DataSuccess(result);
+    } else {
+      for (var i in allNotification) {
+        final notificaton = Notification(i.id!, i.title!, i.body!, i.dateTime, i.isRead);
+        result.add(notificaton);
+      }
+
+      return DataSuccess(result.reversed.toList());
+    }
   }
 }

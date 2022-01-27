@@ -16,5 +16,8 @@ class NotificationModel extends HiveObject {
   @HiveField(3)
   DateTime dateTime;
 
-  NotificationModel(this.id, this.title, this.body, this.dateTime);
+  @HiveField(4)
+  bool isRead = false;
+
+  NotificationModel(this.id, this.title, this.body, this.dateTime, this.isRead);
 }
