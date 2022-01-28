@@ -66,19 +66,23 @@ class _NotifikasiBodyState extends State<NotifikasiBody> with WidgetsBindingObse
           alignment: Alignment.topCenter,
           child: notifications.isEmpty
               ? const NotifikasiEmpty()
-              : ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: notifications.length,
-                  itemBuilder: (context, index) {
-                    return NotificationItem(
-                      size: widget.size,
-                      title: notifications[index].title,
-                      body: notifications[index].body,
-                      dateTime: notifications[index].dateTime,
-                      isRead: notifications[index].isRead,
-                      index: notifications.length - 1 - index,
-                    );
-                  },
+              : ConstrainedBox(
+                  constraints: BoxConstraints(maxHeight: widget.size.height * 0.8),
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    itemCount: notifications.length,
+                    itemBuilder: (context, index) {
+                      return NotificationItem(
+                        size: widget.size,
+                        title: notifications[index].title,
+                        body: notifications[index].body,
+                        dateTime: notifications[index].dateTime,
+                        isRead: notifications[index].isRead,
+                        index: notifications.length - 1 - index,
+                      );
+                    },
+                  ),
                 ),
         );
       },

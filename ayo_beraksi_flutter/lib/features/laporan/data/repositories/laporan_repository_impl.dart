@@ -25,18 +25,7 @@ class LaporanRepositoryImpl implements LaporanRepository {
       final token = await _userLocalDataSource.getUserCache();
       final laporan = params!.laporan;
       final httpResponse = await _laporanApiService.addLaporanPenyuapan(
-          token: "Bearer ${token!.token}",
-          accept: "application/json",
-          type: "application/json",
-          jabatan: laporan['jabatan'],
-          instansi: laporan['instansi'],
-          kasusSuap: laporan['kasus_suap'],
-          lokasi: laporan['lokasi'],
-          tanggalKejadian: laporan['tanggal_kejadian'],
-          kronologisKejadian: laporan['kronologis_kejadian'],
-          idPelapor: laporan['id_pelapor'],
-          namaTerlapor: laporan['nama_terlapor'],
-          nilaiSuap: laporan['nilai_suap']);
+          "Bearer ${token!.token}", "application/json", "application/json", laporan);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);

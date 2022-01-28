@@ -20,6 +20,15 @@ class RegisterRepositoryImpl implements RegisterRepository {
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse);
       }
+      // if (httpResponse.data['message'] == "Email Sudah digunakan") {
+      //   return DataFailed(
+      //     DioError(
+      //         error: httpResponse.data['message'],
+      //         response: httpResponse.response,
+      //         requestOptions: httpResponse.response.requestOptions,
+      //         type: DioErrorType.response),
+      //   );
+      // }
       return DataFailed(
         DioError(
             error: httpResponse.response.statusMessage,

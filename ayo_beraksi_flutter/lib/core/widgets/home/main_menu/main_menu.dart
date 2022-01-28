@@ -5,14 +5,14 @@ import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/laporan_l
 import '../../../../features/notification/domain/entities/notification.dart' as ne;
 import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/fcm/fcm_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/notification/notification_bloc.dart';
-import 'package:ayo_beraksi_flutter/core/widgets/home/main_menu/widget/header.dart';
-import 'package:ayo_beraksi_flutter/core/widgets/home/main_menu/widget/menu.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/home/main_menu/widget/menu/header.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/home/main_menu/widget/menu/menu.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timezone/data/latest.dart' as tz;
 
-import 'widget/laporan_section.dart';
+import 'widget/laporan_listview/laporan_section.dart';
 
 class MainMenu extends StatefulWidget {
   const MainMenu({Key? key}) : super(key: key);

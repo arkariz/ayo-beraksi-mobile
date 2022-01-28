@@ -17,18 +17,7 @@ class _LaporanApiService implements LaporanApiService {
 
   @override
   Future<HttpResponse<LaporanModel>> addLaporanPenyuapan(
-      {token,
-      accept,
-      type,
-      jabatan,
-      instansi,
-      kasusSuap,
-      lokasi,
-      tanggalKejadian,
-      kronologisKejadian,
-      idPelapor,
-      namaTerlapor,
-      nilaiSuap}) async {
+      token, accept, type, body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
@@ -39,13 +28,16 @@ class _LaporanApiService implements LaporanApiService {
     };
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<
-        HttpResponse<LaporanModel>>(Options(
-            method: 'POST', headers: _headers, extra: _extra, contentType: type)
-        .compose(_dio.options,
-            '/api/actions/laporan-penyuapan/add?jabatan=${jabatan}&instansi=${instansi}&kasus_suap=${kasusSuap}&lokasi=${lokasi}&tanggal_kejadian=${tanggalKejadian}&kronologis_kejadian=${kronologisKejadian}&id_pelapor=${idPelapor}&nama_terlapor=${namaTerlapor}&nilai_suap=${nilaiSuap}',
-            queryParameters: queryParameters, data: _data)
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    _data.addAll(body);
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<LaporanModel>>(Options(
+                method: 'POST',
+                headers: _headers,
+                extra: _extra,
+                contentType: type)
+            .compose(_dio.options, '/api/actions/laporan-penyuapan/add',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = LaporanModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;

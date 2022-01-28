@@ -24,7 +24,7 @@ class RegisterConsumer extends StatelessWidget {
               width: size.width,
               child: Center(
                   child: Text(
-                "Ada Kesalahan",
+                state.error!.error,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Theme.of(context).errorColor),
               )));
         }

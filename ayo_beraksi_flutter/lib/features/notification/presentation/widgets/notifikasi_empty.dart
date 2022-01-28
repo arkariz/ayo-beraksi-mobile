@@ -6,21 +6,23 @@ class NotifikasiEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            "assets/images/notification.png",
-            scale: 2,
+    Size size = MediaQuery.of(context).size;
+    return Padding(
+      padding: EdgeInsets.only(top: size.height * 0.2),
+      child:
+          Column(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.center, children: [
+        Image.asset(
+          "assets/images/notification.png",
+          scale: 2,
+        ),
+        const Padding(
+          padding: EdgeInsets.only(top: kDefaultPadding * 2),
+          child: Text(
+            "Tidak ada notifikasi masuk",
+            style: TextStyle(color: Colors.black54, fontSize: 24),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: kDefaultPadding * 2),
-            child: Text(
-              "Tidak ada notifikasi masuk",
-              style: TextStyle(color: Colors.black54, fontSize: 24),
-            ),
-          )
-        ]);
+        )
+      ]),
+    );
   }
 }
