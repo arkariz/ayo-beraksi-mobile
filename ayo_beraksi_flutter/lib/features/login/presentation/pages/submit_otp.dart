@@ -2,7 +2,7 @@ import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/widgets/back_button.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/widgets/backgroud_image.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/widgets/text_description.dart';
-import 'package:ayo_beraksi_flutter/screens/home/home_screen.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/home/home_screen.dart';
 import 'package:ayo_beraksi_flutter/features/register/presentation/pages/register.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';

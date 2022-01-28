@@ -1,6 +1,6 @@
 import 'package:ayo_beraksi_flutter/core/config/constant.dart';
-import 'package:ayo_beraksi_flutter/core/widgets/launch_screen.dart';
-import 'package:ayo_beraksi_flutter/core/widgets/splash_screen.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/common/launch_screen.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/common/splash_screen.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/core/resources/notification_service.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/feedback/feedback_bloc.dart';
@@ -15,9 +15,9 @@ import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/fcm/
 import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/name_bloc/name_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/phone_bloc/phone_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/register/presentation/bloc/register_bloc.dart';
-import 'package:ayo_beraksi_flutter/features/search/presentation/bloc/search_bloc.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/search/bloc/search_bloc.dart';
 import 'package:ayo_beraksi_flutter/injector.dart';
-import 'package:ayo_beraksi_flutter/screens/home/home_screen.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/home/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -28,31 +28,12 @@ import 'package:jiffy/jiffy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'features/notification/presentation/bloc/notification/notification_bloc.dart';
 
-Future<void> _messageHandler(RemoteMessage message) async {
-  RemoteNotification? notification = message.notification;
-  AndroidNotification? android = message.notification?.android;
-  if (notification != null && android != null) {
-    NotificationService().showNotification(
-      notification.hashCode,
-      notification.title!,
-      notification.body!,
-      2,
-      'high_importance_channel', // id
-      'High Importance Notifications',
-    );
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(CACHED_NOTIF_ID, notification.hashCode);
-    await prefs.setString(CACHED_NOTIF_TITLE, notification.title!);
-    await prefs.setString(CACHED_NOTIF_BODY, notification.body!);
-  }
-}
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Jiffy.locale("id");
-
   await initializeDependencies();
+
   await Hive.initFlutter();
   Hive.registerAdapter<HiveUser>(HiveUserAdapter());
   Hive.registerAdapter<NotificationModel>(NotificationModelAdapter());
@@ -115,5 +96,24 @@ class _MyAppState extends State<MyApp> {
         }),
       ),
     );
+  }
+}
+
+Future<void> _messageHandler(RemoteMessage message) async {
+  RemoteNotification? notification = message.notification;
+  AndroidNotification? android = message.notification?.android;
+  if (notification != null && android != null) {
+    NotificationService().showNotification(
+      notification.hashCode,
+      notification.title!,
+      notification.body!,
+      2,
+      'high_importance_channel', // id
+      'High Importance Notifications',
+    );
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(CACHED_NOTIF_ID, notification.hashCode);
+    await prefs.setString(CACHED_NOTIF_TITLE, notification.title!);
+    await prefs.setString(CACHED_NOTIF_BODY, notification.body!);
   }
 }

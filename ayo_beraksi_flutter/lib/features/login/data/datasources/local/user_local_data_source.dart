@@ -3,7 +3,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:ayo_beraksi_flutter/core/config/constant.dart';
-import 'package:ayo_beraksi_flutter/core/error/exceptions.dart';
 import 'package:ayo_beraksi_flutter/features/login/data/models/user_hive_model.dart';
 import 'package:ayo_beraksi_flutter/features/login/data/models/user_model.dart';
 import 'package:hive/hive.dart';

@@ -1,10 +1,10 @@
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
-import 'package:ayo_beraksi_flutter/features/search/presentation/bloc/search_bloc.dart';
-import 'package:ayo_beraksi_flutter/features/search/presentation/widgets/header_with_search.dart';
-import 'package:ayo_beraksi_flutter/features/search/presentation/widgets/empty_state_search.dart';
-import 'package:ayo_beraksi_flutter/features/search/presentation/widgets/last_search.dart';
-import 'package:ayo_beraksi_flutter/features/search/presentation/widgets/search_notfound.dart';
-import 'package:ayo_beraksi_flutter/features/search/presentation/widgets/search_result.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/search/bloc/search_bloc.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/search/widget/header_with_search.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/search/widget/empty_state_search.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/search/widget/last_search.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/search/widget/search_notfound.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/search/widget/search_result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

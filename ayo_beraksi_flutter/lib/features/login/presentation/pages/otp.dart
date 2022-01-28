@@ -1,5 +1,5 @@
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
-import 'package:ayo_beraksi_flutter/core/widgets/custom_text_field.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/common/custom_text_field.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/widgets/back_button.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/widgets/backgroud_image.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/widgets/text_description.dart';

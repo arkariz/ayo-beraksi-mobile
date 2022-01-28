@@ -4,7 +4,7 @@ import 'package:ayo_beraksi_flutter/core/params/notification_params.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/laporan_list/laporan_list_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/notification/domain/entities/notification.dart' as ne;
 import 'package:ayo_beraksi_flutter/features/notification/presentation/bloc/notification/notification_bloc.dart';
-import 'package:ayo_beraksi_flutter/screens/home/pages/notifikasi/components/notifikasi_empty.dart';
+import 'package:ayo_beraksi_flutter/features/notification/presentation/widgets/notifikasi_empty.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jiffy/jiffy.dart';

@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
-import 'package:ayo_beraksi_flutter/core/widgets/custom_back_button.dart';
-import 'package:ayo_beraksi_flutter/core/widgets/custom_text_field.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/common/custom_back_button.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/common/custom_text_field.dart';
 import 'package:ayo_beraksi_flutter/features/login/presentation/bloc/login_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/profile/presentation/bloc/name_bloc/name_bloc.dart';
 import 'package:flutter/material.dart';
@@ -101,6 +101,7 @@ class ChangeProfileSnackBar extends StatelessWidget {
         if (state is ChangeNameFailed) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
+              duration: Duration(seconds: 1),
               backgroundColor: kPrimaryColor,
               content: Text('Ada kesalahan'),
             ),

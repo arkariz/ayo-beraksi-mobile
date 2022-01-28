@@ -4,14 +4,14 @@ import 'package:ayo_beraksi_flutter/features/laporan/presentation/pages/umpan_ba
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ListViewHeader extends StatefulWidget {
-  const ListViewHeader({Key? key}) : super(key: key);
+class LaporanHeader extends StatefulWidget {
+  const LaporanHeader({Key? key}) : super(key: key);
 
   @override
-  State<ListViewHeader> createState() => _ListViewHeaderState();
+  State<LaporanHeader> createState() => _LaporanHeaderState();
 }
 
-class _ListViewHeaderState extends State<ListViewHeader> {
+class _LaporanHeaderState extends State<LaporanHeader> {
   int idSelected = 0;
 
   final listChoices = <ItemChoice>[
@@ -41,16 +41,24 @@ class _ListViewHeaderState extends State<ListViewHeader> {
               color: Colors.black26,
             ),
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Wrap(
-                  children: techChips(),
-                )
-              ],
-            ),
+          BlocBuilder<LaporanListBloc, LaporanListState>(
+            builder: (context, state) {
+              if (state is LaporanListSuccess || state is LaporanListFiltered) {
+                return SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Wrap(
+                        children: techChips(),
+                      )
+                    ],
+                  ),
+                );
+              } else {
+                return const SizedBox();
+              }
+            },
           ),
         ],
       ),

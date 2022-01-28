@@ -129,7 +129,6 @@ class LaporanRepositoryImpl implements LaporanRepository {
           requestOptions: httpResponse.response.requestOptions,
           type: DioErrorType.response));
     } on DioError catch (e) {
-      print("tes ${e.error}");
       return DataFailed(e);
     }
   }

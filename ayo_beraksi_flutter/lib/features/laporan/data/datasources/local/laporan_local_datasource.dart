@@ -3,7 +3,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:ayo_beraksi_flutter/core/config/constant.dart';
-import 'package:ayo_beraksi_flutter/core/error/exceptions.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/data/models/laporan_item_model.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/data/models/laporan_list_model.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/domain/entities/laporan_list.dart';

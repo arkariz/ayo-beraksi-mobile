@@ -40,7 +40,7 @@ import 'package:ayo_beraksi_flutter/features/register/data/repositories/register
 import 'package:ayo_beraksi_flutter/features/register/domain/repositories/register_repository.dart';
 import 'package:ayo_beraksi_flutter/features/register/domain/usecases/post_register_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/register/presentation/bloc/register_bloc.dart';
-import 'package:ayo_beraksi_flutter/features/search/presentation/bloc/search_bloc.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/search/bloc/search_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 

@@ -11,78 +11,81 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      physics: const NeverScrollableScrollPhysics(),
-      crossAxisCount: 2,
-      mainAxisSpacing: kDefaultPadding,
-      crossAxisSpacing: kDefaultPadding,
-      children: <Widget>[
-        MenuCard(
-          primaryColor: kRedPrimaryColor,
-          secondaryColor: kRedSecondaryColor,
-          title: "Penyuapan",
-          icon: "assets/icons/penyuapan-icon.png",
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const PenyuapanForm()),
-            );
-          },
-        ),
-        MenuCard(
-          primaryColor: kPurplePrimaryColor,
-          secondaryColor: kPurpleSecondaryColor,
-          title: "Pengaduan",
-          icon: "assets/icons/pengaduan-icon.png",
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const PengaduanForm()),
-            );
-          },
-        ),
-        MenuCard(
-          primaryColor: kYellowPrimary,
-          secondaryColor: kYellowSecondary,
-          title: "Gratifikasi",
-          icon: "assets/icons/gratifikasi-icon.png",
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const GratifikasiForm()),
-            );
-          },
-        ),
-        MenuCard(
-          primaryColor: kGreenPrimary,
-          secondaryColor: kGreenSecondary,
-          title: "Umpan Balik",
-          icon: "assets/icons/feedback-icon.png",
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const UmpanBalikForm()),
-            );
-          },
-        ),
-        // const MenuCard(
-        //     primaryColor: kBluePrimary,
-        //     secondaryColor: kBlueSecondary,
-        //     title: "Manajemen",
-        //     icon: "assets/icons/manajemen-icon.png"),
-        MenuCard(
-          primaryColor: kOrangePrimary,
-          secondaryColor: kOrangeSecondary,
-          title: "Bantuan",
-          icon: "assets/icons/bantuan-icon.png",
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const BantuanScreen()),
-            );
-          },
-        )
-      ],
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.75,
+      child: GridView.count(
+        physics: const NeverScrollableScrollPhysics(),
+        crossAxisCount: 2,
+        mainAxisSpacing: kDefaultPadding,
+        crossAxisSpacing: kDefaultPadding,
+        children: <Widget>[
+          MenuCard(
+            primaryColor: kRedPrimaryColor,
+            secondaryColor: kRedSecondaryColor,
+            title: "Penyuapan",
+            icon: "assets/icons/penyuapan-icon.png",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PenyuapanForm()),
+              );
+            },
+          ),
+          MenuCard(
+            primaryColor: kPurplePrimaryColor,
+            secondaryColor: kPurpleSecondaryColor,
+            title: "Pengaduan",
+            icon: "assets/icons/pengaduan-icon.png",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PengaduanForm()),
+              );
+            },
+          ),
+          MenuCard(
+            primaryColor: kYellowPrimary,
+            secondaryColor: kYellowSecondary,
+            title: "Gratifikasi",
+            icon: "assets/icons/gratifikasi-icon.png",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const GratifikasiForm()),
+              );
+            },
+          ),
+          MenuCard(
+            primaryColor: kGreenPrimary,
+            secondaryColor: kGreenSecondary,
+            title: "Umpan Balik",
+            icon: "assets/icons/feedback-icon.png",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const UmpanBalikForm()),
+              );
+            },
+          ),
+          // const MenuCard(
+          //     primaryColor: kBluePrimary,
+          //     secondaryColor: kBlueSecondary,
+          //     title: "Manajemen",
+          //     icon: "assets/icons/manajemen-icon.png"),
+          MenuCard(
+            primaryColor: kOrangePrimary,
+            secondaryColor: kOrangeSecondary,
+            title: "Bantuan",
+            icon: "assets/icons/bantuan-icon.png",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const BantuanScreen()),
+              );
+            },
+          )
+        ],
+      ),
     );
   }
 }

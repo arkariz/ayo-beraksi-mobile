@@ -1,4 +1,4 @@
-import 'package:ayo_beraksi_flutter/core/widgets/custom_text_field.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/common/custom_text_field.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

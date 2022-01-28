@@ -39,7 +39,6 @@ class SearchBloc extends BlocWithState<SearchEvent, SearchState> {
 
       if (dataState is DataSuccess) {
         final response = dataState.data;
-        // _formatDate(response!.laporanList);
         _allLaporan = _formatDate(response!.laporanList);
         yield SearchInit(laporanList: response);
       }

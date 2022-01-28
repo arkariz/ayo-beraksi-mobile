@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:ayo_beraksi_flutter/core/widgets/agreement.dart';
-import 'package:ayo_beraksi_flutter/core/widgets/custom_back_button.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/common/agreement.dart';
+import 'package:ayo_beraksi_flutter/core/widgets/common/custom_back_button.dart';
 import 'package:ayo_beraksi_flutter/core/config/theme_constants.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/gratifikasi/gratifikasi_bloc.dart';
 import 'package:ayo_beraksi_flutter/features/laporan/presentation/bloc/laporan_list/laporan_list_bloc.dart';
