@@ -16,7 +16,7 @@ import 'package:dio/dio.dart';
 class NotificationRepositoryImpl implements NotificationRepository {
   final NotificationApiService _notificationApiService;
   final UserLocalDataSource _userLocalDataSource;
-  final NotificationLocalDataSource _notificationLocalDataSource;
+  final NotificationLocalDataSource<NotificationModel> _notificationLocalDataSource;
 
   NotificationRepositoryImpl(
       this._notificationApiService, this._userLocalDataSource, this._notificationLocalDataSource);
@@ -95,5 +95,11 @@ class NotificationRepositoryImpl implements NotificationRepository {
 
       return DataSuccess(result.reversed.toList());
     }
+  }
+
+  @override
+  Future<DataState<String>> deleteNotification(NoParams? params) async {
+    _notificationLocalDataSource.delete();
+    return const DataSuccess("Delete Success");
   }
 }

@@ -19,6 +19,8 @@ class UpdateNotificationEvent extends NotificationEvent {
   const UpdateNotificationEvent(this.notification);
 }
 
+class DeleteNotificationEvent extends NotificationEvent {}
+
 class GetAllNotificationEvent extends NotificationEvent {}
 
 class NotificationInitial extends NotificationEvent {}

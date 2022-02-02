@@ -23,6 +23,7 @@ import 'package:ayo_beraksi_flutter/features/notification/data/datasources/local
 import 'package:ayo_beraksi_flutter/features/notification/data/datasources/remote/notification_api_service.dart';
 import 'package:ayo_beraksi_flutter/features/notification/data/models/notification_model.dart';
 import 'package:ayo_beraksi_flutter/features/notification/domain/repositories/notification_repository.dart';
+import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/delete_notification_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/get_all_notification_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/post_fcm_token_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/save_notification_usecase.dart';
@@ -43,6 +44,7 @@ import 'package:ayo_beraksi_flutter/features/register/presentation/bloc/register
 import 'package:ayo_beraksi_flutter/core/widgets/search/bloc/search_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'features/laporan/presentation/bloc/pengaduan/pengaduan_bloc.dart';
 import 'features/notification/data/repositories/notification_repository_impl.dart';
@@ -54,18 +56,23 @@ Future<void> initializeDependencies() async {
   // Dio client
   injector.registerSingleton<Dio>(Dio());
 
-  // injector.registerSingleton<NotificationBox>(NotificationBox());
+  //Hive
+  await Hive.initFlutter();
+  injector.registerSingleton<NotificationBox>(NotificationBox());
 
+  //Local Datasource
   injector.registerSingleton<UserLocalDataSource>(UserLocalDataSourceImpl());
-  injector.registerSingleton<NotificationLocalDataSource>(NotificationLocalDataSourceImpl());
+  injector
+      .registerSingleton<NotificationLocalDataSource<NotificationModel>>(NotificationLocalDataSourceImpl(injector()));
 
-  // Dependencies
+  //Remote Datasource
   injector.registerSingleton<LoginApiService>(LoginApiService(injector()));
   injector.registerSingleton<RegisterApiService>(RegisterApiService(injector()));
   injector.registerSingleton<LaporanApiService>(LaporanApiService(injector()));
   injector.registerSingleton<ProfileApiService>(ProfileApiService(injector()));
   injector.registerSingleton<NotificationApiService>(NotificationApiService(injector()));
 
+  //Repository
   injector.registerSingleton<LoginRepository>(LoginRepositoryImpl(injector(), injector()));
   injector.registerSingleton<RegisterRepository>(RegisterRepositoryImpl(injector()));
   injector.registerSingleton<LaporanRepository>(LaporanRepositoryImpl(injector(), injector()));
@@ -91,11 +98,12 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<SaveNotificationUseCase>(SaveNotificationUseCase(injector()));
   injector.registerSingleton<GetAllNotificationUseCase>(GetAllNotificationUseCase(injector()));
   injector.registerSingleton<UpdateNotificationUsecase>(UpdateNotificationUsecase(injector()));
+  injector.registerSingleton<DeleteNotificationUsecase>(DeleteNotificationUsecase(injector()));
 
   // Blocs
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector(), injector(), injector()));
   injector.registerFactory<RegisterBloc>(() => RegisterBloc(injector()));
-  injector.registerFactory<NotificationBloc>(() => NotificationBloc(injector(), injector(), injector()));
+  injector.registerFactory<NotificationBloc>(() => NotificationBloc(injector(), injector(), injector(), injector()));
   injector.registerFactory<FcmBloc>(() => FcmBloc(injector()));
   injector.registerFactory<SearchBloc>(() => SearchBloc(injector()));
 

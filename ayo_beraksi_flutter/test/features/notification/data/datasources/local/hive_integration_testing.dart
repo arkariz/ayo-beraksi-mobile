@@ -16,7 +16,7 @@ void initialiseHive() async {
 void main() async {
   initialiseHive();
 
-  final newNotification = NotificationModel(0, "tes0", "tes0");
+  final newNotification = NotificationModel(0, "tes0", "tes0", DateTime.now(), false);
 
   group('Given a real notification local datasource instance and a real Hive box', () {
     test('should save and then retrieve saved notification from the local datasource', () async {

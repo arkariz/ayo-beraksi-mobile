@@ -29,6 +29,7 @@ class AlrtDialog extends StatelessWidget {
               BlocProvider.of<NameBloc>(context).add(ResetNameEvent());
               BlocProvider.of<PhoneBloc>(context).add(ResetPhoneEvent());
               BlocProvider.of<NotificationBloc>(context).add(NotificationInitial());
+              BlocProvider.of<NotificationBloc>(context).add(DeleteNotificationEvent());
               Navigator.pushAndRemoveUntil(
                   context, CupertinoPageRoute(builder: (context) => const LaunchScreen()), (e) => false);
             })

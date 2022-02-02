@@ -2,6 +2,7 @@ import 'package:ayo_beraksi_flutter/core/bloc/bloc_with_state.dart';
 import 'package:ayo_beraksi_flutter/core/params/notification_params.dart';
 import 'package:ayo_beraksi_flutter/core/resources/data_state.dart';
 import 'package:ayo_beraksi_flutter/features/notification/domain/entities/notification.dart';
+import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/delete_notification_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/get_all_notification_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/save_notification_usecase.dart';
 import 'package:ayo_beraksi_flutter/features/notification/domain/usecases/update_notification_usecase.dart';
@@ -14,11 +15,13 @@ class NotificationBloc extends BlocWithState<NotificationEvent, NotificationStat
   final SaveNotificationUseCase _saveNotificationUseCase;
   final GetAllNotificationUseCase _getAllNotificationUseCase;
   final UpdateNotificationUsecase _updateNotificationUsecase;
+  final DeleteNotificationUsecase _deleteNotificationUsecase;
 
   NotificationBloc(
     this._saveNotificationUseCase,
     this._getAllNotificationUseCase,
     this._updateNotificationUsecase,
+    this._deleteNotificationUsecase,
   ) : super(GetNotificationInitial());
 
   @override
@@ -34,6 +37,9 @@ class NotificationBloc extends BlocWithState<NotificationEvent, NotificationStat
     }
     if (event is UpdateNotificationEvent) {
       yield* _updateNotification(event.notification);
+    }
+    if (event is DeleteNotificationEvent) {
+      yield* _deleteNotification();
     }
   }
 
@@ -78,6 +84,17 @@ class NotificationBloc extends BlocWithState<NotificationEvent, NotificationStat
       }
       if (dataState is DataFailed) {
         yield const UpdateNotificationFailed("gagal");
+      }
+    });
+  }
+
+  Stream<NotificationState> _deleteNotification() async* {
+    yield* runBlocProcess(() async* {
+      final dataState = await _deleteNotificationUsecase();
+
+      if (dataState is DataSuccess && dataState.data != null) {
+        final response = dataState.data;
+        yield DeleteNotificationSuccess(response);
       }
     });
   }

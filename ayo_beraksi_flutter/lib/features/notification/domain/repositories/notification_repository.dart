@@ -10,4 +10,5 @@ abstract class NotificationRepository {
   Future<DataState<String>> saveNotification(NotificationParams? params);
   Future<DataState<List<Notification>>> getAllNotification(NoParams? params);
   Future<DataState<List<Notification>>> updateNotification(UpdateNotificationParams? params);
+  Future<DataState<String>> deleteNotification(NoParams? params);
 }

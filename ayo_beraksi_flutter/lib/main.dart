@@ -34,7 +34,6 @@ Future<void> main() async {
   await Jiffy.locale("id");
   await initializeDependencies();
 
-  await Hive.initFlutter();
   Hive.registerAdapter<HiveUser>(HiveUserAdapter());
   Hive.registerAdapter<NotificationModel>(NotificationModelAdapter());
 

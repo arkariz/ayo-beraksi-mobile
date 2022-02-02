@@ -40,3 +40,7 @@ class UpdateNotificationSuccess extends NotificationState {
 class UpdateNotificationFailed extends NotificationState {
   const UpdateNotificationFailed(String? error) : super(error: error);
 }
+
+class DeleteNotificationSuccess extends NotificationState {
+  const DeleteNotificationSuccess(String? message) : super(message: message);
+}
